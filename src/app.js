@@ -1,11 +1,14 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { Root, H1 } from 'native-base';
+import { Root } from 'native-base';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import Icon from './components/shared/icon';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import appReducer from './reducers/app-reducer';
-import db from './modules/db';
+import { routes as routeConstants } from './constants';
+import Home from './components/home';
+import Prayer from './components/prayer';
+// import db from './modules/db';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -17,16 +20,31 @@ store.subscribe(() => {
   console.log('state', state.appState);
 });
 
+const routes = {
+  [routeConstants.HOME]: {
+    screen: Home,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [routeConstants.PRAYER]: {
+    screen: Prayer
+  }
+};
+const stackConfig = {
+  initialRouteName: routeConstants.HOME
+};
+const StackNavigation = createStackNavigator(routes, stackConfig);
+const AppContainer = createAppContainer(StackNavigation);
+
 const App: () => React$Node = () => {
   return (
-    <SafeAreaView>
-      <Root>
-        <Provider store={store}>
-          <Icon>play</Icon>
-          <H1>Hello</H1>
-        </Provider>
-      </Root>
-    </SafeAreaView>
+    <Root>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </Root>
   );
 };
 
