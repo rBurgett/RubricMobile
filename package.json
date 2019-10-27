@@ -10,10 +10,15 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.2",
     "ionicons": "^4.6.3",
+    "lodash": "^4.17.15",
     "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.2"
+    "react-native": "0.61.2",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
