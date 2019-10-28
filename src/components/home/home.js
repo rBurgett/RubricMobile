@@ -7,7 +7,7 @@ import Container from '../shared/container';
 import Button from '../shared/button';
 import Icon from '../shared/icon';
 
-const Home = ({ navigation }) => {
+const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, navigation }) => {
   return (
     <Container>
       <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.SETTINGS)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
@@ -22,11 +22,11 @@ const Home = ({ navigation }) => {
           </Row>
           <Row style={styles.buttonsRow}>
             <Content>
-              <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})}>Morning Prayer</Button>
-              <Button onPress={() => navigation.navigate(routes.DAILY_READING)}>Daily Reading</Button>
-              <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.NOON_PRAYER})}>Noon Prayer</Button>
-              <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})}>Early Evening Prayer</Button>
-              <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})}>Close of Day Prayer</Button>
+              {!hideMorningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})}>Morning Prayer</Button> : null}
+              {!hideDailyReading ? <Button onPress={() => navigation.navigate(routes.DAILY_READING)}>Daily Reading</Button> : null}
+              {!hideNoonPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.NOON_PRAYER})}>Noon Prayer</Button> : null}
+              {!hideEarlyEveningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})}>Early Evening Prayer</Button> : null}
+              {!hideCloseOfDayPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})}>Close of Day Prayer</Button> : null}
             </Content>
           </Row>
         </Col>
@@ -35,6 +35,11 @@ const Home = ({ navigation }) => {
   );
 };
 Home.propTypes = {
+  hideMorningPrayer: PropTypes.bool,
+  hideDailyReading: PropTypes.bool,
+  hideNoonPrayer: PropTypes.bool,
+  hideEarlyEveningPrayer: PropTypes.bool,
+  hideCloseOfDayPrayer: PropTypes.bool,
   navigation: PropTypes.object
 };
 

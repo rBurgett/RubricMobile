@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View } from 'react-native';
 import { Root } from 'native-base';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import appReducer from './reducers/app-reducer';
-import { routes as routeConstants } from './constants';
+import * as appActions from './actions/app-actions';
+import { routes as routeConstants, storageKeys } from './constants';
 import Home from './components/home';
 import Prayer from './components/prayer';
 import DailyReading from './components/daily-reading';
 import Settings from './components/settings';
+import Container from './components/shared/container';
+import Storage from './modules/storage';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -47,21 +51,29 @@ const AppContainer = createAppContainer(StackNavigation);
 
 const App: () => React$Node = () => {
 
+  const [ ready, setReady ] = useState(false);
+
   useEffect(() => {
     (async function() {
       try {
-        // const date = moment();
-        // const day = date.format('D');
-        // const month = date.format('M');
-        // const year = date.format('YYYY');
-        // const res = await fetch(`http://www.esvapi.org/v2/rest/readingPlanQuery?key=TEST&reading-plan=bcp&date=${year}-${month}-${day}&include-footnotes=false&include-audio-link=true&audio-format=mp3&output-format=plain-text`);
-        // const text = await res.text();
-        // console.log(text);
+        const hideMorningPrayer = await Storage.getItem(storageKeys.HIDE_MORNNG_PRAYER);
+        const hideDailyReading = await Storage.getItem(storageKeys.HIDE_DAILY_READING);
+        const hideNoonPrayer = await Storage.getItem(storageKeys.HIDE_NOON_PRAYER);
+        const hideEarlyEveningPrayer = await Storage.getItem(storageKeys.HIDE_EARLY_EVENING_PRAYER);
+        const hideCloseOfDayPrayer = await Storage.getItem(storageKeys.HIDE_CLOSE_OF_DAY_PRAYER);
+        store.dispatch(appActions.setHideMorningPrayer(hideMorningPrayer));
+        store.dispatch(appActions.setHideDailyReading(hideDailyReading));
+        store.dispatch(appActions.setHideNoonPrayer(hideNoonPrayer));
+        store.dispatch(appActions.setHideEarlyEveningPrayer(hideEarlyEveningPrayer));
+        store.dispatch(appActions.setHideCloseOfDayPrayer(hideCloseOfDayPrayer));
+        setReady(true);
       } catch(err) {
         console.error(err);
       }
     })();
   }, []);
+
+  if(!ready) return <Container />;
 
   return (
     <Root>
