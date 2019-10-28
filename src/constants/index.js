@@ -2,7 +2,8 @@ export const actions = {};
 
 export const routes = {
   HOME: 'HOME',
-  PRAYER: 'PRAYER'
+  PRAYER: 'PRAYER',
+  DAILY_READING: 'DAILY_READING'
 };
 
 export const colors = {

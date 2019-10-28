@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
           <Row style={styles.buttonsRow}>
             <Content>
               <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})}>Morning Prayer</Button>
-              <Button>Daily Reading</Button>
+              <Button onPress={() => navigation.navigate(routes.DAILY_READING)}>Daily Reading</Button>
               <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.NOON_PRAYER})}>Noon Prayer</Button>
               <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})}>Early Evening Prayer</Button>
               <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})}>Close of Day Prayer</Button>
