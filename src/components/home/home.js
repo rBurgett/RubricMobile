@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, StatusBar, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Content, H1, Grid, Col, Row } from 'native-base';
 import { routes, colors, prayers } from '../../constants';
 import Container from '../shared/container';
@@ -9,6 +9,7 @@ import Icon from '../shared/icon';
 
 const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, navigation }) => {
   return (
+    <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
       <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.SETTINGS)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
       <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
@@ -32,6 +33,7 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
         </Col>
       </Grid>
     </Container>
+    </SafeAreaView>
   );
 };
 Home.propTypes = {
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignSelf: 'center',
-    fontFamily: 'serif',
+    fontFamily: 'DroidSerif',
     color: colors.BROWN,
     marginBottom: 10
   },

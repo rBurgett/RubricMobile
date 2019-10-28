@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   prayerText: {
-    fontFamily: 'serif',
+    fontFamily: 'DroidSerif',
     fontSize: 20,
     lineHeight: 40,
     textAlign: 'center',

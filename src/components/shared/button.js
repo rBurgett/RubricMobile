@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: tan.darken(0.1)
   },
   buttonText: {
-    fontFamily: 'serif',
+    fontFamily: 'DroidSerif',
     color: brown
   },
   icon: {
