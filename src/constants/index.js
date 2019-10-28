@@ -3,7 +3,8 @@ export const actions = {};
 export const routes = {
   HOME: 'HOME',
   PRAYER: 'PRAYER',
-  DAILY_READING: 'DAILY_READING'
+  DAILY_READING: 'DAILY_READING',
+  SETTINGS: 'SETTINGS'
 };
 
 export const colors = {

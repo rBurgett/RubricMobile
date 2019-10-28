@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, StatusBar } from 'react-native';
+import { Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import { Content, H1, Grid, Col, Row } from 'native-base';
 import { routes, colors, prayers } from '../../constants';
 import Container from '../shared/container';
 import Button from '../shared/button';
+import Icon from '../shared/icon';
 
 const Home = ({ navigation }) => {
   return (
     <Container>
-      <StatusBar backgroundColor={colors.TAN} barStyle="dark-content" />
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.SETTINGS)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
+      <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
       <Grid style={styles.grid}>
         <Col>
           <Row style={styles.headerRow}>
@@ -57,6 +59,16 @@ const styles = StyleSheet.create({
   },
   grid: {
     flex: 1
+  },
+  menuButton: {
+    position: 'absolute',
+    right: 15,
+    top: 3,
+    flex: -1
+  },
+  menuButtonIcon: {
+    color: colors.BROWN,
+    fontSize: 40
   }
 });
 

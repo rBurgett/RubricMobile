@@ -9,6 +9,7 @@ import { routes as routeConstants } from './constants';
 import Home from './components/home';
 import Prayer from './components/prayer';
 import DailyReading from './components/daily-reading';
+import Settings from './components/settings';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -33,6 +34,9 @@ const routes = {
   },
   [routeConstants.DAILY_READING]: {
     screen: DailyReading
+  },
+  [routeConstants.SETTINGS]: {
+    screen: Settings
   }
 };
 const stackConfig = {
