@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   paragraph: {
-    fontFamily: 'serif',
+    fontFamily: 'DroidSerif',
     paddingBottom: 22
   }
 });

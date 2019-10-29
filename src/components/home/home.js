@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, StatusBar, TouchableOpacity, SafeAreaView } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Content, H1, Grid, Col, Row } from 'native-base';
 import { routes, colors, prayers } from '../../constants';
 import Container from '../shared/container';
 import Button from '../shared/button';
 import Icon from '../shared/icon';
+import StatusBar from '../shared/statusBar';
 
 const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, navigation }) => {
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
       <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.SETTINGS)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
-      <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
+      <StatusBar/>
       <Grid style={styles.grid}>
         <Col>
           <Row style={styles.headerRow}>
