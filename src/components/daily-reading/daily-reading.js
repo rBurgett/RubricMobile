@@ -1,31 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { Content, Text } from 'native-base';
+import PropTypes from 'prop-types';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import { Body, Header, Left, Right, Button as NBButton, Title, Content, Text, H2 } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { colors } from '../../constants';
+import { colors, routes } from '../../constants';
+import Icon from '../shared/icon';
 import { handleError } from '../util';
+import dailyReadingData from '../../../daily-readings';
+import Entities from 'html-entities';
+import { getPassageText } from '../../util';
 
-const DailyReading = () => {
+const entities = new Entities.AllHtmlEntities();
 
-  const [ text, setText ] = useState('');
+const DailyReading = ({ fontSize, lineHeight }) => {
+
+  lineHeight = lineHeight === 1 ? fontSize + 1 : fontSize * lineHeight;
+
+  const [ textSections, setTextSections ] = useState([]);
 
   useEffect(() => {
-    const date = moment();
-    const day = date.format('D');
-    const month = date.format('M');
-    const year = date.format('YYYY');
-    fetch(`http://www.esvapi.org/v2/rest/readingPlanQuery?key=TEST&reading-plan=bcp&date=${year}-${month}-${day}&include-footnotes=false&include-audio-link=true&audio-format=mp3&output-format=plain-text`)
-      .then(res => res.text())
-      .then(res => setText(res))
-      .catch(handleError);
+    try {
+      const date = moment();
+      const day = date.format('D');
+      const month = date.format('M');
+      const year = date.format('YYYY');
+      const passages = dailyReadingData[`${year}-${month}-${day}`];
+      const text = [];
+      for(const passage of passages) {
+        text.push([passage, getPassageText(passage)]);
+      }
+      setTextSections(text);
+    } catch(err) {
+      handleError(err);
+    }
   }, []);
 
   return (
     <Container>
       <Content style={styles.content}>
-        <Text>{text}</Text>
+        {textSections.map(([range, paragraphs]) => {
+          return (
+            <View key={range}>
+              <H2 style={styles.heading}>{range}</H2>
+              <Text selectable={true} style={[styles.paragraph, { fontSize, lineHeight }]}>
+                {paragraphs
+                  .map(p => {
+                    return p
+                      .map(([c, v, t]) => `${c}:${v} ${entities.decode(t).trim()}`)
+                      .join(' ');
+                  })
+                  .join('\n\n')
+                }
+              </Text>
+            </View>
+          );
+        })}
       </Content>
     </Container>
   );
@@ -35,6 +66,10 @@ DailyReading.navigationOptions = ({ navigation } ) => {
     header: <Header navigation={navigation}>Daily Reading</Header>
   });
 };
+DailyReading.propTypes = {
+  fontSize: PropTypes.number,
+  lineHeight: PropTypes.number
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -42,6 +77,10 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 10
+  },
+  paragraph: {
+    fontFamily: 'serif',
+    paddingBottom: 22
   }
 });
 
