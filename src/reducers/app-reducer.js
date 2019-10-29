@@ -9,7 +9,9 @@ const getInitialState = () => ({
   hideNoonPrayer: false,
   hideDailyreading: false,
   hideEarlyEveningPrayer: false,
-  hideCloseOfDayPrayer: false
+  hideCloseOfDayPrayer: false,
+  fontSize: 16,
+  lineHeight: 1.5
 });
 
 export default (state = getInitialState(), { type, payload }) => {
@@ -38,6 +40,16 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         hideCloseOfDayPrayer: payload
+      };
+    case actions.SET_FONT_SIZE:
+      return {
+        ...state,
+        fontSize: payload
+      };
+    case actions.SET_LINE_HEIGHT:
+      return {
+        ...state,
+        lineHeight: payload
       };
     default:
       return state;

@@ -24,3 +24,13 @@ export const setHideCloseOfDayPrayer = hide => ({
   type: actions.SET_HIDE_CLOSE_OF_DAY_PRAYER,
   payload: hide
 });
+
+export const setFontSize = fontSize => ({
+  type: actions.SET_FONT_SIZE,
+  payload: fontSize
+});
+
+export const setLineHeight = lineHeight => ({
+  type: actions.SET_LINE_HEIGHT,
+  payload: lineHeight
+});
