@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
-import { Body, Header, Left, Button as NBButton, Title, Content, Text } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Title, Content, Text } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
+import Header from '../shared/header';
 import { colors } from '../../constants';
 import Icon from '../shared/icon';
 import { handleError } from '../util';
@@ -33,17 +34,9 @@ const DailyReading = () => {
 DailyReading.navigationOptions = ({ navigation } ) => {
   return ({
     header: (
-      <Header style={styles.header}>
-        <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
-        <Left>
-          <NBButton transparent onPress={() => navigation.pop()}>
-            <Icon>arrow-back</Icon>
-          </NBButton>
-        </Left>
-        <Body>
-          <Title>Daily Reading</Title>
-        </Body>
-      </Header>
+      <Header navigation={navigation}>
+        <Title style={{color: colors.TAN}}>Daily Reading</Title>
+        </Header>
     )
   });
 };
