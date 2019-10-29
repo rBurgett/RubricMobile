@@ -59,12 +59,9 @@ Prayer.navigationOptions = ({ navigation } ) => {
   }
 
   return ({
-    header: (
-      <Header navigation={navigation}>
-        <Title style={{color: colors.TAN}}>{title}</Title>
-      </Header>
-    )
+    header: <Header navigation={navigation}>{title}</Header>
   });
+
 };
 Prayer.propTypes = {
   morningPrayer: PropTypes.string,
