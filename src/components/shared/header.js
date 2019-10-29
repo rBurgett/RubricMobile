@@ -1,14 +1,15 @@
 import { colors } from '../../constants';
 import { Body, Header as NBHeader, Button as NBButton, Left, Title } from 'native-base';
 import Icon from './icon';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
+import StatusBar from './statusBar';
 
 const Header = ({ children, navigation, hideBack = false }) => {
   return (
     <NBHeader style={styles.header}>
-      <StatusBar backgroundColor={colors.BROWN} barStyle="light-content"/>
+      <StatusBar/>
       <Left>
         {hideBack ?
           null
