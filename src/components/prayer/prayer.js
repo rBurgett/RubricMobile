@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, StatusBar } from 'react-native';
-import { Body, Header, Left, Content, Title, Text, Button as NBButton } from 'native-base';
-import Icon from '../shared/icon';
+import { StyleSheet } from 'react-native';
+import { Content, Title, Text } from 'native-base';
 import Button from '../shared/button';
 import Container from '../shared/container';
-import { colors, prayers } from '../../constants';
+import Header from '../shared/header';
+import {colors, prayers} from '../../constants';
 
 const Prayer = ({ morningPrayer, noonPrayer, earlyEveningPrayer, closeOfDayPrayer, navigation }) => {
 
@@ -60,16 +60,8 @@ Prayer.navigationOptions = ({ navigation } ) => {
 
   return ({
     header: (
-      <Header style={styles.header}>
-        <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
-        <Left>
-          <NBButton transparent onPress={() => navigation.pop()}>
-            <Icon>arrow-back</Icon>
-          </NBButton>
-        </Left>
-        <Body>
-          <Title>{title}</Title>
-        </Body>
+      <Header navigation={navigation}>
+        <Title style={{color: colors.TAN}}>{title}</Title>
       </Header>
     )
   });
@@ -83,9 +75,6 @@ Prayer.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: colors.BROWN
-  },
   content: {
     padding: 10
   },
