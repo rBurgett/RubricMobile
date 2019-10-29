@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Title, Content, Text } from 'native-base';
+import { Content, Text } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
 import { colors } from '../../constants';
-import Icon from '../shared/icon';
 import { handleError } from '../util';
 
 const DailyReading = () => {
@@ -33,11 +32,7 @@ const DailyReading = () => {
 };
 DailyReading.navigationOptions = ({ navigation } ) => {
   return ({
-    header: (
-      <Header navigation={navigation}>
-        <Title style={{color: colors.TAN}}>Daily Reading</Title>
-        </Header>
-    )
+    header: <Header navigation={navigation}>Daily Reading</Header>
   });
 };
 

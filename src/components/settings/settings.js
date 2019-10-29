@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StatusBar, StyleSheet } from 'react-native';
-import { Body, Header, Left, Button as NBButton, Title, Content, Text } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Button as NBButton, Content, Text } from 'native-base';
 import Container from '../shared/container';
 import { colors } from '../../constants';
 import Icon from '../shared/icon';
+import Header from '../shared/header';
 
 const ButtonInput = ({ value = false, label, onChange }) => {
   return (
@@ -35,19 +36,7 @@ const Settings = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEar
 };
 Settings.navigationOptions = ({ navigation } ) => {
   return ({
-    header: (
-      <Header style={styles.header}>
-        <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
-        <Left>
-          <NBButton transparent onPress={() => navigation.pop()}>
-            <Icon>arrow-back</Icon>
-          </NBButton>
-        </Left>
-        <Body>
-          <Title>Settings</Title>
-        </Body>
-      </Header>
-    )
+    header: <Header navigation={navigation}>Settings</Header>
   });
 };
 Settings.propTypes = {
