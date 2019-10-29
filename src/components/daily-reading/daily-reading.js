@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { StatusBar, StyleSheet, View } from 'react-native';
-import { Body, Header, Left, Right, Button as NBButton, Title, Content, Text, H2 } from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Content, Text, H2 } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { colors, routes } from '../../constants';
-import Icon from '../shared/icon';
+import { colors } from '../../constants';
 import { handleError } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
@@ -38,7 +37,7 @@ const DailyReading = ({ fontSize, lineHeight }) => {
   }, []);
 
   return (
-    <Container>
+    <Container style={styles.container}>
       <Content style={styles.content}>
         {textSections.map(([range, paragraphs]) => {
           return (
@@ -72,8 +71,12 @@ DailyReading.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: colors.BROWN
+  container: {
+    paddingTop: 0,
+    paddingBottom: 0
+  },
+  heading: {
+    paddingBottom: 10
   },
   content: {
     padding: 10
