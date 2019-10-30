@@ -10,7 +10,9 @@ export default connect(
     hideDailyReading: appState.hideDailyReading,
     hideNoonPrayer: appState.hideNoonPrayer,
     hideEarlyEveningPrayer: appState.hideEarlyEveningPrayer,
-    hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer
+    hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
+    fontSize: appState.fontSize,
+    lineHeight: appState.lineHeight
   }),
   dispatch => ({
     setHideMorningPrayer: hide => {
@@ -32,6 +34,14 @@ export default connect(
     setHideCloseOfDayPrayer: hide => {
       Storage.setItem(storageKeys.HIDE_CLOSE_OF_DAY_PRAYER, hide);
       dispatch(appActions.setHideCloseOfDayPrayer(hide));
+    },
+    setFontSize: fontSize => {
+      Storage.setItem(storageKeys.FONT_SIZE, fontSize);
+      dispatch(appActions.setFontSize(fontSize));
+    },
+    setLineHeight: lineHeight => {
+      Storage.setItem(storageKeys.LINE_HEIGHT, lineHeight);
+      dispatch(appActions.setLineHeight(lineHeight));
     }
   })
 )(Settings);

@@ -5,7 +5,7 @@ import { Content, Text, H2 } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { colors } from '../../constants';
+import { routes } from '../../constants';
 import { handleError } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
@@ -15,7 +15,7 @@ const entities = new Entities.AllHtmlEntities();
 
 const DailyReading = ({ fontSize, lineHeight }) => {
 
-  lineHeight = lineHeight === 1 ? fontSize + 1 : fontSize * lineHeight;
+  lineHeight = lineHeight * fontSize;
 
   const [ textSections, setTextSections ] = useState([]);
 
@@ -61,8 +61,13 @@ const DailyReading = ({ fontSize, lineHeight }) => {
   );
 };
 DailyReading.navigationOptions = ({ navigation } ) => {
+
+  const onRightButtonPress = () => {
+    navigation.navigate(routes.SETTINGS);
+  };
+
   return ({
-    header: <Header navigation={navigation}>Daily Reading</Header>
+    header: <Header navigation={navigation} rightButtonIcon={'cog'} onRightButtonPress={onRightButtonPress}>Daily Reading</Header>
   });
 };
 DailyReading.propTypes = {
