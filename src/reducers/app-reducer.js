@@ -1,4 +1,4 @@
-import { actions } from '../constants';
+import { actions, BASE_FONT_SIZE } from '../constants';
 
 const getInitialState = () => ({
   morningPrayer: 'Lord God, almighty and everlasting Father, you have brought us in safety to this new day: Preserve us with your mighty power, that we may not fall into sin, nor be overcome by adversity; and in all we do, direct us to the fulfilling of your purpose; through Jesus Christ our Lord.',
@@ -10,7 +10,7 @@ const getInitialState = () => ({
   hideDailyreading: false,
   hideEarlyEveningPrayer: false,
   hideCloseOfDayPrayer: false,
-  fontSize: 16,
+  fontSize: BASE_FONT_SIZE,
   lineHeight: 1.5
 });
 

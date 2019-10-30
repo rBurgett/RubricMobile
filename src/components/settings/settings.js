@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
-import { Button as NBButton, Content, Text } from 'native-base';
+import { Button as NBButton, Content, Text, Item, Form, Picker, Label } from 'native-base';
 import Container from '../shared/container';
-import { colors } from '../../constants';
+import { colors, BASE_FONT_SIZE } from '../../constants';
 import Icon from '../shared/icon';
 import Header from '../shared/header';
 
@@ -21,7 +21,7 @@ ButtonInput.propTypes = {
   onChange: PropTypes.func
 };
 
-const Settings = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer }) => {
+const Settings = ({ fontSize, lineHeight, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight }) => {
   return (
     <Container>
       <Content style={styles.content}>
@@ -30,6 +30,29 @@ const Settings = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEar
         <ButtonInput label={'Show Noon Prayer'} value={!hideNoonPrayer} onChange={show => setHideNoonPrayer(!show)} />
         <ButtonInput label={'Show Early Evening Prayer'} value={!hideEarlyEveningPrayer} onChange={show => setHideEarlyEveningPrayer(!show)} />
         <ButtonInput label={'Show Close of Day Prayer'} value={!hideCloseOfDayPrayer} onChange={show => setHideCloseOfDayPrayer(!show)} />
+        <Form>
+          <Item fixedLabel style={styles.pickerItem} picker>
+            <Label>Reading Text Size</Label>
+            <Picker selectedValue={fontSize} onValueChange={setFontSize}>
+              <Picker.Item label={'1.0'} value={1 * BASE_FONT_SIZE} />
+              <Picker.Item label={'1.2'} value={1.2 * BASE_FONT_SIZE} />
+              <Picker.Item label={'1.4'} value={1.4 * BASE_FONT_SIZE} />
+              <Picker.Item label={'1.6'} value={1.6 * BASE_FONT_SIZE} />
+              <Picker.Item label={'1.8'} value={1.8 * BASE_FONT_SIZE} />
+              <Picker.Item label={'2.0'} value={2 * BASE_FONT_SIZE} />
+            </Picker>
+          </Item>
+          <Item fixedLabel style={styles.pickerItem} picker>
+            <Label>Reading Line Height</Label>
+            <Picker selectedValue={lineHeight} onValueChange={setLineHeight}>
+              <Picker.Item label={'1'} value={1} />
+              <Picker.Item label={'1.25'} value={1.25} />
+              <Picker.Item label={'1.5'} value={1.5} />
+              <Picker.Item label={'1.75'} value={1.75} />
+              <Picker.Item label={'2'} value={2} />
+            </Picker>
+          </Item>
+        </Form>
       </Content>
     </Container>
   );
@@ -45,11 +68,15 @@ Settings.propTypes = {
   hideNoonPrayer: PropTypes.bool,
   hideEarlyEveningPrayer: PropTypes.bool,
   hideCloseOfDayPrayer: PropTypes.bool,
+  fontSize: PropTypes.number,
+  lineHeight: PropTypes.number,
   setHideMorningPrayer: PropTypes.func,
   setHideDailyReading: PropTypes.func,
   setHideNoonPrayer: PropTypes.func,
   setHideEarlyEveningPrayer: PropTypes.func,
-  setHideCloseOfDayPrayer: PropTypes.func
+  setHideCloseOfDayPrayer: PropTypes.func,
+  setFontSize: PropTypes.func,
+  setLineHeight: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -63,7 +90,11 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   buttonText: {
-    color: colors.BROWN
+    color: '#000'
+    // color: colors.BROWN
+  },
+  pickerItem: {
+    marginBottom: 10
   }
 });
 
