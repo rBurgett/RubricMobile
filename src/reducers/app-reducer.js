@@ -1,4 +1,5 @@
 import { actions, BASE_FONT_SIZE } from '../constants';
+import Progress from '../types/progress';
 
 const getInitialState = () => ({
   morningPrayer: 'Lord God, almighty and everlasting Father, you have brought us in safety to this new day: Preserve us with your mighty power, that we may not fall into sin, nor be overcome by adversity; and in all we do, direct us to the fulfilling of your purpose; through Jesus Christ our Lord.',
@@ -11,7 +12,8 @@ const getInitialState = () => ({
   hideEarlyEveningPrayer: false,
   hideCloseOfDayPrayer: false,
   fontSize: BASE_FONT_SIZE,
-  lineHeight: 1.5
+  lineHeight: 1.5,
+  progress: new Progress()
 });
 
 export default (state = getInitialState(), { type, payload }) => {
@@ -50,6 +52,11 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         lineHeight: payload
+      };
+    case actions.SET_PROGRESS:
+      return {
+        ...state,
+        progress: payload
       };
     default:
       return state;

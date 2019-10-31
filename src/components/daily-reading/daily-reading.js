@@ -5,15 +5,18 @@ import { Content, Text, H2 } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { routes } from '../../constants';
+import { routes, SERIF_FONT_FAMILY } from '../../constants';
 import { handleError } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
 import { getPassageText } from '../../util';
+import Button from '../shared/button';
+import Progress from '../../types/progress';
+import Storage from '../../modules/storage';
 
 const entities = new Entities.AllHtmlEntities();
 
-const DailyReading = ({ fontSize, lineHeight }) => {
+const DailyReading = ({ fontSize, lineHeight, navigation, progress, setProgress }) => {
 
   lineHeight = lineHeight * fontSize;
 
@@ -36,6 +39,19 @@ const DailyReading = ({ fontSize, lineHeight }) => {
     }
   }, []);
 
+  const onDonePress = async function() {
+    try {
+      const newProgress = progress.set({
+        dr: true
+      });
+      await Storage.setItem(progress.key, newProgress);
+      setProgress(newProgress);
+      navigation.goBack();
+    } catch(err) {
+      handleError(err);
+    }
+  };
+
   return (
     <Container style={styles.container}>
       <Content style={styles.content}>
@@ -56,6 +72,9 @@ const DailyReading = ({ fontSize, lineHeight }) => {
             </View>
           );
         })}
+        <View style={styles.doneBtnContainer}>
+          {textSections.length > 0 ? <Button icon={'checkmark'} onPress={onDonePress}>Done</Button> : null}
+        </View>
       </Content>
     </Container>
   );
@@ -72,7 +91,10 @@ DailyReading.navigationOptions = ({ navigation } ) => {
 };
 DailyReading.propTypes = {
   fontSize: PropTypes.number,
-  lineHeight: PropTypes.number
+  lineHeight: PropTypes.number,
+  progress: PropTypes.instanceOf(Progress),
+  navigation: PropTypes.object,
+  setProgress: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -87,8 +109,11 @@ const styles = StyleSheet.create({
     padding: 10
   },
   paragraph: {
-    fontFamily: 'DroidSerif',
+    fontFamily: SERIF_FONT_FAMILY,
     paddingBottom: 22
+  },
+  doneBtnContainer: {
+    paddingBottom: 15
   }
 });
 

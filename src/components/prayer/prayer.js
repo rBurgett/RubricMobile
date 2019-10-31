@@ -1,33 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
-import { Content, Title, Text } from 'native-base';
+import { Content, Text } from 'native-base';
 import Button from '../shared/button';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import {colors, prayers} from '../../constants';
+import { prayers, SERIF_FONT_FAMILY } from '../../constants';
+import Progress from '../../types/progress';
+import Storage from '../../modules/storage';
+import { handleError } from '../util';
 
-const Prayer = ({ morningPrayer, noonPrayer, earlyEveningPrayer, closeOfDayPrayer, navigation }) => {
+const Prayer = ({ progress, morningPrayer, noonPrayer, earlyEveningPrayer, closeOfDayPrayer, navigation, setProgress }) => {
 
   const { prayer } = navigation.state.params;
   let prayerText = '';
+  let progressKey = '';
   switch(prayer) {
     case prayers.MORNING_PRAYER:
       prayerText = morningPrayer;
+      progressKey = 'mp';
       break;
     case prayers.NOON_PRAYER:
       prayerText = noonPrayer;
+      progressKey = 'np';
       break;
     case prayers.EARLY_EVENING_PRAYER:
       prayerText = earlyEveningPrayer;
+      progressKey = 'ee';
       break;
     case prayers.CLOSE_OF_DAY_PRAYER:
       prayerText = closeOfDayPrayer;
+      progressKey = 'eod';
       break;
   }
 
-  const onDone = () => {
-    navigation.goBack();
+  const onDone = async function() {
+    try {
+      const newProgress = progress.set({
+        [progressKey]: true
+      });
+      await Storage.setItem(progress.key, newProgress);
+      setProgress(newProgress);
+      navigation.goBack();
+    } catch(err) {
+      handleError(err);
+    }
   };
 
   return (
@@ -68,7 +85,9 @@ Prayer.propTypes = {
   noonPrayer: PropTypes.string,
   earlyEveningPrayer: PropTypes.string,
   closeOfDayPrayer: PropTypes.string,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  progress: PropTypes.instanceOf(Progress),
+  setProgress: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -76,7 +95,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   prayerText: {
-    fontFamily: 'DroidSerif',
+    fontFamily: SERIF_FONT_FAMILY,
     fontSize: 20,
     lineHeight: 40,
     textAlign: 'center',

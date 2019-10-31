@@ -13,6 +13,8 @@ import DailyReading from './components/daily-reading';
 import Settings from './components/settings';
 import Container from './components/shared/container';
 import Storage from './modules/storage';
+import moment from 'moment';
+import Progress from './types/progress';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -55,6 +57,16 @@ const App: () => React$Node = () => {
   useEffect(() => {
     (async function() {
       try {
+        const date = moment();
+        const day = date.format('D');
+        const month = date.format('M');
+        const year = date.format('YYYY');
+        const progressKey = `prog_${year}-${month}-${day}`;
+        const progressData = await Storage.getItem(progressKey);
+        const progress = new Progress(progressData || {});
+        // if(!progressData) await Storage.setItem(progressKey, progress);
+        await Storage.setItem(progressKey, {...progress, key: progressKey});
+        store.dispatch(appActions.setProgress(progress));
         const hideMorningPrayer = await Storage.getItem(storageKeys.HIDE_MORNNG_PRAYER);
         const hideDailyReading = await Storage.getItem(storageKeys.HIDE_DAILY_READING);
         const hideNoonPrayer = await Storage.getItem(storageKeys.HIDE_NOON_PRAYER);

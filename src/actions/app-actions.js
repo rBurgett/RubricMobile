@@ -34,3 +34,8 @@ export const setLineHeight = lineHeight => ({
   type: actions.SET_LINE_HEIGHT,
   payload: lineHeight
 });
+
+export const setProgress = progress => ({
+  type: actions.SET_PROGRESS,
+  payload: progress
+});

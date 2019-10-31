@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 export const actions = {
   SET_HIDE_MORNING_PRAYER: 'SET_HIDE_MORNING_PRAYER',
   SET_HIDE_NOON_PRAYER: 'SET_HIDE_NOON_PRAYER',
@@ -5,7 +7,8 @@ export const actions = {
   SET_HIDE_EARLY_EVENING_PRAYER: 'SET_HIDE_EARLY_EVENING_PRAYER',
   SET_HIDE_CLOSE_OF_DAY_PRAYER: 'SET_HIDE_CLOSE_OF_DAY_PRAYER',
   SET_FONT_SIZE: 'SET_FONT_SIZE',
-  SET_LINE_HEIGHT: 'SET_LINE_HEIGHT'
+  SET_LINE_HEIGHT: 'SET_LINE_HEIGHT',
+  SET_PROGRESS: 'SET_PROGRESS'
 };
 
 export const routes = {
@@ -38,3 +41,5 @@ export const storageKeys = {
 };
 
 export const BASE_FONT_SIZE = 16;
+
+export const SERIF_FONT_FAMILY = Platform.OS === 'ios' ? 'DroidSerif' : 'serif';

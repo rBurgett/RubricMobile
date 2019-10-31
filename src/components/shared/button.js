@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { Button as NBButton, Text } from 'native-base';
 import Color from 'color';
-import { colors as colorConstants } from '../../constants';
+import { colors as colorConstants, SERIF_FONT_FAMILY } from '../../constants';
 import Icon from './icon';
 
 const tan = Color(colorConstants.TAN);
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: tan.darken(0.1)
   },
   buttonText: {
-    fontFamily: 'DroidSerif',
+    fontFamily: SERIF_FONT_FAMILY,
     color: brown
   },
   icon: {
