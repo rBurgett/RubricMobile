@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Content, H1, Grid, Col, Row } from 'native-base';
-import { routes, colors, prayers } from '../../constants';
+import { routes, colors, prayers, SERIF_FONT_FAMILY } from '../../constants';
 import Container from '../shared/container';
 import Button from '../shared/button';
 import Icon from '../shared/icon';
 import StatusBar from '../shared/statusBar';
+import Progress from '../../types/progress';
 
-const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, navigation }) => {
+const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, progress, navigation }) => {
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
@@ -24,11 +25,11 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
           </Row>
           <Row style={styles.buttonsRow}>
             <Content>
-              {!hideMorningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})}>Morning Prayer</Button> : null}
-              {!hideDailyReading ? <Button onPress={() => navigation.navigate(routes.DAILY_READING)}>Daily Reading</Button> : null}
-              {!hideNoonPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.NOON_PRAYER})}>Noon Prayer</Button> : null}
-              {!hideEarlyEveningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})}>Early Evening Prayer</Button> : null}
-              {!hideCloseOfDayPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})}>Close of Day Prayer</Button> : null}
+              {!hideMorningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})} icon={progress.mp ? 'checkmark' : ''}>Morning Prayer</Button> : null}
+              {!hideDailyReading ? <Button onPress={() => navigation.navigate(routes.DAILY_READING)} icon={progress.dr ? 'checkmark' : ''}>Daily Reading</Button> : null}
+              {!hideNoonPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.NOON_PRAYER})} icon={progress.np ? 'checkmark' : ''}>Noon Prayer</Button> : null}
+              {!hideEarlyEveningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})} icon={progress.ee ? 'checkmark' : ''}>Early Evening Prayer</Button> : null}
+              {!hideCloseOfDayPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})} icon={progress.eod ? 'checkmark' : ''}>Close of Day Prayer</Button> : null}
             </Content>
           </Row>
         </Col>
@@ -43,7 +44,8 @@ Home.propTypes = {
   hideNoonPrayer: PropTypes.bool,
   hideEarlyEveningPrayer: PropTypes.bool,
   hideCloseOfDayPrayer: PropTypes.bool,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  progress: PropTypes.instanceOf(Progress)
 };
 
 const styles = StyleSheet.create({
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignSelf: 'center',
-    fontFamily: 'DroidSerif',
+    fontFamily: SERIF_FONT_FAMILY,
     color: colors.BROWN,
     marginBottom: 10
   },

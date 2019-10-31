@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StatusBar, StyleSheet} from 'react-native';
+import { StyleSheet} from 'react-native';
 import { Container as NBContainer } from 'native-base';
 import { colors } from '../../constants';
 
 const Container = ({ children, style = {} }) => {
   return (
     <NBContainer style={[styles.container, style]}>
-      <StatusBar backgroundColor={colors.BROWN} barStyle="light-content" />
       {children}
     </NBContainer>
     );

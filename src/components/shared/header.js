@@ -9,7 +9,7 @@ import StatusBar from './statusBar';
 const Header = ({ children, navigation, hideBack = false, rightButtonIcon = '', onRightButtonPress }) => {
   return (
     <NBHeader style={styles.header}>
-      <StatusBar/>
+      <StatusBar />
       <Left>
         {!hideBack ?
           <Button transparent onPress={() => navigation.pop()}>

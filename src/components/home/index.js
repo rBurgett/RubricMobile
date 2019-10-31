@@ -7,6 +7,7 @@ export default connect(
     hideDailyReading: appState.hideDailyReading,
     hideNoonPrayer: appState.hideNoonPrayer,
     hideEarlyEveningPrayer: appState.hideEarlyEveningPrayer,
-    hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer
+    hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
+    progress: appState.progress
   })
 )(Home);
