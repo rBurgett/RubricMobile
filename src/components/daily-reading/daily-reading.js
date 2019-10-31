@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     paddingBottom: 0
   },
   heading: {
+    fontFamily: SERIF_FONT_FAMILY,
     paddingBottom: 10
   },
   content: {
