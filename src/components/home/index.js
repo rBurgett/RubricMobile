@@ -8,6 +8,7 @@ export default connect(
     hideNoonPrayer: appState.hideNoonPrayer,
     hideEarlyEveningPrayer: appState.hideEarlyEveningPrayer,
     hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
+    fontType: appState.fontType,
     progress: appState.progress
   })
 )(Home);

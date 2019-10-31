@@ -35,6 +35,11 @@ export const setLineHeight = lineHeight => ({
   payload: lineHeight
 });
 
+export const setFontType = fontType => ({
+  type: actions.SET_FONT_TYPE,
+  payload: fontType
+});
+
 export const setProgress = progress => ({
   type: actions.SET_PROGRESS,
   payload: progress

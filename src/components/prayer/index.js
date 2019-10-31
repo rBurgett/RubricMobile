@@ -8,6 +8,7 @@ export default connect(
     noonPrayer: appState.noonPrayer,
     earlyEveningPrayer: appState.earlyEveningPrayer,
     closeOfDayPrayer: appState.closeOfDayPrayer,
+    fontType: appState.fontType,
     progress: appState.progress
   }),
   dispatch => ({

@@ -5,12 +5,12 @@ import { Content, Text } from 'native-base';
 import Button from '../shared/button';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { prayers, SERIF_FONT_FAMILY } from '../../constants';
+import { prayers, fontFamily } from '../../constants';
 import Progress from '../../types/progress';
 import Storage from '../../modules/storage';
 import { handleError } from '../util';
 
-const Prayer = ({ progress, morningPrayer, noonPrayer, earlyEveningPrayer, closeOfDayPrayer, navigation, setProgress }) => {
+const Prayer = ({ progress, morningPrayer, noonPrayer, earlyEveningPrayer, closeOfDayPrayer, fontType, navigation, setProgress }) => {
 
   const { prayer } = navigation.state.params;
   let prayerText = '';
@@ -50,7 +50,7 @@ const Prayer = ({ progress, morningPrayer, noonPrayer, earlyEveningPrayer, close
   return (
     <Container>
       <Content style={styles.content}>
-        <Text style={styles.prayerText}>{prayerText}</Text>
+        <Text style={[styles.prayerText, {fontFamily: fontFamily[fontType]}]}>{prayerText}</Text>
         <Button onPress={onDone} icon={'checkmark'}>Amen</Button>
       </Content>
     </Container>
@@ -87,6 +87,7 @@ Prayer.propTypes = {
   closeOfDayPrayer: PropTypes.string,
   navigation: PropTypes.object,
   progress: PropTypes.instanceOf(Progress),
+  fontType: PropTypes.string,
   setProgress: PropTypes.func
 };
 
@@ -95,7 +96,6 @@ const styles = StyleSheet.create({
     padding: 10
   },
   prayerText: {
-    fontFamily: SERIF_FONT_FAMILY,
     fontSize: 20,
     lineHeight: 40,
     textAlign: 'center',

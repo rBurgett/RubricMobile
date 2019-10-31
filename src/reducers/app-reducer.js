@@ -1,4 +1,4 @@
-import { actions, BASE_FONT_SIZE } from '../constants';
+import { actions, BASE_FONT_SIZE, fontTypes } from '../constants';
 import Progress from '../types/progress';
 
 const getInitialState = () => ({
@@ -13,6 +13,7 @@ const getInitialState = () => ({
   hideCloseOfDayPrayer: false,
   fontSize: BASE_FONT_SIZE,
   lineHeight: 1.5,
+  fontType: fontTypes.SANS_SERIF,
   progress: new Progress()
 });
 
@@ -52,6 +53,11 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         lineHeight: payload
+      };
+    case actions.SET_FONT_TYPE:
+      return {
+        ...state,
+        fontType: payload
       };
     case actions.SET_PROGRESS:
       return {

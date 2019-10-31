@@ -8,6 +8,7 @@ export const actions = {
   SET_HIDE_CLOSE_OF_DAY_PRAYER: 'SET_HIDE_CLOSE_OF_DAY_PRAYER',
   SET_FONT_SIZE: 'SET_FONT_SIZE',
   SET_LINE_HEIGHT: 'SET_LINE_HEIGHT',
+  SET_FONT_TYPE: 'SET_FONT_TYPE',
   SET_PROGRESS: 'SET_PROGRESS'
 };
 
@@ -37,9 +38,20 @@ export const storageKeys = {
   HIDE_EARLY_EVENING_PRAYER: 'HIDE_EARLY_EVENING_PRAYER',
   HIDE_CLOSE_OF_DAY_PRAYER: 'HIDE_CLOSE_OF_DAY_PRAYER',
   FONT_SIZE: 'FONT_SIZE',
-  LINE_HEIGHT: 'LINE_HEIGHT'
+  LINE_HEIGHT: 'LINE_HEIGHT',
+  FONT_TYPE: 'FONT_TYPE'
 };
 
 export const BASE_FONT_SIZE = 16;
+
+export const fontTypes = {
+  SERIF: 'SERIF',
+  SANS_SERIF: 'SANS_SERIF'
+};
+
+export const fontFamily = {
+  [fontTypes.SERIF]: Platform.OS === 'ios' ? 'DroidSerif' : 'serif',
+  [fontTypes.SANS_SERIF]: ''
+};
 
 export const SERIF_FONT_FAMILY = Platform.OS === 'ios' ? 'DroidSerif' : 'serif';

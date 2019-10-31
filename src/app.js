@@ -6,7 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import appReducer from './reducers/app-reducer';
 import * as appActions from './actions/app-actions';
-import { BASE_FONT_SIZE, routes as routeConstants, storageKeys } from './constants';
+import {BASE_FONT_SIZE, fontTypes, routes as routeConstants, storageKeys} from './constants';
 import Home from './components/home';
 import Prayer from './components/prayer';
 import DailyReading from './components/daily-reading';
@@ -81,6 +81,8 @@ const App: () => React$Node = () => {
         store.dispatch(appActions.setFontSize(fontSize || BASE_FONT_SIZE));
         const lineHeight = await Storage.getItem(storageKeys.LINE_HEIGHT);
         store.dispatch(appActions.setLineHeight(lineHeight || 1.5));
+        const fontType = await Storage.getItem(storageKeys.FONT_TYPE);
+        store.dispatch(appActions.setFontType(fontType || fontTypes.SERIF));
         setReady(true);
       } catch(err) {
         console.error(err);
