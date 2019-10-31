@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { Button as NBButton, Content, Text, Item, Form, Picker, Label } from 'native-base';
 import Container from '../shared/container';
-import { colors, BASE_FONT_SIZE } from '../../constants';
+import {colors, BASE_FONT_SIZE, fontTypes} from '../../constants';
 import Icon from '../shared/icon';
 import Header from '../shared/header';
 
@@ -21,7 +21,7 @@ ButtonInput.propTypes = {
   onChange: PropTypes.func
 };
 
-const Settings = ({ fontSize, lineHeight, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight }) => {
+const Settings = ({ fontSize, lineHeight, fontType, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType }) => {
   return (
     <Container>
       <Content style={styles.content}>
@@ -52,6 +52,13 @@ const Settings = ({ fontSize, lineHeight, hideMorningPrayer, hideDailyReading, h
               <Picker.Item label={'2'} value={2} />
             </Picker>
           </Item>
+          <Item fixedLabel style={styles.pickerItem} picker>
+            <Label>Reading Font Type</Label>
+            <Picker selectedValue={fontType} onValueChange={setFontType}>
+              <Picker.Item label={'Serif'} value={fontTypes.SERIF} />
+              <Picker.Item label={'Sans-serif'} value={fontTypes.SANS_SERIF} />
+            </Picker>
+          </Item>
         </Form>
       </Content>
     </Container>
@@ -70,13 +77,15 @@ Settings.propTypes = {
   hideCloseOfDayPrayer: PropTypes.bool,
   fontSize: PropTypes.number,
   lineHeight: PropTypes.number,
+  fontType: PropTypes.string,
   setHideMorningPrayer: PropTypes.func,
   setHideDailyReading: PropTypes.func,
   setHideNoonPrayer: PropTypes.func,
   setHideEarlyEveningPrayer: PropTypes.func,
   setHideCloseOfDayPrayer: PropTypes.func,
   setFontSize: PropTypes.func,
-  setLineHeight: PropTypes.func
+  setLineHeight: PropTypes.func,
+  setFontType: PropTypes.func
 };
 
 const styles = StyleSheet.create({

@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Content, H1, Grid, Col, Row } from 'native-base';
-import { routes, colors, prayers, SERIF_FONT_FAMILY } from '../../constants';
+import { routes, colors, prayers, fontFamily } from '../../constants';
 import Container from '../shared/container';
 import Button from '../shared/button';
 import Icon from '../shared/icon';
 import StatusBar from '../shared/statusBar';
 import Progress from '../../types/progress';
 
-const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, progress, navigation }) => {
+const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, fontType, progress, navigation }) => {
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
@@ -20,7 +20,7 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
           <Row style={styles.headerRow}>
             <Col>
               <Image style={styles.image} source={require('../../../images/rubric.church.png')} />
-              <H1 style={styles.header}>Rubric.Church</H1>
+              <H1 style={[styles.header, {fontFamily: fontFamily[fontType]}]}>Rubric.Church</H1>
             </Col>
           </Row>
           <Row style={styles.buttonsRow}>
@@ -45,6 +45,7 @@ Home.propTypes = {
   hideEarlyEveningPrayer: PropTypes.bool,
   hideCloseOfDayPrayer: PropTypes.bool,
   navigation: PropTypes.object,
+  fontType: PropTypes.string,
   progress: PropTypes.instanceOf(Progress)
 };
 
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
   },
   header: {
     alignSelf: 'center',
-    fontFamily: SERIF_FONT_FAMILY,
     color: colors.BROWN,
     marginBottom: 10
   },

@@ -5,7 +5,7 @@ import { Content, Text, H2 } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { routes, SERIF_FONT_FAMILY } from '../../constants';
+import { routes, fontFamily } from '../../constants';
 import { handleError } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
@@ -16,7 +16,7 @@ import Storage from '../../modules/storage';
 
 const entities = new Entities.AllHtmlEntities();
 
-const DailyReading = ({ fontSize, lineHeight, navigation, progress, setProgress }) => {
+const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, setProgress }) => {
 
   lineHeight = lineHeight * fontSize;
 
@@ -58,8 +58,8 @@ const DailyReading = ({ fontSize, lineHeight, navigation, progress, setProgress 
         {textSections.map(([range, paragraphs]) => {
           return (
             <View key={range}>
-              <H2 style={styles.heading}>{range}</H2>
-              <Text selectable={true} style={[styles.paragraph, { fontSize, lineHeight }]}>
+              <H2 style={[styles.heading, {fontFamily: fontFamily[fontType]}]}>{range}</H2>
+              <Text selectable={true} style={[styles.paragraph, { fontSize, lineHeight, fontFamily: fontFamily[fontType] }]}>
                 {paragraphs
                   .map(p => {
                     return p
@@ -92,6 +92,7 @@ DailyReading.navigationOptions = ({ navigation } ) => {
 DailyReading.propTypes = {
   fontSize: PropTypes.number,
   lineHeight: PropTypes.number,
+  fontType: PropTypes.string,
   progress: PropTypes.instanceOf(Progress),
   navigation: PropTypes.object,
   setProgress: PropTypes.func
@@ -103,14 +104,12 @@ const styles = StyleSheet.create({
     paddingBottom: 0
   },
   heading: {
-    fontFamily: SERIF_FONT_FAMILY,
     paddingBottom: 10
   },
   content: {
     padding: 10
   },
   paragraph: {
-    fontFamily: SERIF_FONT_FAMILY,
     paddingBottom: 22
   },
   doneBtnContainer: {

@@ -12,7 +12,8 @@ export default connect(
     hideEarlyEveningPrayer: appState.hideEarlyEveningPrayer,
     hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
     fontSize: appState.fontSize,
-    lineHeight: appState.lineHeight
+    lineHeight: appState.lineHeight,
+    fontType: appState.fontType
   }),
   dispatch => ({
     setHideMorningPrayer: hide => {
@@ -42,6 +43,10 @@ export default connect(
     setLineHeight: lineHeight => {
       Storage.setItem(storageKeys.LINE_HEIGHT, lineHeight);
       dispatch(appActions.setLineHeight(lineHeight));
+    },
+    setFontType: fontType => {
+      Storage.setItem(storageKeys.FONT_TYPE, fontType);
+      dispatch(appActions.setFontType(fontType));
     }
   })
 )(Settings);
