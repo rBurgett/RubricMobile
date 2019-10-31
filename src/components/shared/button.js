@@ -13,7 +13,7 @@ const Button = ({ icon, onPress, children }) => {
   return (
     <NBButton onPress={onPress} style={styles.button} large iconLeft={icon ? true : false}>
       {icon ? <Icon style={styles.icon}>{icon}</Icon> : null}
-      <Text style={styles.buttonText}>{children}</Text>
+      <Text style={styles.buttonText} uppercase={false}>{children}</Text>
     </NBButton>
   );
 };
