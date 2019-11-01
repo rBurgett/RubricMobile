@@ -73,6 +73,8 @@ const App: () => React$Node = () => {
         const fontSize = await Storage.getItem(storageKeys.FONT_SIZE);
         const lineHeight = await Storage.getItem(storageKeys.LINE_HEIGHT);
         const fontType = await Storage.getItem(storageKeys.FONT_TYPE);
+        const welcomeDone = await Storage.getItem(storageKeys.WELCOME_DONE);
+        store.dispatch(appActions.setWelcomeDone(welcomeDone || false));
         store.dispatch(appActions.setFontSize(fontSize || BASE_FONT_SIZE));
         store.dispatch(appActions.setLineHeight(lineHeight || 1.5));
         store.dispatch(appActions.setFontType(fontType || fontTypes.SERIF));
