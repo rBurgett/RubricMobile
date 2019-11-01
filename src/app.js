@@ -22,8 +22,8 @@ const combinedReducers = combineReducers({
 
 const store = createStore(combinedReducers);
 store.subscribe(() => {
-  const state = store.getState();
-  console.log('state', state.appState);
+  // const state = store.getState();
+  // console.log('state', state.appState);
 });
 
 const routes = {
@@ -64,25 +64,68 @@ const App: () => React$Node = () => {
         const progressKey = `prog_${year}-${month}-${day}`;
         const progressData = await Storage.getItem(progressKey);
         const progress = new Progress(progressData || {});
-        // if(!progressData) await Storage.setItem(progressKey, progress);
-        await Storage.setItem(progressKey, {...progress, key: progressKey});
-        store.dispatch(appActions.setProgress(progress));
+        if(!progressData) await Storage.setItem(progressKey, {...progress, key: progressKey});
         const hideMorningPrayer = await Storage.getItem(storageKeys.HIDE_MORNNG_PRAYER);
         const hideDailyReading = await Storage.getItem(storageKeys.HIDE_DAILY_READING);
         const hideNoonPrayer = await Storage.getItem(storageKeys.HIDE_NOON_PRAYER);
         const hideEarlyEveningPrayer = await Storage.getItem(storageKeys.HIDE_EARLY_EVENING_PRAYER);
         const hideCloseOfDayPrayer = await Storage.getItem(storageKeys.HIDE_CLOSE_OF_DAY_PRAYER);
+        const fontSize = await Storage.getItem(storageKeys.FONT_SIZE);
+        const lineHeight = await Storage.getItem(storageKeys.LINE_HEIGHT);
+        const fontType = await Storage.getItem(storageKeys.FONT_TYPE);
+        store.dispatch(appActions.setFontSize(fontSize || BASE_FONT_SIZE));
+        store.dispatch(appActions.setLineHeight(lineHeight || 1.5));
+        store.dispatch(appActions.setFontType(fontType || fontTypes.SERIF));
+        store.dispatch(appActions.setProgress(progress));
         store.dispatch(appActions.setHideMorningPrayer(hideMorningPrayer));
         store.dispatch(appActions.setHideDailyReading(hideDailyReading));
         store.dispatch(appActions.setHideNoonPrayer(hideNoonPrayer));
         store.dispatch(appActions.setHideEarlyEveningPrayer(hideEarlyEveningPrayer));
         store.dispatch(appActions.setHideCloseOfDayPrayer(hideCloseOfDayPrayer));
-        const fontSize = await Storage.getItem(storageKeys.FONT_SIZE);
-        store.dispatch(appActions.setFontSize(fontSize || BASE_FONT_SIZE));
-        const lineHeight = await Storage.getItem(storageKeys.LINE_HEIGHT);
-        store.dispatch(appActions.setLineHeight(lineHeight || 1.5));
-        const fontType = await Storage.getItem(storageKeys.FONT_TYPE);
-        store.dispatch(appActions.setFontType(fontType || fontTypes.SERIF));
+        const currentMorningPrayer = await Storage.getItem(storageKeys.MORNING_PRAYER);
+        const currentNoonPrayer = await Storage.getItem(storageKeys.NOON_PRAYER);
+        const currentEarlyEveningPrayer = await Storage.getItem(storageKeys.EARLY_EVENING_PRAYER);
+        const currentCloseOfDayPrayer = await Storage.getItem(storageKeys.CLOSE_OF_DAY_PRAYER);
+        if(currentMorningPrayer && currentNoonPrayer && currentEarlyEveningPrayer && currentCloseOfDayPrayer) {
+          store.dispatch(appActions.bulkSet({
+            morningPrayer: currentMorningPrayer,
+            noonPrayer: currentNoonPrayer,
+            earlyEveningPrayer: currentEarlyEveningPrayer,
+            closeOfDayPrayer: currentCloseOfDayPrayer
+          }));
+        }
+        fetch('https://rubric.church/prayers')
+          .then(async function(res) {
+            try {
+              const { data: prayers } = await res.json();
+              let toSet = {};
+              const morningPrayer = prayers.find(p => p.time === 'morning').text;
+              if(morningPrayer !== currentMorningPrayer) {
+                await Storage.setItem(storageKeys.MORNING_PRAYER, morningPrayer);
+                toSet = {...toSet, morningPrayer};
+              }
+              const noonPrayer = prayers.find(p => p.time === 'afternoon').text;
+              if(noonPrayer !== currentNoonPrayer) {
+                await Storage.setItem(storageKeys.NOON_PRAYER, noonPrayer);
+                toSet = {...toSet, noonPrayer};
+              }
+              const earlyEveningPrayer = prayers.find(p => p.time === 'earlyEvening').text;
+              if(earlyEveningPrayer !== currentEarlyEveningPrayer) {
+                await Storage.setItem(storageKeys.EARLY_EVENING_PRAYER, earlyEveningPrayer);
+                toSet = {...toSet, earlyEveningPrayer};
+              }
+              const closeOfDayPrayer = prayers.find(p => p.time === 'closeOfDay').text;
+              if(closeOfDayPrayer !== currentCloseOfDayPrayer) {
+                await Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER, closeOfDayPrayer);
+                toSet = {...toSet, closeOfDayPrayer};
+              }
+              store.dispatch(appActions.bulkSet(toSet));
+            } catch(err) {
+              console.error(err);
+            }
+          })
+          .catch(console.error);
+
         setReady(true);
       } catch(err) {
         console.error(err);

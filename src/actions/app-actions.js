@@ -44,3 +44,8 @@ export const setProgress = progress => ({
   type: actions.SET_PROGRESS,
   payload: progress
 });
+
+export const bulkSet = (data = {}) => ({
+  type: actions.BULK_SET,
+  payload: data
+});

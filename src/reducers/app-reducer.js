@@ -8,7 +8,7 @@ const getInitialState = () => ({
   closeOfDayPrayer: 'Visit this place, O Lord, and drive far from it all snares of the enemy; let your holy angels dwell with us to preserve us in peace; and let your blessing be upon us always; through Jesus Christ our Lord.',
   hideMorningPrayer: false,
   hideNoonPrayer: false,
-  hideDailyreading: false,
+  hideDailyReading: false,
   hideEarlyEveningPrayer: false,
   hideCloseOfDayPrayer: false,
   fontSize: BASE_FONT_SIZE,
@@ -63,6 +63,11 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         progress: payload
+      };
+    case actions.BULK_SET:
+      return {
+        ...state,
+        ...payload
       };
     default:
       return state;
