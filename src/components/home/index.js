@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
 import Home from './home';
+import { setWelcomeDone } from '../../actions/app-actions';
+import Storage from '../../modules/storage';
+import {storageKeys} from '../../constants';
 
 export default connect(
   ({ appState }) => ({
@@ -9,6 +12,13 @@ export default connect(
     hideEarlyEveningPrayer: appState.hideEarlyEveningPrayer,
     hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
     fontType: appState.fontType,
-    progress: appState.progress
+    progress: appState.progress,
+    welcomeDone: appState.welcomeDone
+  }),
+  dispatch => ({
+    setWelcomeDone: async function() {
+      await Storage.setItem(storageKeys.WELCOME_DONE, true);
+      dispatch(setWelcomeDone(true));
+    }
   })
 )(Home);

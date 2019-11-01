@@ -8,8 +8,9 @@ import Button from '../shared/button';
 import Icon from '../shared/icon';
 import StatusBar from '../shared/statusBar';
 import Progress from '../../types/progress';
+import WelcomeModal from '../shared/welcome-modal';
 
-const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, fontType, progress, navigation }) => {
+const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, fontType, progress, welcomeDone, navigation, setWelcomeDone }) => {
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
@@ -34,6 +35,9 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
           </Row>
         </Col>
       </Grid>
+
+      <WelcomeModal visible={!welcomeDone} onClose={setWelcomeDone} />
+
     </Container>
     </SafeAreaView>
   );
@@ -46,7 +50,9 @@ Home.propTypes = {
   hideCloseOfDayPrayer: PropTypes.bool,
   navigation: PropTypes.object,
   fontType: PropTypes.string,
-  progress: PropTypes.instanceOf(Progress)
+  welcomeDone: PropTypes.bool,
+  progress: PropTypes.instanceOf(Progress),
+  setWelcomeDone: PropTypes.func
 };
 
 const styles = StyleSheet.create({

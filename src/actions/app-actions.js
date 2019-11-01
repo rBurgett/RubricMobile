@@ -45,6 +45,11 @@ export const setProgress = progress => ({
   payload: progress
 });
 
+export const setWelcomeDone = welcomeDone => ({
+  type: actions.SET_WELCOME_DONE,
+  payload: welcomeDone
+});
+
 export const bulkSet = (data = {}) => ({
   type: actions.BULK_SET,
   payload: data
