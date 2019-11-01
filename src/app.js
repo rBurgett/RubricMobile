@@ -71,8 +71,8 @@ const App: () => React$Node = () => {
         const year = date.format('YYYY');
         const progressKey = `prog_${year}-${month}-${day}`;
         const progressData = await Storage.getItem(progressKey);
-        const progress = new Progress(progressData || {});
-        if(!progressData) await Storage.setItem(progressKey, {...progress, key: progressKey});
+        const progress = new Progress(progressData || {key: progressKey});
+        if(!progressData) await Storage.setItem(progressKey, progress);
         const hideMorningPrayer = await Storage.getItem(storageKeys.HIDE_MORNNG_PRAYER);
         const hideDailyReading = await Storage.getItem(storageKeys.HIDE_DAILY_READING);
         const hideNoonPrayer = await Storage.getItem(storageKeys.HIDE_NOON_PRAYER);
