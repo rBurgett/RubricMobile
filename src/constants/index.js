@@ -18,7 +18,9 @@ export const routes = {
   HOME: 'HOME',
   PRAYER: 'PRAYER',
   DAILY_READING: 'DAILY_READING',
-  SETTINGS: 'SETTINGS'
+  SETTINGS: 'SETTINGS',
+  MENU: 'MENU',
+  WELCOME: 'WELCOME'
 };
 
 export const colors = {

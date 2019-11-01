@@ -14,7 +14,7 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
-      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.SETTINGS)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.MENU)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
       <StatusBar/>
       <Grid style={styles.grid}>
         <Col>

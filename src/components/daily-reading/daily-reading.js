@@ -25,8 +25,8 @@ const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, se
   useEffect(() => {
     try {
       const date = moment();
-      const day = date.format('D');
-      const month = date.format('M');
+      const day = date.format('DD');
+      const month = date.format('MM');
       const year = date.format('YYYY');
       const passages = dailyReadingData[`${year}-${month}-${day}`];
       const text = [];
