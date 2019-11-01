@@ -15,6 +15,8 @@ import Container from './components/shared/container';
 import Storage from './modules/storage';
 import moment from 'moment';
 import Progress from './types/progress';
+import Menu from './components/menu';
+import Welcome from './components/welcome';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -33,6 +35,12 @@ const routes = {
     navigationOptions: () => ({
       header: null
     })
+  },
+  [routeConstants.MENU]: {
+    screen: Menu
+  },
+  [routeConstants.WELCOME]: {
+    screen: Welcome
   },
   [routeConstants.PRAYER]: {
     screen: Prayer
@@ -58,8 +66,8 @@ const App: () => React$Node = () => {
     (async function() {
       try {
         const date = moment();
-        const day = date.format('D');
-        const month = date.format('M');
+        const day = date.format('DD');
+        const month = date.format('MM');
         const year = date.format('YYYY');
         const progressKey = `prog_${year}-${month}-${day}`;
         const progressData = await Storage.getItem(progressKey);
