@@ -6,7 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import appReducer from './reducers/app-reducer';
 import * as appActions from './actions/app-actions';
-import {BASE_FONT_SIZE, fontTypes, routes as routeConstants, storageKeys} from './constants';
+import {BASE_FONT_SIZE, colors, fontTypes, routes as routeConstants, storageKeys} from './constants';
 import Home from './components/home';
 import Prayer from './components/prayer';
 import DailyReading from './components/daily-reading';
@@ -17,6 +17,7 @@ import moment from 'moment';
 import Progress from './types/progress';
 import Menu from './components/menu';
 import Welcome from './components/welcome';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -65,6 +66,9 @@ const App: () => React$Node = () => {
   useEffect(() => {
     (async function() {
       try {
+
+        changeNavigationBarColor(colors.BROWN);
+
         const date = moment();
         const day = date.format('DD');
         const month = date.format('MM');
