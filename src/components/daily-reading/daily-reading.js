@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, FlatList, SafeAreaView } from 'react-native';
-import { Text, H2 } from 'native-base';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { Content, Text, H2 } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import {routes, fontFamily, colors} from '../../constants';
+import { routes, fontFamily, colors } from '../../constants';
 import { handleError } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
@@ -57,21 +57,18 @@ const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, se
     <SafeAreaView style={styles.safeAreaView}>
       <Header navigation={navigation} rightButtonIcon={'cog'} onRightButtonPress={onRightButtonPress}>{`Reading ${readingProgress.toFixed()}%`}</Header>
       <Container style={styles.container}>
-        <FlatList
+        <Content
           style={styles.content}
-          data={textSections}
-          keyExtractor={item => item.id}
           onScroll={e => {
-            e.persist();
             const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
             const height = contentSize.height - layoutMeasurement.height;
             const offset = contentOffset.y <= 0 ? 0 : contentOffset.y >= height ? height : contentOffset.y;
             setReadingProgress((offset / height) * 100);
-          }}
-          renderItem={({ item }) => {
-            const [ range, paragraphs ] = item.arr;
+          }}>
+          {textSections.map(({ id, arr }) => {
+            const [range, paragraphs] = arr;
             return (
-              <View key={range}>
+              <View key={id}>
                 <H2 style={[styles.heading, {fontFamily: fontFamily[fontType]}]}>{range}</H2>
                 <Text selectable={true} style={[styles.paragraph, { fontSize, lineHeight, fontFamily: fontFamily[fontType] }]}>
                   {paragraphs
@@ -85,15 +82,11 @@ const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, se
                 </Text>
               </View>
             );
-          }}
-          ListFooterComponent={() => {
-            return (
-              <View style={styles.doneBtnContainer}>
-                {textSections.length > 0 ? <Button icon={'checkmark'} onPress={onDonePress}>Done</Button> : null}
-              </View>
-            );
-          }}
-        />
+          })}
+          <View style={styles.doneBtnContainer}>
+            {textSections.length > 0 ? <Button icon={'checkmark'} onPress={onDonePress}>Done</Button> : null}
+          </View>
+        </Content>
       </Container>
     </SafeAreaView>
   );
