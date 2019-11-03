@@ -47,7 +47,11 @@ const routes = {
     screen: Prayer
   },
   [routeConstants.DAILY_READING]: {
-    screen: DailyReading
+    screen: DailyReading,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.SETTINGS]: {
     screen: Settings
