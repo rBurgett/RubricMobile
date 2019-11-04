@@ -6,7 +6,7 @@ import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
 import { routes, fontFamily, colors } from '../../constants';
-import { handleError } from '../util';
+import { handleError, prepText } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
 import { getPassageText } from '../../util';
@@ -67,17 +67,22 @@ const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, naviga
           }}>
           {textSections.map(({ id, arr }) => {
             const [range, paragraphs] = arr;
+            const paragraphStyle = {
+              fontSize,
+              lineHeight,
+              fontFamily: fontFamily[fontType]
+            };
             return (
               <View key={id}>
                 <H2 style={[styles.heading, {fontFamily: fontFamily[fontType]}]}>{range}</H2>
-                <Text selectable={true} style={[styles.paragraph, { fontSize, lineHeight, fontFamily: fontFamily[fontType] }]}>
+                <Text selectable={true} style={[styles.paragraph, paragraphStyle]}>
                   {paragraphs
                     .map(p => {
                       return p
                         .map(([c, v, t]) => (!hideVerseNumbers ? `${c}:${v} ` : '') + entities.decode(t).trim())
                         .join(' ');
                     })
-                    .join('\n\n')
+                    .map(prepText(paragraphStyle))
                   }
                 </Text>
               </View>
