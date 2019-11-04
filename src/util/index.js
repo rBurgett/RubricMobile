@@ -1,4 +1,4 @@
-import bible from '../modules/bible';
+import { getBook as bible } from '../modules/bible';
 
 const chapterPatt = /^([^-]+?)\s(\d+)$/;
 const multipleChapterPatt = /^([^-]+?)\s(\d+)-(\d+)$/;
@@ -8,7 +8,7 @@ const chapterVersePatt = /^([^-]+?)\s(\d+):(\d+)-(\d+):(\d+)$/;
 
 const books = {};
 
-const getChapterText = (book, chapter) => {
+export const getChapterText = (book, chapter) => {
   if(book === 'Psalm') book = 'Psalms';
   let bookData;
   if(books[book]) {

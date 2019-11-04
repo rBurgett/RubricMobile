@@ -14,7 +14,8 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
-      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate(routes.MENU)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.push(routes.MENU)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
+      <TouchableOpacity style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)}><Icon style={styles.menuButtonIcon}>book</Icon></TouchableOpacity>
       <StatusBar/>
       <Grid style={styles.grid}>
         <Col>
@@ -26,11 +27,11 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
           </Row>
           <Row style={styles.buttonsRow}>
             <Content>
-              {!hideMorningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})} icon={progress.mp ? 'checkmark' : ''}>Morning Prayer</Button> : null}
-              {!hideDailyReading ? <Button onPress={() => navigation.navigate(routes.DAILY_READING)} icon={progress.dr ? 'checkmark' : ''}>Daily Reading</Button> : null}
-              {!hideNoonPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.NOON_PRAYER})} icon={progress.np ? 'checkmark' : ''}>Noon Prayer</Button> : null}
-              {!hideEarlyEveningPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})} icon={progress.ee ? 'checkmark' : ''}>Early Evening Prayer</Button> : null}
-              {!hideCloseOfDayPrayer ? <Button onPress={() => navigation.navigate(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})} icon={progress.eod ? 'checkmark' : ''}>Close of Day Prayer</Button> : null}
+              {!hideMorningPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})} icon={progress.mp ? 'checkmark' : ''}>Morning Prayer</Button> : null}
+              {!hideDailyReading ? <Button onPress={() => navigation.push(routes.DAILY_READING)} icon={progress.dr ? 'checkmark' : ''}>Daily Reading</Button> : null}
+              {!hideNoonPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.NOON_PRAYER})} icon={progress.np ? 'checkmark' : ''}>Noon Prayer</Button> : null}
+              {!hideEarlyEveningPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})} icon={progress.ee ? 'checkmark' : ''}>Early Evening Prayer</Button> : null}
+              {!hideCloseOfDayPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})} icon={progress.eod ? 'checkmark' : ''}>Close of Day Prayer</Button> : null}
             </Content>
           </Row>
         </Col>
@@ -78,9 +79,19 @@ const styles = StyleSheet.create({
   },
   menuButton: {
     position: 'absolute',
-    right: 15,
-    top: 3,
-    flex: -1
+    right: 10,
+    top: 7,
+    flex: -1,
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  bibleButton: {
+    position: 'absolute',
+    right: 9,
+    top: 49,
+    flex: -1,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   menuButtonIcon: {
     color: colors.BROWN,

@@ -50,7 +50,7 @@ const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, se
   };
 
   const onRightButtonPress = () => {
-    navigation.navigate(routes.SETTINGS);
+    navigation.push(routes.SETTINGS);
   };
 
   return (

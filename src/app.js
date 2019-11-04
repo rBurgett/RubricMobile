@@ -18,6 +18,9 @@ import Progress from './types/progress';
 import Menu from './components/menu';
 import Welcome from './components/welcome';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import Bible from './components/bible';
+import BibleBook from './components/bible-book';
+import BibleBookChapter from './components/bible-book-chapter';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -55,6 +58,15 @@ const routes = {
   },
   [routeConstants.SETTINGS]: {
     screen: Settings
+  },
+  [routeConstants.BIBLE]: {
+    screen: Bible
+  },
+  [routeConstants.BIBLE_BOOK]: {
+    screen: BibleBook
+  },
+  [routeConstants.BIBLE_BOOK_CHAPTER]: {
+    screen: BibleBookChapter
   }
 };
 const stackConfig = {

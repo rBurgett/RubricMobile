@@ -20,7 +20,10 @@ export const routes = {
   DAILY_READING: 'DAILY_READING',
   SETTINGS: 'SETTINGS',
   MENU: 'MENU',
-  WELCOME: 'WELCOME'
+  WELCOME: 'WELCOME',
+  BIBLE: 'BIBLE',
+  BIBLE_BOOK: 'BIBLE_BOOK',
+  BIBLE_BOOK_CHAPTER: 'BIBLE_BOOK_CHAPTER'
 };
 
 export const colors = {
