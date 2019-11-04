@@ -58,7 +58,7 @@ Home.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    marginTop: -100,
+    marginTop: -104,
     alignSelf: 'center',
     width: 200,
     height: 200,
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     paddingRight: 5
   },
   bibleButton: {
+    marginTop: 4,
     marginRight: 8,
     alignSelf: 'flex-end',
     flex: -1,

@@ -58,7 +58,7 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
     <>
       <Header navigation={navigation} rightButtonIconStyle={bookmarked ? styles.bookmarked : {}} rightButtonIcon={'bookmark'} onRightButtonPress={onBookmarkPress} showMenuButton={true}>{`${book} ${chapter}`}</Header>
       <Container style={styles.container}>
-        <Content style={styles.content} endFillColor={'#000'}>
+        <Content style={styles.content}>
           <View>
             <Text selectable={true} style={[styles.paragraph, paragraphStyle]}>
               {paragraphs
