@@ -25,11 +25,6 @@ const Settings = ({ fontSize, lineHeight, fontType, hideMorningPrayer, hideDaily
   return (
     <Container>
       <Content style={styles.content}>
-        <ButtonInput label={'Show Morning Prayer'} value={!hideMorningPrayer} onChange={show => setHideMorningPrayer(!show)} />
-        <ButtonInput label={'Show Daily Reading'} value={!hideDailyReading} onChange={show => setHideDailyReading(!show)} />
-        <ButtonInput label={'Show Noon Prayer'} value={!hideNoonPrayer} onChange={show => setHideNoonPrayer(!show)} />
-        <ButtonInput label={'Show Early Evening Prayer'} value={!hideEarlyEveningPrayer} onChange={show => setHideEarlyEveningPrayer(!show)} />
-        <ButtonInput label={'Show Close of Day Prayer'} value={!hideCloseOfDayPrayer} onChange={show => setHideCloseOfDayPrayer(!show)} />
         <Form>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Reading Text Size</Label>
@@ -60,6 +55,11 @@ const Settings = ({ fontSize, lineHeight, fontType, hideMorningPrayer, hideDaily
             </Picker>
           </Item>
         </Form>
+        <ButtonInput label={'Show Morning Prayer'} value={!hideMorningPrayer} onChange={show => setHideMorningPrayer(!show)} />
+        <ButtonInput label={'Show Daily Reading'} value={!hideDailyReading} onChange={show => setHideDailyReading(!show)} />
+        <ButtonInput label={'Show Noon Prayer'} value={!hideNoonPrayer} onChange={show => setHideNoonPrayer(!show)} />
+        <ButtonInput label={'Show Early Evening Prayer'} value={!hideEarlyEveningPrayer} onChange={show => setHideEarlyEveningPrayer(!show)} />
+        <ButtonInput label={'Show Close of Day Prayer'} value={!hideCloseOfDayPrayer} onChange={show => setHideCloseOfDayPrayer(!show)} />
       </Content>
     </Container>
   );

@@ -12,9 +12,9 @@ const brown = Color(colorConstants.BROWN);
 
 const Button = ({ icon, fontType, onPress, children, style = {} }) => {
   return (
-    <NBButton onPress={onPress} style={[styles.button, style]} large iconLeft={icon ? true : false}>
+    <NBButton onPress={onPress} style={[styles.button, style]} large iconLeft={icon && children ? true : false}>
       {icon ? <Icon style={styles.icon}>{icon}</Icon> : null}
-      <Text style={[styles.buttonText, {fontFamily: fontFamily[fontType]}]} uppercase={false}>{children}</Text>
+      {children ? <Text style={[styles.buttonText, {fontFamily: fontFamily[fontType]}]} uppercase={false}>{children}</Text> : null}
     </NBButton>
   );
 };

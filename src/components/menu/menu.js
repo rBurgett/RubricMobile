@@ -11,9 +11,10 @@ const Menu = ({ navigation }) => {
   return (
     <Container>
       <Content>
-        <Button icon={'home'} style={styles.button} onPress={() => navigation.navigate(routes.HOME)}>Home</Button>
-        <Button icon={'cog'} style={styles.button} onPress={() => navigation.navigate(routes.SETTINGS)}>Settings</Button>
-        <Button icon={'list'} style={styles.button} onPress={() => navigation.navigate(routes.WELCOME)}>Welcome Message</Button>
+        <Button icon={'home'} style={styles.button} onPress={() => navigation.push(routes.HOME)}>Home</Button>
+        <Button icon={'book'} style={styles.button} onPress={() => navigation.push(routes.BIBLE)}>Bible</Button>
+        <Button icon={'cog'} style={styles.button} onPress={() => navigation.push(routes.SETTINGS)}>Settings</Button>
+        <Button icon={'list'} style={styles.button} onPress={() => navigation.push(routes.WELCOME)}>Welcome Message</Button>
       </Content>
     </Container>
   );
