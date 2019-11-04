@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StatusBar from './statusBar';
 
-const Header = ({ children, navigation, hideBack = false, rightButtonIcon = '', showMenuButton = false, onRightButtonPress }) => {
+const Header = ({ children, navigation, hideBack = false, rightButtonIcon = '', showMenuButton = false, rightButtonIconStyle = {}, onRightButtonPress }) => {
   return (
     <NBHeader style={styles.header}>
       <StatusBar />
@@ -22,21 +22,25 @@ const Header = ({ children, navigation, hideBack = false, rightButtonIcon = '', 
       <Body>
         <Title style={styles.headerText}>{children}</Title>
       </Body>
-      {rightButtonIcon ?
+      {rightButtonIcon || showMenuButton ?
         <Right>
-          <Button transparent onPress={onRightButtonPress}>
-            <Icon style={styles.headerText}>{rightButtonIcon}</Icon>
-          </Button>
-        </Right>
-        :
-        showMenuButton ?
-          <Right>
+          {rightButtonIcon ?
+            <Button transparent onPress={onRightButtonPress}>
+              <Icon style={[styles.headerText, rightButtonIconStyle]}>{rightButtonIcon}</Icon>
+            </Button>
+            :
+            null
+          }
+          {showMenuButton ?
             <Button transparent onPress={() => navigation.push(routes.MENU)}>
               <Icon style={styles.headerText}>menu</Icon>
             </Button>
-          </Right>
-          :
-          null
+            :
+            null
+          }
+        </Right>
+        :
+        null
       }
     </NBHeader>
   );
@@ -46,6 +50,7 @@ Header.propTypes = {
   navigation: PropTypes.object,
   hideBack: PropTypes.func,
   rightButtonIcon: PropTypes.string,
+  rightButtonIconStyle: PropTypes.object,
   onRightButtonPress: PropTypes.func,
   showMenuButton: PropTypes.bool
 };

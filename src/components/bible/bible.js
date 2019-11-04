@@ -59,7 +59,7 @@ const Bible = ({ navigation, fontType }) => {
 };
 Bible.navigationOptions = ({ navigation } ) => {
   return ({
-    header: <Header navigation={navigation} showMenuButton={true}>Bible</Header>
+    header: <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
   });
 };
 Bible.propTypes = {

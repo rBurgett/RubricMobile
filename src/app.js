@@ -21,6 +21,7 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Bible from './components/bible';
 import BibleBook from './components/bible-book';
 import BibleBookChapter from './components/bible-book-chapter';
+import Bookmarks from './components/bookmarks';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -66,7 +67,14 @@ const routes = {
     screen: BibleBook
   },
   [routeConstants.BIBLE_BOOK_CHAPTER]: {
-    screen: BibleBookChapter
+    screen: BibleBookChapter,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  [routeConstants.BOOKMARKS]: {
+    screen: Bookmarks
   }
 };
 const stackConfig = {
