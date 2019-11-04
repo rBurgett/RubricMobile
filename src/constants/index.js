@@ -67,7 +67,7 @@ export const fontTypes = {
 
 export const fontFamily = {
   [fontTypes.SERIF]: Platform.OS === 'ios' ? 'DroidSerif' : 'serif',
-  [fontTypes.SANS_SERIF]: ''
+  [fontTypes.SANS_SERIF]: undefined
 };
 
 export const SERIF_FONT_FAMILY = Platform.OS === 'ios' ? 'DroidSerif' : 'serif';

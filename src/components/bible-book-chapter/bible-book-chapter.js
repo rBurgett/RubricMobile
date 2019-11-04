@@ -6,7 +6,7 @@ import Entities from 'html-entities';
 import omit from 'lodash/omit';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import {fontFamily, routes, storageKeys} from '../../constants';
+import {colors, fontFamily, routes, storageKeys} from '../../constants';
 import Button from '../shared/button';
 import { getChapterText } from '../../util';
 import Storage from '../../modules/storage';
@@ -55,7 +55,7 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
   };
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
+    <>
       <Header navigation={navigation} rightButtonIconStyle={bookmarked ? styles.bookmarked : {}} rightButtonIcon={'bookmark'} onRightButtonPress={onBookmarkPress} showMenuButton={true}>{`${book} ${chapter}`}</Header>
       <Container style={styles.container}>
         <Content style={styles.content} endFillColor={'#000'}>
@@ -83,7 +83,7 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
           }
         </Content>
       </Container>
-    </SafeAreaView>
+    </>
   );
 };
 BibleBookChapter.propTypes = {
