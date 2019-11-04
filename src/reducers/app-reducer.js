@@ -15,6 +15,7 @@ const getInitialState = () => ({
   fontSize: BASE_FONT_SIZE,
   lineHeight: 1.5,
   fontType: fontTypes.SANS_SERIF,
+  hideVerseNumbers: false,
   progress: new Progress()
 });
 
@@ -69,6 +70,11 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         welcomeDone: payload
+      };
+    case actions.SET_HIDE_VERSE_NUMBERS:
+      return {
+        ...state,
+        hideVerseNumbers: payload
       };
     case actions.BULK_SET:
       return {

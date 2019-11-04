@@ -16,7 +16,7 @@ import Storage from '../../modules/storage';
 
 const entities = new Entities.AllHtmlEntities();
 
-const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, setProgress }) => {
+const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, navigation, progress, setProgress }) => {
 
   lineHeight = lineHeight * fontSize;
 
@@ -74,7 +74,7 @@ const DailyReading = ({ fontSize, lineHeight, fontType, navigation, progress, se
                   {paragraphs
                     .map(p => {
                       return p
-                        .map(([c, v, t]) => `${c}:${v} ${entities.decode(t).trim()}`)
+                        .map(([c, v, t]) => (!hideVerseNumbers ? `${c}:${v} ` : '') + entities.decode(t).trim())
                         .join(' ');
                     })
                     .join('\n\n')
@@ -95,6 +95,7 @@ DailyReading.propTypes = {
   fontSize: PropTypes.number,
   lineHeight: PropTypes.number,
   fontType: PropTypes.string,
+  hideVerseNumbers: PropTypes.bool,
   progress: PropTypes.instanceOf(Progress),
   navigation: PropTypes.object,
   setProgress: PropTypes.func

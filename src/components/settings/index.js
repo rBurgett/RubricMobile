@@ -13,6 +13,7 @@ export default connect(
     hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
     fontSize: appState.fontSize,
     lineHeight: appState.lineHeight,
+    hideVerseNumbers: appState.hideVerseNumbers,
     fontType: appState.fontType
   }),
   dispatch => ({
@@ -47,6 +48,10 @@ export default connect(
     setFontType: fontType => {
       Storage.setItem(storageKeys.FONT_TYPE, fontType);
       dispatch(appActions.setFontType(fontType));
+    },
+    setHideVerseNumbers: hideVerseNumbers => {
+      Storage.setItem(storageKeys.HIDE_VERSE_NUMBERS, hideVerseNumbers);
+      dispatch(appActions.setHideVerseNumbers(hideVerseNumbers));
     }
   })
 )(Settings);

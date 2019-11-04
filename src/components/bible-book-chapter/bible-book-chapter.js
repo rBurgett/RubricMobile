@@ -14,7 +14,7 @@ import {handleError, makeBookmarkKey} from '../util';
 
 const entities = new Entities.AllHtmlEntities();
 
-const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType }) => {
+const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers }) => {
 
   lineHeight = lineHeight * fontSize;
 
@@ -58,7 +58,7 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType }) => {
               {paragraphs
                 .map(p => {
                   return p
-                    .map(([c, v, t]) => `${c}:${v} ${entities.decode(t).trim()}`)
+                    .map(([c, v, t]) => (!hideVerseNumbers ? `${c}:${v} ` : '') + entities.decode(t).trim())
                     .join(' ')
                     .trim();
                 })
@@ -84,6 +84,7 @@ BibleBookChapter.propTypes = {
   fontSize: PropTypes.number,
   lineHeight: PropTypes.number,
   fontType: PropTypes.string,
+  hideVerseNumbers: PropTypes.bool,
   navigation: PropTypes.object
 };
 
