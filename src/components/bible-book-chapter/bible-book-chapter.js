@@ -10,7 +10,7 @@ import {fontFamily, routes, storageKeys} from '../../constants';
 import Button from '../shared/button';
 import { getChapterText } from '../../util';
 import Storage from '../../modules/storage';
-import {handleError, makeBookmarkKey} from '../util';
+import { handleError, makeBookmarkKey, prepText } from '../util';
 
 const entities = new Entities.AllHtmlEntities();
 
@@ -48,13 +48,19 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
     }
   };
 
+  const paragraphStyle = {
+    fontSize,
+    lineHeight,
+    fontFamily: fontFamily[fontType]
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Header navigation={navigation} rightButtonIconStyle={bookmarked ? styles.bookmarked : {}} rightButtonIcon={'bookmark'} onRightButtonPress={onBookmarkPress} showMenuButton={true}>{`${book} ${chapter}`}</Header>
       <Container style={styles.container}>
         <Content style={styles.content} endFillColor={'#000'}>
           <View>
-            <Text selectable={true} style={[styles.paragraph, { fontSize, lineHeight, fontFamily: fontFamily[fontType] }]}>
+            <Text selectable={true} style={[styles.paragraph, paragraphStyle]}>
               {paragraphs
                 .map(p => {
                   return p
@@ -62,7 +68,7 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
                     .join(' ')
                     .trim();
                 })
-                .join('\n\n')
+                .map(prepText(paragraphStyle))
               }
             </Text>
           </View>
