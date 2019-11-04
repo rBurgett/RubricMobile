@@ -7,6 +7,7 @@ export default connect(
     fontSize: appState.fontSize,
     lineHeight: appState.lineHeight,
     fontType: appState.fontType,
+    hideVerseNumbers: appState.hideVerseNumbers,
     progress: appState.progress
   }),
   dispatch => ({

@@ -10,7 +10,7 @@ import Header from '../shared/header';
 const ButtonInput = ({ value = false, label, onChange }) => {
   return (
     <NBButton style={styles.button} transparent iconLeft onPress={() => onChange(!value)} allowLower>
-      <Icon style={styles.buttonText}>{value ? 'radio-button-on' : 'radio-button-off'}</Icon>
+      <Icon style={styles.buttonText}>{value ? 'md-checkbox-outline' : 'square-outline'}</Icon>
       <Text style={styles.buttonText} uppercase={false}>{label}</Text>
     </NBButton>
   );
@@ -21,7 +21,7 @@ ButtonInput.propTypes = {
   onChange: PropTypes.func
 };
 
-const Settings = ({ fontSize, lineHeight, fontType, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType }) => {
+const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers }) => {
   return (
     <Container>
       <Content style={styles.content}>
@@ -54,6 +54,13 @@ const Settings = ({ fontSize, lineHeight, fontType, hideMorningPrayer, hideDaily
               <Picker.Item label={'Sans-serif'} value={fontTypes.SANS_SERIF} />
             </Picker>
           </Item>
+          <Item fixedLabel style={styles.pickerItem} picker>
+            <Label>Verse Numbers</Label>
+            <Picker selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
+              <Picker.Item label={'Show'} value={false} />
+              <Picker.Item label={'Hide'} value={true} />
+            </Picker>
+          </Item>
         </Form>
         <ButtonInput label={'Show Morning Prayer'} value={!hideMorningPrayer} onChange={show => setHideMorningPrayer(!show)} />
         <ButtonInput label={'Show Daily Reading'} value={!hideDailyReading} onChange={show => setHideDailyReading(!show)} />
@@ -78,6 +85,7 @@ Settings.propTypes = {
   fontSize: PropTypes.number,
   lineHeight: PropTypes.number,
   fontType: PropTypes.string,
+  hideVerseNumbers: PropTypes.bool,
   setHideMorningPrayer: PropTypes.func,
   setHideDailyReading: PropTypes.func,
   setHideNoonPrayer: PropTypes.func,
@@ -85,7 +93,8 @@ Settings.propTypes = {
   setHideCloseOfDayPrayer: PropTypes.func,
   setFontSize: PropTypes.func,
   setLineHeight: PropTypes.func,
-  setFontType: PropTypes.func
+  setFontType: PropTypes.func,
+  setHideVersNumbers: PropTypes.func
 };
 
 const styles = StyleSheet.create({

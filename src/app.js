@@ -109,6 +109,7 @@ const App: () => React$Node = () => {
         const fontSize = await Storage.getItem(storageKeys.FONT_SIZE);
         const lineHeight = await Storage.getItem(storageKeys.LINE_HEIGHT);
         const fontType = await Storage.getItem(storageKeys.FONT_TYPE);
+        const hideVerseNumbers = await Storage.getItem(storageKeys.HIDE_VERSE_NUMBERS);
         const welcomeDone = await Storage.getItem(storageKeys.WELCOME_DONE);
         store.dispatch(appActions.setWelcomeDone(welcomeDone || false));
         store.dispatch(appActions.setFontSize(fontSize || BASE_FONT_SIZE));
@@ -120,6 +121,7 @@ const App: () => React$Node = () => {
         store.dispatch(appActions.setHideNoonPrayer(hideNoonPrayer));
         store.dispatch(appActions.setHideEarlyEveningPrayer(hideEarlyEveningPrayer));
         store.dispatch(appActions.setHideCloseOfDayPrayer(hideCloseOfDayPrayer));
+        store.dispatch(appActions.setHideVerseNumbers(hideVerseNumbers || false));
         const currentMorningPrayer = await Storage.getItem(storageKeys.MORNING_PRAYER);
         const currentNoonPrayer = await Storage.getItem(storageKeys.NOON_PRAYER);
         const currentEarlyEveningPrayer = await Storage.getItem(storageKeys.EARLY_EVENING_PRAYER);

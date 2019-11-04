@@ -50,6 +50,11 @@ export const setWelcomeDone = welcomeDone => ({
   payload: welcomeDone
 });
 
+export const setHideVerseNumbers = hideVerseNumbers => ({
+  type: actions.SET_HIDE_VERSE_NUMBERS,
+  payload: hideVerseNumbers
+});
+
 export const bulkSet = (data = {}) => ({
   type: actions.BULK_SET,
   payload: data
