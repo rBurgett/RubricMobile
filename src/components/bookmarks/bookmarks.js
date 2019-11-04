@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import omit from 'lodash/omit';
 import { Content, Grid, Col, Row } from 'native-base';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Alert } from 'react-native';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
 import {colors, fontFamily as fontFamilyConstants, routes, storageKeys} from '../../constants';
 import Storage from '../../modules/storage';
-import {handleError} from '../util';
+import {handleError, makeBookmarkKey} from '../util';
 import Button from '../shared/button';
 
 const Bookmarks = ({ fontType, navigation }) => {
@@ -39,8 +40,38 @@ const Bookmarks = ({ fontType, navigation }) => {
                 .map(key => {
                   const { book, chapter, totalChapters, date } = bookmarks[key];
                   const dateStr = moment(date).format('YYYY-MM-DD');
+
+                  const name = `${book} ${chapter}`;
+
+                  const onLongPress = () => {
+                    Alert.alert(
+                      'Delete Bookmark',
+                      `Are you sure that you want to delete the bookmark for ${name}?`,
+                      [
+                        {
+                          text: 'Delete',
+                          onPress: async function() {
+                            try {
+                              const bookmarkKey = makeBookmarkKey(book, chapter);
+                              console.log(bookmarks);
+                              console.log(bookmarkKey);
+                              const newBookmarks = omit(bookmarks, [bookmarkKey]);
+                              await Storage.setItem(storageKeys.BOOKMARKS, newBookmarks);
+                              setBookmarks(newBookmarks);
+                            } catch(err) {
+                              handleError(err);
+                            }
+                          },
+                          style: 'destructive'
+                        },
+                        {text: 'Cancel', style: 'cancel'}
+                      ],
+                      {cancellable: true}
+                    );
+                  };
+
                   return (
-                    <Button key={key} style={styles.button} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter})}><Text style={[styles.buttonText, {fontFamily}]}>{book} {chapter}</Text><Text style={[styles.buttonText, {fontFamily}]}>{dateStr}</Text></Button>
+                    <Button key={key} style={styles.button} onLongPress={onLongPress} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter})}><Text style={[styles.buttonText, {fontFamily}]}>{name}</Text><Text style={[styles.buttonText, {fontFamily}]}>{dateStr}</Text></Button>
                   );
                 })
               }

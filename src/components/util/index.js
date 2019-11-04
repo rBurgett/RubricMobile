@@ -2,4 +2,4 @@ export const handleError = err => {
   console.error(err);
 };
 
-export const makeBookmarkKey = (chapter, book) => `${book}_${chapter}`;
+export const makeBookmarkKey = (book, chapter) => `${book}_${chapter}`;
