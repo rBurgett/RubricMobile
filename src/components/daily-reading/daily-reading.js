@@ -54,7 +54,7 @@ const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, naviga
   };
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
+    <>
       <Header navigation={navigation} rightButtonIcon={'cog'} onRightButtonPress={onRightButtonPress}>{`Reading ${readingProgress.toFixed()}%`}</Header>
       <Container style={styles.container}>
         <Content
@@ -93,7 +93,7 @@ const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, naviga
           </View>
         </Content>
       </Container>
-    </SafeAreaView>
+    </>
   );
 };
 DailyReading.propTypes = {
