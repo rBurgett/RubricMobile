@@ -7,7 +7,7 @@ const Icon = ({ children, style = {} }) => {
 };
 Icon.propTypes = {
   children: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 export default Icon;
