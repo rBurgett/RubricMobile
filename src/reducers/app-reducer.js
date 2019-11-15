@@ -1,4 +1,4 @@
-import { actions, BASE_FONT_SIZE, fontTypes } from '../constants';
+import {actions, BASE_FONT_SIZE, fontTypes} from '../constants';
 import Progress from '../types/progress';
 
 const getInitialState = () => ({
@@ -16,7 +16,12 @@ const getInitialState = () => ({
   lineHeight: 1.5,
   fontType: fontTypes.SANS_SERIF,
   hideVerseNumbers: false,
-  progress: new Progress()
+  progress: new Progress(),
+  morningPrayerTime: 0,
+  dailyReadingTime: 0,
+  noonPrayerTime: 0,
+  earlyEveningPrayerTime: 0,
+  closeOfDayPrayerTime: 0
 });
 
 export default (state = getInitialState(), { type, payload }) => {
@@ -75,6 +80,31 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         hideVerseNumbers: payload
+      };
+    case actions.SET_MORNING_PRAYER_TIME:
+      return {
+        ...state,
+        morningPrayerTime: payload
+      };
+    case actions.SET_DAILY_READING_TIME:
+      return {
+        ...state,
+        dailyReadingTime: payload
+      };
+    case actions.SET_NOON_PRAYER_TIME:
+      return {
+        ...state,
+        noonPrayerTime: payload
+      };
+    case actions.SET_EARLY_EVENING_PRAYER_TIME:
+      return {
+        ...state,
+        earlyEveningPrayerTime: payload
+      };
+    case actions.SET_CLOSE_OF_DAY_PRAYER_TIME:
+      return {
+        ...state,
+        closeOfDayPrayerTime: payload
       };
     case actions.BULK_SET:
       return {

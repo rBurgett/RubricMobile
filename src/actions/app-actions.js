@@ -55,6 +55,31 @@ export const setHideVerseNumbers = hideVerseNumbers => ({
   payload: hideVerseNumbers
 });
 
+export const setMorningPrayerTime = morningPrayerTime => ({
+  type: actions.SET_MORNING_PRAYER_TIME,
+  payload: morningPrayerTime
+});
+
+export const setDailyReadingTime = dailyReadingTime => ({
+  type: actions.SET_DAILY_READING_TIME,
+  payload: dailyReadingTime
+});
+
+export const setNoonPrayerTime = noonPrayerTime => ({
+  type: actions.SET_NOON_PRAYER_TIME,
+  payload: noonPrayerTime
+});
+
+export const setEarlyEveningPrayerTime = earlyEveningPrayerTime => ({
+  type: actions.SET_EARLY_EVENING_PRAYER_TIME,
+  payload: earlyEveningPrayerTime
+});
+
+export const setCloseOfDayPrayerTime = closeOfDayPrayerTime => ({
+  type: actions.SET_CLOSE_OF_DAY_PRAYER_TIME,
+  payload: closeOfDayPrayerTime
+});
+
 export const bulkSet = (data = {}) => ({
   type: actions.BULK_SET,
   payload: data

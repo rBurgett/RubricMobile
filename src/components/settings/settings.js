@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { Button as NBButton, Content, Text, Item, Form, Picker, Label } from 'native-base';
 import Container from '../shared/container';
-import {colors, BASE_FONT_SIZE, fontTypes} from '../../constants';
+import { colors, BASE_FONT_SIZE, fontTypes, notificationIds } from '../../constants';
 import Icon from '../shared/icon';
 import Header from '../shared/header';
+import { scheduleLocalNotification } from '../../modules/notifications';
+import Platform from '../../modules/platform';
 
 const ButtonInput = ({ value = false, label, onChange }) => {
   return (
@@ -21,7 +23,73 @@ ButtonInput.propTypes = {
   onChange: PropTypes.func
 };
 
-const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers }) => {
+const HourPicker = ({ value, label, onChange }) => {
+  return (
+    <Item fixedLabel style={[styles.pickerItem, styles.hourPickerContainer]} picker>
+      <Label>{label}</Label>
+      <Picker selectedValue={value} onValueChange={onChange}>
+        <Picker.Item label={'none'} value={-1} />
+        <Picker.Item label={'12 am'} value={0} />
+        <Picker.Item label={'1 am'} value={1} />
+        <Picker.Item label={'2 am'} value={2} />
+        <Picker.Item label={'3 am'} value={3} />
+        <Picker.Item label={'4 am'} value={4} />
+        <Picker.Item label={'5 am'} value={5} />
+        <Picker.Item label={'6 am'} value={6} />
+        <Picker.Item label={'7 am'} value={7} />
+        <Picker.Item label={'8 am'} value={8} />
+        <Picker.Item label={'9 am'} value={9} />
+        <Picker.Item label={'10 am'} value={10} />
+        <Picker.Item label={'11 am'} value={11} />
+        <Picker.Item label={'12 pm'} value={12} />
+        <Picker.Item label={'1 pm'} value={13} />
+        <Picker.Item label={'2 pm'} value={14} />
+        <Picker.Item label={'3 pm'} value={15} />
+        <Picker.Item label={'4 pm'} value={16} />
+        <Picker.Item label={'5 pm'} value={17} />
+        <Picker.Item label={'6 pm'} value={18} />
+        <Picker.Item label={'7 pm'} value={19} />
+        <Picker.Item label={'8 pm'} value={20} />
+        <Picker.Item label={'9 pm'} value={21} />
+        <Picker.Item label={'10 pm'} value={22} />
+        <Picker.Item label={'11 pm'} value={23} />
+      </Picker>
+    </Item>
+  );
+};
+HourPicker.propTypes = {
+  value: PropTypes.number,
+  label: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime }) => {
+
+  const isAndroid = Platform.isAndroid();
+
+  const onTimeChange = (id, val) => {
+
+    if(isAndroid) scheduleLocalNotification(id, val);
+
+    switch(id) {
+      case notificationIds.MORNING_PRAYER:
+        setMorningPrayerTime(val);
+        break;
+      case notificationIds.DAILY_READING:
+        setDailyReadingTime(val);
+        break;
+      case notificationIds.NOON_PRAYER:
+        setNoonPrayerTime(val);
+        break;
+      case notificationIds.EARLY_EVENING_PRAYER:
+        setEarlyEveningPrayerTime(val);
+        break;
+      case notificationIds.CLOSE_OF_DAY_PRAYER:
+        setCloseOfDayPrayerTime(val);
+        break;
+    }
+  };
+
   return (
     <Container>
       <Content style={styles.content}>
@@ -61,12 +129,53 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
               <Picker.Item label={'Hide'} value={true} />
             </Picker>
           </Item>
+
+          <ButtonInput
+            label={'Show Morning Prayer'}
+            value={!hideMorningPrayer}
+            onChange={show => {
+              if(!show) scheduleLocalNotification(notificationIds.MORNING_PRAYER, -1);
+              setHideMorningPrayer(!show);
+            }} />
+          {!hideMorningPrayer ? <HourPicker label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
+
+          <ButtonInput
+            label={'Show Daily Reading'}
+            value={!hideDailyReading}
+            onChange={show => {
+              if(!show) scheduleLocalNotification(notificationIds.DAILY_READING, -1);
+              setHideDailyReading(!show);
+            }} />
+          {!hideDailyReading ? <HourPicker label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
+
+          <ButtonInput
+            label={'Show Noon Prayer'}
+            value={!hideNoonPrayer}
+            onChange={show => {
+              if(!show) scheduleLocalNotification(notificationIds.NOON_PRAYER, -1);
+              setHideNoonPrayer(!show);
+            }} />
+          {!hideNoonPrayer ? <HourPicker label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
+
+          <ButtonInput
+            label={'Show Early Evening Prayer'}
+            value={!hideEarlyEveningPrayer}
+            onChange={show => {
+              if(!show) scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, -1);
+              setHideEarlyEveningPrayer(!show);
+            }} />
+          {!hideEarlyEveningPrayer ? <HourPicker label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
+
+          <ButtonInput
+            label={'Show Close of Day Prayer'}
+            value={!hideCloseOfDayPrayer}
+            onChange={show => {
+              if(!show) scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, -1);
+              setHideCloseOfDayPrayer(!show);
+            }} />
+          {!hideCloseOfDayPrayer ? <HourPicker label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
+
         </Form>
-        <ButtonInput label={'Show Morning Prayer'} value={!hideMorningPrayer} onChange={show => setHideMorningPrayer(!show)} />
-        <ButtonInput label={'Show Daily Reading'} value={!hideDailyReading} onChange={show => setHideDailyReading(!show)} />
-        <ButtonInput label={'Show Noon Prayer'} value={!hideNoonPrayer} onChange={show => setHideNoonPrayer(!show)} />
-        <ButtonInput label={'Show Early Evening Prayer'} value={!hideEarlyEveningPrayer} onChange={show => setHideEarlyEveningPrayer(!show)} />
-        <ButtonInput label={'Show Close of Day Prayer'} value={!hideCloseOfDayPrayer} onChange={show => setHideCloseOfDayPrayer(!show)} />
       </Content>
     </Container>
   );
@@ -86,6 +195,11 @@ Settings.propTypes = {
   lineHeight: PropTypes.number,
   fontType: PropTypes.string,
   hideVerseNumbers: PropTypes.bool,
+  morningPrayerTime: PropTypes.number,
+  dailyReadingTime: PropTypes.number,
+  noonPrayerTime: PropTypes.number,
+  earlyEveningPrayerTime: PropTypes.number,
+  closeOfDayPrayerTime: PropTypes.number,
   setHideMorningPrayer: PropTypes.func,
   setHideDailyReading: PropTypes.func,
   setHideNoonPrayer: PropTypes.func,
@@ -94,7 +208,12 @@ Settings.propTypes = {
   setFontSize: PropTypes.func,
   setLineHeight: PropTypes.func,
   setFontType: PropTypes.func,
-  setHideVersNumbers: PropTypes.func
+  setHideVerseNumbers: PropTypes.func,
+  setMorningPrayerTime: PropTypes.func,
+  setDailyReadingTime: PropTypes.func,
+  setNoonPrayerTime: PropTypes.func,
+  setEarlyEveningPrayerTime: PropTypes.func,
+  setCloseOfDayPrayerTime: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -113,6 +232,9 @@ const styles = StyleSheet.create({
   },
   pickerItem: {
     marginBottom: 10
+  },
+  hourPickerContainer: {
+    marginLeft: 15
   }
 });
 
