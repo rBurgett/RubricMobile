@@ -9,8 +9,28 @@ import Icon from '../shared/icon';
 import StatusBar from '../shared/statusBar';
 import Progress from '../../types/progress';
 import WelcomeModal from '../shared/welcome-modal';
+// import PushNotification from 'react-native-push-notification';
+
+// let count = 0;
 
 const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, fontType, progress, welcomeDone, navigation, setWelcomeDone }) => {
+
+  // const onPress = () => {
+  //   console.log(count);
+  //   PushNotification.localNotification({
+  //     // id: String(count),
+  //     title: 'My Test Notification!',
+  //     message: 'Here is my test notification message.',
+  //     largeIcon: 'ic_launcher_round',
+  //     smallIcon: 'ic_launcher_round',
+  //     repeat: 'time',
+  //     repeatTime: '10000',
+  //     number: '6'
+  //     // date: new Date(Date.now() + 10000)
+  //   });
+  //   count++;
+  // };
+
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
@@ -27,6 +47,7 @@ const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEv
           </Row>
           <Row style={styles.buttonsRow}>
             <Content>
+              {/*<Button style={styles.button} onPress={onPress}>Notify!</Button>*/}
               {!hideMorningPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})} icon={progress.mp ? 'checkmark' : ''}>Morning Prayer</Button> : null}
               {!hideDailyReading ? <Button onPress={() => navigation.push(routes.DAILY_READING)} icon={progress.dr ? 'checkmark' : ''}>Daily Reading</Button> : null}
               {!hideNoonPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.NOON_PRAYER})} icon={progress.np ? 'checkmark' : ''}>Noon Prayer</Button> : null}

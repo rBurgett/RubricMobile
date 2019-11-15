@@ -14,7 +14,12 @@ export default connect(
     fontSize: appState.fontSize,
     lineHeight: appState.lineHeight,
     hideVerseNumbers: appState.hideVerseNumbers,
-    fontType: appState.fontType
+    fontType: appState.fontType,
+    morningPrayerTime: appState.morningPrayerTime,
+    dailyReadingTime: appState.dailyReadingTime,
+    noonPrayerTime: appState.noonPrayerTime,
+    earlyEveningPrayerTime: appState.earlyEveningPrayerTime,
+    closeOfDayPrayerTime: appState.closeOfDayPrayerTime
   }),
   dispatch => ({
     setHideMorningPrayer: hide => {
@@ -52,6 +57,26 @@ export default connect(
     setHideVerseNumbers: hideVerseNumbers => {
       Storage.setItem(storageKeys.HIDE_VERSE_NUMBERS, hideVerseNumbers);
       dispatch(appActions.setHideVerseNumbers(hideVerseNumbers));
+    },
+    setMorningPrayerTime: morningPrayerTime => {
+      Storage.setItem(storageKeys.MORNING_PRAYER_TIME, morningPrayerTime);
+      dispatch(appActions.setMorningPrayerTime(morningPrayerTime));
+    },
+    setDailyReadingTime: dailyReadingTime => {
+      Storage.setItem(storageKeys.DAILY_READING_TIME, dailyReadingTime);
+      dispatch(appActions.setDailyReadingTime(dailyReadingTime));
+    },
+    setNoonPrayerTime: noonPrayerTime => {
+      Storage.setItem(storageKeys.NOON_PRAYER_TIME, noonPrayerTime);
+      dispatch(appActions.setNoonPrayerTime(noonPrayerTime));
+    },
+    setEarlyEveningPrayerTime: earlyEveningPrayerTime => {
+      Storage.setItem(storageKeys.EARLY_EVENING_PRAYER_TIME, earlyEveningPrayerTime);
+      dispatch(appActions.setEarlyEveningPrayerTime(earlyEveningPrayerTime));
+    },
+    setCloseOfDayPrayerTime: closeOfDayPrayerTime => {
+      Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME, closeOfDayPrayerTime);
+      dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
     }
   })
 )(Settings);
