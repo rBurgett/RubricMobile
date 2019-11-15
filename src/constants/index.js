@@ -35,7 +35,10 @@ export const routes = {
 
 export const colors = {
   TAN: '#f1f2e0',
-  BROWN: '#683b11'
+  BROWN: '#683b11',
+  DM_CONTAINER: '#1d1410',
+  DM_FONT: '#ffe7c1',
+  DM_PRIMARY: '##2a1d17'
 };
 
 export const prayers = {
