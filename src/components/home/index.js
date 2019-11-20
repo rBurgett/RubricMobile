@@ -13,7 +13,8 @@ export default connect(
     hideCloseOfDayPrayer: appState.hideCloseOfDayPrayer,
     fontType: appState.fontType,
     progress: appState.progress,
-    welcomeDone: appState.welcomeDone
+    welcomeDone: appState.welcomeDone,
+    darkMode: appState.darkMode
   }),
   dispatch => ({
     setWelcomeDone: async function() {

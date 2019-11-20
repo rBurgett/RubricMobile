@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Content, H3, Grid, Col, Row } from 'native-base';
-import { TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { Content, Grid, Col, Row } from 'native-base';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import Container from '../shared/container';
 import Header from '../shared/header';
 import { ntBooks, otBooks } from '../../modules/bible';
 import { fontFamily as fontFamilyConstants, routes } from '../../constants';
+import Text from '../shared/text';
+import H3 from '../shared/h3';
 
 const Button = ({ children, fontFamily, onPress }) => {
   return (
@@ -59,7 +61,7 @@ const Bible = ({ navigation, fontType }) => {
 };
 Bible.navigationOptions = ({ navigation } ) => {
   return ({
-    header: <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
+    header: () => <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
   });
 };
 Bible.propTypes = {

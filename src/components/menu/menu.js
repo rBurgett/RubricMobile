@@ -21,10 +21,11 @@ const Menu = ({ navigation }) => {
 };
 Menu.navigationOptions = ({ navigation } ) => {
   return ({
-    header: <Header navigation={navigation}>Menu</Header>
+    header: () => <Header navigation={navigation}>Menu</Header>
   });
 };
 Menu.propTypes = {
+  darkMode: PropTypes.bool,
   navigation: PropTypes.object
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import {Text} from 'native-base';
+import Text from '../shared/text';
 
 export const handleError = err => {
   console.error(err);

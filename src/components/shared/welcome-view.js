@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
-import { Content, Text, H1 } from 'native-base';
+import { Content } from 'native-base';
+import H1 from './h1';
 import Container from './container';
 import Button from './button';
 import { fontFamily } from '../../constants';
+import Text from './text';
 
 const text = `The world is seemingly dominated by consumer-driven churches and social clubs. People are leaving that paradigm in droves, yet they still want the fellowship and connection which the church is supposed to provide. Rubric.Church exists as an experiment to ask how technology can bridge that gap.
 

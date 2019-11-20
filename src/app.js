@@ -101,7 +101,10 @@ const App: () => React$Node = () => {
     (async function() {
       try {
 
-        changeNavigationBarColor(colors.BROWN);
+        const darkMode = await Storage.getItem(storageKeys.DARK_MODE);
+        store.dispatch(appActions.setDarkMode(darkMode || false));
+
+        changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
 
         const date = moment();
         const day = date.format('DD');
@@ -228,12 +231,10 @@ const App: () => React$Node = () => {
     })();
   }, []);
 
-  if(!ready) return <Container />;
-
   return (
     <Root>
       <Provider store={store}>
-        <AppContainer />
+        {ready ? <AppContainer /> : <Container />}
       </Provider>
     </Root>
   );
