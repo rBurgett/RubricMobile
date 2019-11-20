@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import Settings from './settings';
 import * as appActions from '../../actions/app-actions';
 import Storage from '../../modules/storage';
-import { storageKeys } from '../../constants';
+import {colors, storageKeys} from '../../constants';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 export default connect(
   ({ appState }) => ({
@@ -19,7 +20,8 @@ export default connect(
     dailyReadingTime: appState.dailyReadingTime,
     noonPrayerTime: appState.noonPrayerTime,
     earlyEveningPrayerTime: appState.earlyEveningPrayerTime,
-    closeOfDayPrayerTime: appState.closeOfDayPrayerTime
+    closeOfDayPrayerTime: appState.closeOfDayPrayerTime,
+    darkMode: appState.darkMode
   }),
   dispatch => ({
     setHideMorningPrayer: hide => {
@@ -77,6 +79,11 @@ export default connect(
     setCloseOfDayPrayerTime: closeOfDayPrayerTime => {
       Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME, closeOfDayPrayerTime);
       dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
+    },
+    setDarkMode: darkMode => {
+      Storage.setItem(storageKeys.DARK_MODE, darkMode);
+      dispatch(appActions.setDarkMode(darkMode));
+      changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
     }
   })
 )(Settings);

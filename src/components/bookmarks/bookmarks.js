@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
 import { Content, Grid, Col, Row } from 'native-base';
-import { StyleSheet, Text, Alert } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
@@ -10,6 +10,7 @@ import {colors, fontFamily as fontFamilyConstants, routes, storageKeys} from '..
 import Storage from '../../modules/storage';
 import {handleError, makeBookmarkKey} from '../util';
 import Button from '../shared/button';
+import Text from '../shared/text';
 
 const Bookmarks = ({ fontType, navigation }) => {
 
@@ -108,7 +109,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonText: {
-    color: colors.BROWN,
     fontSize: 20,
     paddingLeft: 15,
     paddingRight: 15

@@ -21,7 +21,8 @@ const getInitialState = () => ({
   dailyReadingTime: 0,
   noonPrayerTime: 0,
   earlyEveningPrayerTime: 0,
-  closeOfDayPrayerTime: 0
+  closeOfDayPrayerTime: 0,
+  darkMode: false
 });
 
 export default (state = getInitialState(), { type, payload }) => {
@@ -105,6 +106,11 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         closeOfDayPrayerTime: payload
+      };
+    case actions.SET_DARK_MODE:
+      return {
+        ...state,
+        darkMode: payload
       };
     case actions.BULK_SET:
       return {

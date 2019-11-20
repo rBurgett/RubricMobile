@@ -80,6 +80,11 @@ export const setCloseOfDayPrayerTime = closeOfDayPrayerTime => ({
   payload: closeOfDayPrayerTime
 });
 
+export const setDarkMode = darkMode => ({
+  type: actions.SET_DARK_MODE,
+  payload: darkMode
+});
+
 export const bulkSet = (data = {}) => ({
   type: actions.BULK_SET,
   payload: data

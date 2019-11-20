@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Content } from 'native-base';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Entities from 'html-entities';
 import omit from 'lodash/omit';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import {colors, fontFamily, routes, storageKeys} from '../../constants';
+import {fontFamily, routes, storageKeys} from '../../constants';
 import Button from '../shared/button';
 import { getChapterText } from '../../util';
 import Storage from '../../modules/storage';
 import { handleError, makeBookmarkKey, prepText } from '../util';
+import Text from '../shared/text';
 
 const entities = new Entities.AllHtmlEntities();
 

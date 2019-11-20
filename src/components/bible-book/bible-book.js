@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Content, Grid, Col, Row } from 'native-base';
-import { TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import Container from '../shared/container';
 import Header from '../shared/header';
 import { getBook } from '../../modules/bible';
 import { fontFamily as fontFamilyConstants, routes } from '../../constants';
+import Text from '../shared/text';
 
 const Button = ({ fontFamily, children, onPress }) => {
   return (
@@ -53,7 +54,7 @@ const BibleBook = ({ fontType, navigation }) => {
 BibleBook.navigationOptions = ({ navigation } ) => {
   const { book } = navigation.state.params;
   return ({
-    header: <Header navigation={navigation} showMenuButton={true}>{book}</Header>
+    header: () => <Header navigation={navigation} showMenuButton={true}>{book}</Header>
   });
 };
 BibleBook.propTypes = {

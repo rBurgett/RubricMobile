@@ -9,40 +9,23 @@ import Icon from '../shared/icon';
 import StatusBar from '../shared/statusBar';
 import Progress from '../../types/progress';
 import WelcomeModal from '../shared/welcome-modal';
-// import PushNotification from 'react-native-push-notification';
 
-// let count = 0;
+const Home = ({ darkMode, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, fontType, progress, welcomeDone, navigation, setWelcomeDone }) => {
 
-const Home = ({ hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, fontType, progress, welcomeDone, navigation, setWelcomeDone }) => {
-
-  // const onPress = () => {
-  //   console.log(count);
-  //   PushNotification.localNotification({
-  //     // id: String(count),
-  //     title: 'My Test Notification!',
-  //     message: 'Here is my test notification message.',
-  //     largeIcon: 'ic_launcher_round',
-  //     smallIcon: 'ic_launcher_round',
-  //     repeat: 'time',
-  //     repeatTime: '10000',
-  //     number: '6'
-  //     // date: new Date(Date.now() + 10000)
-  //   });
-  //   count++;
-  // };
+  const headerColor = darkMode ? colors.PRIMARY_TEXT_DM : colors.PRIMARY_TEXT;
 
   return (
     <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
     <Container>
-      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.push(routes.MENU)}><Icon style={styles.menuButtonIcon}>menu</Icon></TouchableOpacity>
-      <TouchableOpacity style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)}><Icon style={styles.menuButtonIcon}>book</Icon></TouchableOpacity>
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.push(routes.MENU)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>menu</Icon></TouchableOpacity>
+      <TouchableOpacity style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>book</Icon></TouchableOpacity>
       <StatusBar/>
       <Grid style={styles.grid}>
         <Col>
           <Row style={styles.headerRow}>
             <Col>
               <Image style={styles.image} source={require('../../../images/rubric.church.png')} />
-              <H1 style={[styles.header, {fontFamily: fontFamily[fontType]}]}>Rubric.Church</H1>
+              <H1 style={[styles.header, {fontFamily: fontFamily[fontType], color: headerColor}]}>Rubric.Church</H1>
             </Col>
           </Row>
           <Row style={styles.buttonsRow}>
@@ -73,6 +56,7 @@ Home.propTypes = {
   navigation: PropTypes.object,
   fontType: PropTypes.string,
   welcomeDone: PropTypes.bool,
+  darkMode: PropTypes.bool,
   progress: PropTypes.instanceOf(Progress),
   setWelcomeDone: PropTypes.func
 };
@@ -87,7 +71,6 @@ const styles = StyleSheet.create({
   },
   header: {
     alignSelf: 'center',
-    color: colors.BROWN,
     marginBottom: 10
   },
   headerRow: {
@@ -116,7 +99,6 @@ const styles = StyleSheet.create({
     paddingRight: 5
   },
   menuButtonIcon: {
-    color: colors.BROWN,
     fontSize: 40
   }
 });

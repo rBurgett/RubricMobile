@@ -10,7 +10,7 @@ const Welcome = () => {
 };
 Welcome.navigationOptions = ({ navigation } ) => {
   return ({
-    header: <Header navigation={navigation}>Welcome</Header>
+    header: () => <Header navigation={navigation}>Welcome</Header>
   });
 };
 Welcome.propTypes = {

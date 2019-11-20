@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
-import { Button as NBButton, Content, Text, Item, Form, Picker, Label } from 'native-base';
+import { connect } from 'react-redux';
+import { Button as NBButton, Content, Text, Item, Form, Picker as NBPicker, Label as NBLabel } from 'native-base';
+import omit from 'lodash/omit';
 import Container from '../shared/container';
 import { colors, BASE_FONT_SIZE, fontTypes, notificationIds } from '../../constants';
 import Icon from '../shared/icon';
@@ -9,19 +11,53 @@ import Header from '../shared/header';
 import { scheduleLocalNotification } from '../../modules/notifications';
 import Platform from '../../modules/platform';
 
-const ButtonInput = ({ value = false, label, onChange }) => {
+let Picker = (props) => {
+  const { style = {} } = props;
+  const allStyles = [{
+    color: props.darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT
+  }, style];
+  const newProps = {
+    style: allStyles,
+    ...omit(props, ['children', 'style'])
+  };
+  return <NBPicker {...newProps}>{props.children}</NBPicker>;
+};
+Picker.Item = NBPicker.Item;
+Picker.propTypes = {
+  darkMode: PropTypes.bool,
+  style: PropTypes.any,
+  children: PropTypes.any
+};
+Picker = connect(
+  ({ appState }) => ({
+    darkMode: appState.darkMode
+  })
+)(Picker);
+
+let ButtonInput = ({ darkMode, value = false, label, onChange }) => {
+
+  const textStyle = {
+    color: darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT
+  };
+
   return (
     <NBButton style={styles.button} transparent iconLeft onPress={() => onChange(!value)} allowLower>
-      <Icon style={styles.buttonText}>{value ? 'md-checkbox-outline' : 'square-outline'}</Icon>
-      <Text style={styles.buttonText} uppercase={false}>{label}</Text>
+      <Icon style={textStyle}>{value ? 'md-checkbox-outline' : 'square-outline'}</Icon>
+      <Text style={textStyle} uppercase={false}>{label}</Text>
     </NBButton>
   );
 };
 ButtonInput.propTypes = {
+  darkMode: PropTypes.bool,
   value: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func
 };
+ButtonInput = connect(
+  ({ appState }) => ({
+    darkMode: appState.darkMode
+  })
+)(ButtonInput);
 
 const HourPicker = ({ value, label, onChange }) => {
   return (
@@ -63,7 +99,25 @@ HourPicker.propTypes = {
   onChange: PropTypes.func
 };
 
-const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime }) => {
+let Label = ({ darkMode, children, style = {} }) => {
+  const allStyles = {
+    color: darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT,
+    ...style
+  };
+  return <NBLabel style={allStyles}>{children}</NBLabel>;
+};
+Label.propTypes = {
+  darkMode: PropTypes.bool,
+  children: PropTypes.string,
+  style: PropTypes.any
+};
+Label = connect(
+  ({ appState }) => ({
+    darkMode: appState.darkMode
+  })
+)(Label);
+
+const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, darkMode,  setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime, setDarkMode }) => {
 
   const isAndroid = Platform.isAndroid();
 
@@ -90,13 +144,15 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
     }
   };
 
+  const color = darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT;
+
   return (
     <Container>
       <Content style={styles.content}>
         <Form>
           <Item fixedLabel style={styles.pickerItem} picker>
-            <Label>Reading Text Size</Label>
-            <Picker selectedValue={fontSize} onValueChange={setFontSize}>
+            <Label style={{color}}>Reading Text Size</Label>
+            <Picker style={{color}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
               <Picker.Item label={'1.0'} value={1 * BASE_FONT_SIZE} />
               <Picker.Item label={'1.2'} value={1.2 * BASE_FONT_SIZE} />
               <Picker.Item label={'1.4'} value={1.4 * BASE_FONT_SIZE} />
@@ -127,6 +183,13 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
             <Picker selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
               <Picker.Item label={'Show'} value={false} />
               <Picker.Item label={'Hide'} value={true} />
+            </Picker>
+          </Item>
+          <Item fixedLabel style={styles.pickerItem} picker>
+            <Label>Dark Mode</Label>
+            <Picker selectedValue={darkMode} onValueChange={setDarkMode}>
+              <Picker.Item label={'On'} value={true} />
+              <Picker.Item label={'Off'} value={false} />
             </Picker>
           </Item>
 
@@ -182,7 +245,7 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
 };
 Settings.navigationOptions = ({ navigation } ) => {
   return ({
-    header: <Header navigation={navigation}>Settings</Header>
+    header: () => <Header navigation={navigation}>Settings</Header>
   });
 };
 Settings.propTypes = {
@@ -200,6 +263,7 @@ Settings.propTypes = {
   noonPrayerTime: PropTypes.number,
   earlyEveningPrayerTime: PropTypes.number,
   closeOfDayPrayerTime: PropTypes.number,
+  darkMode: PropTypes.bool,
   setHideMorningPrayer: PropTypes.func,
   setHideDailyReading: PropTypes.func,
   setHideNoonPrayer: PropTypes.func,
@@ -213,22 +277,16 @@ Settings.propTypes = {
   setDailyReadingTime: PropTypes.func,
   setNoonPrayerTime: PropTypes.func,
   setEarlyEveningPrayerTime: PropTypes.func,
-  setCloseOfDayPrayerTime: PropTypes.func
+  setCloseOfDayPrayerTime: PropTypes.func,
+  setDarkMode: PropTypes.func
 };
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: colors.BROWN
-  },
   content: {
     padding: 10
   },
   button: {
     marginBottom: 10
-  },
-  buttonText: {
-    color: '#000'
-    // color: colors.BROWN
   },
   pickerItem: {
     marginBottom: 10

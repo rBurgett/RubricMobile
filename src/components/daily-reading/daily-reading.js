@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
-import { Content, Text, H2 } from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Content, Text } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { routes, fontFamily, colors } from '../../constants';
+import { routes, fontFamily } from '../../constants';
 import { handleError, prepText } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
 import { getPassageText } from '../../util';
 import Button from '../shared/button';
+import H2 from '../shared/h2';
 import Progress from '../../types/progress';
 import Storage from '../../modules/storage';
 
@@ -101,16 +102,13 @@ DailyReading.propTypes = {
   lineHeight: PropTypes.number,
   fontType: PropTypes.string,
   hideVerseNumbers: PropTypes.bool,
+  darkMode: PropTypes.bool,
   progress: PropTypes.instanceOf(Progress),
   navigation: PropTypes.object,
   setProgress: PropTypes.func
 };
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-    backgroundColor: colors.BROWN
-  },
   container: {
     paddingTop: 0,
     paddingBottom: 0
