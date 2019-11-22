@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import moment from 'moment';
-import PushNotification from 'react-native-push-notification';
 import appReducer from './reducers/app-reducer';
 import * as appActions from './actions/app-actions';
 import {
@@ -30,8 +29,9 @@ import Bible from './components/bible';
 import BibleBook from './components/bible-book';
 import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
-import { scheduleLocalNotification } from './modules/notifications';
 import Platform from './modules/platform';
+const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
+const scheduleLocalNotification = Platform.isAndroid() ? require('./modules/notifications').scheduleLocalNotification : null;
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -179,16 +179,18 @@ const App: () => React$Node = () => {
           })
           .catch(console.error);
 
-        PushNotification.configure({
-          onRegister(token) {
-            console.log('token', token);
-          },
-          onNotification(notification) {
-            console.log('notification', notification);
-          },
-          popInitialNotification: true,
-          requestPermissions: true
-        });
+        if(Platform.isAndroid()) {
+          PushNotification.configure({
+            onRegister(token) {
+              console.log('token', token);
+            },
+            onNotification(notification) {
+              console.log('notification', notification);
+            },
+            popInitialNotification: true,
+            requestPermissions: true
+          });
+        }
 
         setReady(true);
 

@@ -8,8 +8,8 @@ import Container from '../shared/container';
 import { colors, BASE_FONT_SIZE, fontTypes, notificationIds } from '../../constants';
 import Icon from '../shared/icon';
 import Header from '../shared/header';
-import { scheduleLocalNotification } from '../../modules/notifications';
 import Platform from '../../modules/platform';
+const scheduleLocalNotification = Platform.isAndroid() ? require('../../modules/notifications').scheduleLocalNotification : null;
 
 let Picker = (props) => {
   const { style = {} } = props;
