@@ -192,38 +192,41 @@ const App: () => React$Node = () => {
 
         setReady(true);
 
-        const initialSchedulingDone = await Storage.getItem(storageKeys.INITIAL_SCHEDULING_DONE);
+        if(Platform.isAndroid()) {
+          const initialSchedulingDone = await Storage.getItem(storageKeys.INITIAL_SCHEDULING_DONE);
 
-        let morningPrayerTime = await Storage.getItem(storageKeys.MORNING_PRAYER_TIME);
-        morningPrayerTime = typeof morningPrayerTime === 'number' ? morningPrayerTime : defaultTimes.MORNING_PRAYER;
-        store.dispatch(appActions.setMorningPrayerTime(morningPrayerTime));
+          let morningPrayerTime = await Storage.getItem(storageKeys.MORNING_PRAYER_TIME);
+          morningPrayerTime = typeof morningPrayerTime === 'number' ? morningPrayerTime : defaultTimes.MORNING_PRAYER;
+          store.dispatch(appActions.setMorningPrayerTime(morningPrayerTime));
 
-        let dailyReadingTime = await Storage.getItem(storageKeys.DAILY_READING_TIME);
-        dailyReadingTime = typeof dailyReadingTime === 'number' ? dailyReadingTime : defaultTimes.DAILY_READING;
-        store.dispatch(appActions.setDailyReadingTime(dailyReadingTime));
+          let dailyReadingTime = await Storage.getItem(storageKeys.DAILY_READING_TIME);
+          dailyReadingTime = typeof dailyReadingTime === 'number' ? dailyReadingTime : defaultTimes.DAILY_READING;
+          store.dispatch(appActions.setDailyReadingTime(dailyReadingTime));
 
-        let noonPrayerTime = await Storage.getItem(storageKeys.NOON_PRAYER_TIME);
-        noonPrayerTime = typeof noonPrayerTime === 'number' ? noonPrayerTime : defaultTimes.NOON_PRAYER;
-        store.dispatch(appActions.setNoonPrayerTime(noonPrayerTime));
+          let noonPrayerTime = await Storage.getItem(storageKeys.NOON_PRAYER_TIME);
+          noonPrayerTime = typeof noonPrayerTime === 'number' ? noonPrayerTime : defaultTimes.NOON_PRAYER;
+          store.dispatch(appActions.setNoonPrayerTime(noonPrayerTime));
 
-        let earlyEveningPrayerTime = await Storage.getItem(storageKeys.EARLY_EVENING_PRAYER_TIME);
-        earlyEveningPrayerTime = typeof earlyEveningPrayerTime === 'number' ? earlyEveningPrayerTime : defaultTimes.EARLY_EVENING_PRAYER;
-        store.dispatch(appActions.setEarlyEveningPrayerTime(earlyEveningPrayerTime));
+          let earlyEveningPrayerTime = await Storage.getItem(storageKeys.EARLY_EVENING_PRAYER_TIME);
+          earlyEveningPrayerTime = typeof earlyEveningPrayerTime === 'number' ? earlyEveningPrayerTime : defaultTimes.EARLY_EVENING_PRAYER;
+          store.dispatch(appActions.setEarlyEveningPrayerTime(earlyEveningPrayerTime));
 
-        let closeOfDayPrayerTime = await Storage.getItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME);
-        closeOfDayPrayerTime = typeof closeOfDayPrayerTime === 'number' ? closeOfDayPrayerTime : defaultTimes.CLOSE_OF_DAY_PRAYER;
-        store.dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
+          let closeOfDayPrayerTime = await Storage.getItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME);
+          closeOfDayPrayerTime = typeof closeOfDayPrayerTime === 'number' ? closeOfDayPrayerTime : defaultTimes.CLOSE_OF_DAY_PRAYER;
+          store.dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
 
-        if(!initialSchedulingDone) {
-          if(Platform.isAndroid()) {
-            scheduleLocalNotification(notificationIds.MORNING_PRAYER, morningPrayerTime);
-            scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime);
-            scheduleLocalNotification(notificationIds.NOON_PRAYER, noonPrayerTime);
-            scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, earlyEveningPrayerTime);
-            scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, closeOfDayPrayerTime);
-            await Storage.setItem(storageKeys.INITIAL_SCHEDULING_DONE, true);
+          if(!initialSchedulingDone) {
+            if(Platform.isAndroid()) {
+              scheduleLocalNotification(notificationIds.MORNING_PRAYER, morningPrayerTime);
+              scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime);
+              scheduleLocalNotification(notificationIds.NOON_PRAYER, noonPrayerTime);
+              scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, earlyEveningPrayerTime);
+              scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, closeOfDayPrayerTime);
+              await Storage.setItem(storageKeys.INITIAL_SCHEDULING_DONE, true);
+            }
           }
         }
+
 
       } catch(err) {
         console.error(err);
