@@ -15,7 +15,7 @@ const Home = ({ darkMode, hideMorningPrayer, hideDailyReading, hideNoonPrayer, h
   const headerColor = darkMode ? colors.PRIMARY_TEXT_DM : colors.PRIMARY_TEXT;
 
   return (
-    <SafeAreaView flex={1} backgroundColor={colors.BROWN}>
+    <SafeAreaView flex={1} backgroundColor={darkMode ? colors.PRIMARY_DM : colors.BROWN}>
     <Container>
       <TouchableOpacity style={styles.menuButton} onPress={() => navigation.push(routes.MENU)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>menu</Icon></TouchableOpacity>
       <TouchableOpacity style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>book</Icon></TouchableOpacity>
