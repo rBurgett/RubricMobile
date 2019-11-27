@@ -152,7 +152,7 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
         <Form>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label style={{color}}>Reading Text Size</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : colors.PRIMARY_TEXT} style={{color}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} style={{color}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
               <Picker.Item label={'1.0'} value={BASE_FONT_SIZE} />
               <Picker.Item label={'1.2'} value={1.2 * BASE_FONT_SIZE} />
               <Picker.Item label={'1.4'} value={1.4 * BASE_FONT_SIZE} />
@@ -163,7 +163,7 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
           </Item>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Reading Line Height</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : colors.PRIMARY_TEXT} selectedValue={lineHeight} onValueChange={setLineHeight}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={lineHeight} onValueChange={setLineHeight}>
               <Picker.Item label={'1'} value={1} />
               <Picker.Item label={'1.25'} value={1.25} />
               <Picker.Item label={'1.5'} value={1.5} />
@@ -173,21 +173,21 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
           </Item>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Reading Font Type</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : colors.PRIMARY_TEXT} selectedValue={fontType} onValueChange={setFontType}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={fontType} onValueChange={setFontType}>
               <Picker.Item label={'Serif'} value={fontTypes.SERIF} />
               <Picker.Item label={'Sans-serif'} value={fontTypes.SANS_SERIF} />
             </Picker>
           </Item>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Verse Numbers</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : colors.PRIMARY_TEXT} selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
               <Picker.Item label={'Show'} value={false} />
               <Picker.Item label={'Hide'} value={true} />
             </Picker>
           </Item>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Dark Mode</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : colors.PRIMARY_TEXT} selectedValue={darkMode} onValueChange={setDarkMode}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : color: colors.TEXT}} selectedValue={darkMode} onValueChange={setDarkMode}>
               <Picker.Item label={'On'} value={true} />
               <Picker.Item label={'Off'} value={false} />
             </Picker>
