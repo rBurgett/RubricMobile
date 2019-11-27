@@ -187,7 +187,7 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
           </Item>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Dark Mode</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : color: colors.TEXT}} selectedValue={darkMode} onValueChange={setDarkMode}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={darkMode} onValueChange={setDarkMode}>
               <Picker.Item label={'On'} value={true} />
               <Picker.Item label={'Off'} value={false} />
             </Picker>
