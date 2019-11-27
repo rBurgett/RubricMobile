@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
-import { Content, Text } from 'native-base';
+import { Content } from 'native-base';
 import Button from '../shared/button';
 import Container from '../shared/container';
 import Header from '../shared/header';
@@ -9,6 +9,7 @@ import { prayers, fontFamily } from '../../constants';
 import Progress from '../../types/progress';
 import Storage from '../../modules/storage';
 import { handleError } from '../util';
+import Text from '../shared/text';
 
 const Prayer = ({ progress, morningPrayer, noonPrayer, earlyEveningPrayer, closeOfDayPrayer, fontType, navigation, setProgress }) => {
 

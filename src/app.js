@@ -30,7 +30,9 @@ import BibleBook from './components/bible-book';
 import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
+
 const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
+
 const scheduleLocalNotification = Platform.isAndroid() ? require('./modules/notifications').scheduleLocalNotification : null;
 
 const combinedReducers = combineReducers({
