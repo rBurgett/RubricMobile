@@ -30,6 +30,7 @@ import BibleBook from './components/bible-book';
 import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
+import SplashScreen from "react-native-splash-screen";
 
 const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
 
@@ -195,6 +196,10 @@ const App: () => React$Node = () => {
         }
 
         setReady(true);
+
+        setTimeout( () => {
+          SplashScreen.hide();
+        }, 0);
 
         if(Platform.isAndroid()) {
           const initialSchedulingDone = await Storage.getItem(storageKeys.INITIAL_SCHEDULING_DONE);
