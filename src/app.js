@@ -30,7 +30,7 @@ import BibleBook from './components/bible-book';
 import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
-import SplashScreen from "react-native-splash-screen";
+import SplashScreen from 'react-native-splash-screen';
 
 const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
 
