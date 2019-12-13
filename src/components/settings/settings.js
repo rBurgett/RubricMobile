@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Button as NBButton, Content, Text, Item, Form, Picker as NBPicker, Label as NBLabel } from 'native-base';
 import omit from 'lodash/omit';
@@ -10,6 +10,7 @@ import Icon from '../shared/icon';
 import Header from '../shared/header';
 import Platform from '../../modules/platform';
 const scheduleLocalNotification = Platform.isAndroid() ? require('../../modules/notifications').scheduleLocalNotification : null;
+import RNRestart from 'react-native-restart';
 
 let Picker = (props) => {
   const { style = {} } = props;
@@ -146,6 +147,31 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
 
   const color = darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT;
 
+  const onDarkModeChange = val => {
+    if(Platform.isAndroid()) {
+      Alert.alert(
+        'Restart Required',
+        'Changing color mode requires an app restart. Do you want to continue?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+            onPress: () => {}
+          },
+          {
+            text: 'OK',
+            onPress: async function() {
+              await setDarkMode(val, true);
+              RNRestart.Restart();
+            }
+          }
+        ]
+      );
+    } else {
+      setDarkMode(val);
+    }
+  };
+
   return (
     <Container>
       <Content style={styles.content}>
@@ -187,7 +213,7 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
           </Item>
           <Item fixedLabel style={styles.pickerItem} picker>
             <Label>Dark Mode</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={darkMode} onValueChange={setDarkMode}>
+            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={darkMode} onValueChange={val => onDarkModeChange(val)}>
               <Picker.Item label={'On'} value={true} />
               <Picker.Item label={'Off'} value={false} />
             </Picker>

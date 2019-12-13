@@ -80,8 +80,11 @@ export default connect(
       Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME, closeOfDayPrayerTime);
       dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
     },
-    setDarkMode: darkMode => {
-      Storage.setItem(storageKeys.DARK_MODE, darkMode);
+    setDarkMode: async function(darkMode, onlySave = false) {
+      await Storage.setItem(storageKeys.DARK_MODE, darkMode);
+      if(onlySave) { // only save the dark mode value but don't render anything
+        return;
+      }
       dispatch(appActions.setDarkMode(darkMode));
       changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
     }

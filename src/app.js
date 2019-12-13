@@ -3,6 +3,7 @@ import { Root } from 'native-base';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import moment from 'moment';
 import appReducer from './reducers/app-reducer';
 import * as appActions from './actions/app-actions';
@@ -93,8 +94,8 @@ const routes = {
 const stackConfig = {
   initialRouteName: routeConstants.HOME
 };
-const StackNavigation = createFluidNavigator(routes, stackConfig);
-const AppContainer = createAppContainer(StackNavigation);
+
+let StackNavigation, AppContainer;
 
 const App: () => React$Node = () => {
 
@@ -106,6 +107,14 @@ const App: () => React$Node = () => {
 
         const darkMode = await Storage.getItem(storageKeys.DARK_MODE);
         store.dispatch(appActions.setDarkMode(darkMode || false));
+
+        if(!darkMode || Platform.isIOS()) {
+          StackNavigation = createStackNavigator(routes, stackConfig);
+          AppContainer = createAppContainer(StackNavigation);
+        } else { // if dark mode on Android
+          StackNavigation = createFluidNavigator(routes, stackConfig);
+          AppContainer = createAppContainer(StackNavigation);
+        }
 
         changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
 
