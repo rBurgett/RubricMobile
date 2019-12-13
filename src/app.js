@@ -56,13 +56,24 @@ const routes = {
     })
   },
   [routeConstants.MENU]: {
-    screen: Menu
+    screen: Menu,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.WELCOME]: {
-    screen: Welcome
+    screen: Welcome,
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.PRAYER]: {
-    screen: Prayer
+    screen: Prayer,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.DAILY_READING]: {
     screen: DailyReading,
@@ -72,13 +83,23 @@ const routes = {
     })
   },
   [routeConstants.SETTINGS]: {
-    screen: Settings
+    screen: Settings,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.BIBLE]: {
-    screen: Bible
+    screen: Bible,
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.BIBLE_BOOK]: {
-    screen: BibleBook
+    screen: BibleBook,
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.BIBLE_BOOK_CHAPTER]: {
     screen: BibleBookChapter,
@@ -88,7 +109,10 @@ const routes = {
     })
   },
   [routeConstants.BOOKMARKS]: {
-    screen: Bookmarks
+    screen: Bookmarks,
+    navigationOptions: () => ({
+      header: null
+    })
   }
 };
 const stackConfig = {

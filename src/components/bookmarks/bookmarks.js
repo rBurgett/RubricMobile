@@ -27,66 +27,64 @@ const Bookmarks = ({ fontType, navigation }) => {
   });
 
   return (
-    <Container style={styles.container}>
-      <Grid>
-        <Col>
-          <Row>
-            <Content style={styles.content}>
-              {Object.keys(bookmarks)
-                .sort((keyA, keyB) => {
-                  const { date: dateA } = bookmarks[keyA];
-                  const { date: dateB } = bookmarks[keyB];
-                  return dateB.localeCompare(dateA);
-                })
-                .map(key => {
-                  const { book, chapter, totalChapters, date } = bookmarks[key];
-                  const dateStr = moment(date).format('YYYY-MM-DD');
+    <>
+      <Header navigation={navigation} showMenuButton={true}>Bookmarks</Header>
+      <Container style={styles.container}>
+        <Grid>
+          <Col>
+            <Row>
+              <Content style={styles.content}>
+                {Object.keys(bookmarks)
+                  .sort((keyA, keyB) => {
+                    const { date: dateA } = bookmarks[keyA];
+                    const { date: dateB } = bookmarks[keyB];
+                    return dateB.localeCompare(dateA);
+                  })
+                  .map(key => {
+                    const { book, chapter, totalChapters, date } = bookmarks[key];
+                    const dateStr = moment(date).format('YYYY-MM-DD');
 
-                  const name = `${book} ${chapter}`;
+                    const name = `${book} ${chapter}`;
 
-                  const onLongPress = () => {
-                    Alert.alert(
-                      'Delete Bookmark',
-                      `Are you sure that you want to delete the bookmark for ${name}?`,
-                      [
-                        {
-                          text: 'Delete',
-                          onPress: async function() {
-                            try {
-                              const bookmarkKey = makeBookmarkKey(book, chapter);
-                              console.log(bookmarks);
-                              console.log(bookmarkKey);
-                              const newBookmarks = omit(bookmarks, [bookmarkKey]);
-                              await Storage.setItem(storageKeys.BOOKMARKS, newBookmarks);
-                              setBookmarks(newBookmarks);
-                            } catch(err) {
-                              handleError(err);
-                            }
+                    const onLongPress = () => {
+                      Alert.alert(
+                        'Delete Bookmark',
+                        `Are you sure that you want to delete the bookmark for ${name}?`,
+                        [
+                          {
+                            text: 'Delete',
+                            onPress: async function() {
+                              try {
+                                const bookmarkKey = makeBookmarkKey(book, chapter);
+                                console.log(bookmarks);
+                                console.log(bookmarkKey);
+                                const newBookmarks = omit(bookmarks, [bookmarkKey]);
+                                await Storage.setItem(storageKeys.BOOKMARKS, newBookmarks);
+                                setBookmarks(newBookmarks);
+                              } catch(err) {
+                                handleError(err);
+                              }
+                            },
+                            style: 'destructive'
                           },
-                          style: 'destructive'
-                        },
-                        {text: 'Cancel', style: 'cancel'}
-                      ],
-                      {cancellable: true}
-                    );
-                  };
+                          {text: 'Cancel', style: 'cancel'}
+                        ],
+                        {cancellable: true}
+                      );
+                    };
 
-                  return (
-                    <Button key={key} style={styles.button} onLongPress={onLongPress} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter})}><Text style={[styles.buttonText, {fontFamily}]}>{name}</Text><Text style={[styles.buttonText, {fontFamily}]}>{dateStr}</Text></Button>
-                  );
-                })
-              }
-            </Content>
-          </Row>
-        </Col>
-      </Grid>
-    </Container>
+                    return (
+                      <Button key={key} style={styles.button} onLongPress={onLongPress} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter})}><Text style={[styles.buttonText, {fontFamily}]}>{name}</Text><Text style={[styles.buttonText, {fontFamily}]}>{dateStr}</Text></Button>
+                    );
+                  })
+                }
+              </Content>
+            </Row>
+          </Col>
+        </Grid>
+      </Container>
+    </>
   );
-};
-Bookmarks.navigationOptions = ({ navigation } ) => {
-  return ({
-    header: <Header navigation={navigation} showMenuButton={true}>Bookmarks</Header>
-  });
 };
 Bookmarks.propTypes = {
   fontType: PropTypes.string,
