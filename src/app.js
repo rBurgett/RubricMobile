@@ -3,7 +3,6 @@ import { Root } from 'native-base';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 import moment from 'moment';
 import appReducer from './reducers/app-reducer';
 import * as appActions from './actions/app-actions';
@@ -31,6 +30,7 @@ import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
 import SplashScreen from 'react-native-splash-screen';
+import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
 const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
 
@@ -93,7 +93,7 @@ const routes = {
 const stackConfig = {
   initialRouteName: routeConstants.HOME
 };
-const StackNavigation = createStackNavigator(routes, stackConfig);
+const StackNavigation = createFluidNavigator(routes, stackConfig);
 const AppContainer = createAppContainer(StackNavigation);
 
 const App: () => React$Node = () => {
