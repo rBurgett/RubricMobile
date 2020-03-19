@@ -1,5 +1,5 @@
 
-package com.rubricmobile;
+package church.rubric;
 
 import android.content.Intent;
 import android.os.Bundle;

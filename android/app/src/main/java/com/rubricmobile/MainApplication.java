@@ -1,4 +1,4 @@
-package com.rubricmobile;
+package church.rubric;
 
 import android.app.Application;
 import android.content.Context;

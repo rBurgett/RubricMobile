@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'RubricMobile' do
-  # Pods for RubricMobile
+target 'Rubric' do
+  # Pods for Rubric
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -34,7 +34,7 @@ target 'RubricMobile' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'RubricMobileTests' do
+  target 'RubricTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -42,10 +42,10 @@ target 'RubricMobile' do
   use_native_modules!
 end
 
-target 'RubricMobile-tvOS' do
-  # Pods for RubricMobile-tvOS
+target 'Rubric-tvOS' do
+  # Pods for Rubric-tvOS
 
-  target 'RubricMobile-tvOSTests' do
+  target 'Rubric-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

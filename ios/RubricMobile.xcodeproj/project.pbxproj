@@ -6,7 +6,7 @@
 	objectVersion = 46;
 	objects = {
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* RubricMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RubricMobileTests.m */; };
+		00E356F31AD99517003FC87E /* RubricTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RubricTests.m */; };
 		08ADC93C35244247B7D8B23A /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90B8DF3149B144428EF8969F /* Feather.ttf */; };
 		0C058D80F4944BB98511EAB5 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FE05D16B5794F89869B22B2 /* FontAwesome5_Solid.ttf */; };
 		1127A180E2A947D8A89894A1 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CB713C0B64A416BB4F27ADA /* Roboto_medium.ttf */; };
@@ -20,16 +20,16 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* RubricMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RubricMobileTests.m */; };
-		31C58057950B71235FE083EA /* libPods-RubricMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F973E423DB204734F56CEBE /* libPods-RubricMobile-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* RubricTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RubricTests.m */; };
+		31C58057950B71235FE083EA /* libPods-Rubric-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F973E423DB204734F56CEBE /* libPods-Rubric-tvOS.a */; };
 		338FA21B8A9C428B963C7C88 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CC2918BBBCC450AB5543C61 /* Entypo.ttf */; };
 		37611E4A8A8B480A957C4323 /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5AEB4CFED84A466190DE4BC8 /* DroidSerif-Bold.ttf */; };
 		42146A39B8E94ADBAC8D1D59 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44C9EBF3E03840BBA11FBFB9 /* FontAwesome.ttf */; };
 		4AC3942B24DE49708E921B64 /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B04B4D3632594EB6836DB502 /* DroidSerif-Regular.ttf */; };
 		52B918D3594442E299C0E345 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B55851977CE41A79B805B38 /* EvilIcons.ttf */; };
 		54B9654B36E145F68A329D7E /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF8496ADD29B4186B3359AB1 /* Fontisto.ttf */; };
-		61505DCE3970A669F586FA5C /* libPods-RubricMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DDD9E8F4EA319A24152657B /* libPods-RubricMobile.a */; };
-		63EBB8ECB6E7BFD87D9815DA /* libPods-RubricMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4341B1D6FB0CB482ADC6E7B0 /* libPods-RubricMobileTests.a */; };
+		61505DCE3970A669F586FA5C /* libPods-Rubric.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DDD9E8F4EA319A24152657B /* libPods-Rubric.a */; };
+		63EBB8ECB6E7BFD87D9815DA /* libPods-RubricTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4341B1D6FB0CB482ADC6E7B0 /* libPods-RubricTests.a */; };
 		883A76948D804918932BF816 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33554870A099451E8B9F67B6 /* FontAwesome5_Regular.ttf */; };
 		8ABE0E3D88B243859AAFD4C3 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6BBEB37C0F343A68B76F8EC /* MaterialCommunityIcons.ttf */; };
 		A222F05BAE4F4ADF98F3C356 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40F6D0201E7346F18D498C55 /* Roboto.ttf */; };
@@ -37,7 +37,7 @@
 		BAABACE908354E20A083A5FE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C67EE4488F744CA4B50F797D /* MaterialIcons.ttf */; };
 		CE48CB1052AC4B9DB5832616 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDB7F3C7B51F4A9C82A03B31 /* Octicons.ttf */; };
 		D4AD15B517C0467F80D9D077 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2F443B50D9E4B28A6A86BC9 /* Ionicons.ttf */; };
-		F4877C26DB457340849C2B7E /* libPods-RubricMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF5663EDD392A8E38778977 /* libPods-RubricMobile-tvOSTests.a */; };
+		F4877C26DB457340849C2B7E /* libPods-Rubric-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF5663EDD392A8E38778977 /* libPods-Rubric-tvOSTests.a */; };
 		F4F249B7902E4511BC13B654 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BCC08C860934485A81C87E5 /* FontAwesome5_Brands.ttf */; };
 		F84BD525A6974BF7B7FF84C0 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1ECB894A653477A916DA2E6 /* AntDesign.ttf */; };
 		F8DD189929C44F1BACB6B17D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 878479DC73644850857E1161 /* Foundation.ttf */; };
@@ -50,48 +50,48 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = RubricMobile;
+			remoteInfo = Rubric;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "RubricMobile-tvOS";
+			remoteInfo = "Rubric-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* RubricMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RubricMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* RubricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RubricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* RubricMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubricMobileTests.m; sourceTree = "<group>"; };
-		04A6C4932861A108012084C2 /* Pods-RubricMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RubricMobile-tvOS/Pods-RubricMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* RubricMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RubricMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RubricMobile/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RubricMobile/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* RubricTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubricTests.m; sourceTree = "<group>"; };
+		04A6C4932861A108012084C2 /* Pods-Rubric-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubric-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Rubric-tvOS/Pods-Rubric-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Rubric.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rubric.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Rubric/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Rubric/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RubricMobile/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RubricMobile/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RubricMobile/main.m; sourceTree = "<group>"; };
-		21FEE358E2ADCFE7DEB48281 /* Pods-RubricMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RubricMobile-tvOS/Pods-RubricMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Rubric/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Rubric/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Rubric/main.m; sourceTree = "<group>"; };
+		21FEE358E2ADCFE7DEB48281 /* Pods-Rubric-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubric-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Rubric-tvOS/Pods-Rubric-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		2CC2918BBBCC450AB5543C61 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* RubricMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RubricMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* RubricMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RubricMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* Rubric-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rubric-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* Rubric-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rubric-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FE05D16B5794F89869B22B2 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		33554870A099451E8B9F67B6 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		35FCFA2DF2D01B0CDA94A4F9 /* Pods-RubricMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobile.release.xcconfig"; path = "Target Support Files/Pods-RubricMobile/Pods-RubricMobile.release.xcconfig"; sourceTree = "<group>"; };
+		35FCFA2DF2D01B0CDA94A4F9 /* Pods-Rubric.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubric.release.xcconfig"; path = "Target Support Files/Pods-Rubric/Pods-Rubric.release.xcconfig"; sourceTree = "<group>"; };
 		3B55851977CE41A79B805B38 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		3DC7C6B9B7731E7B575C4EA0 /* Pods-RubricMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobile.debug.xcconfig"; path = "Target Support Files/Pods-RubricMobile/Pods-RubricMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		3DC7C6B9B7731E7B575C4EA0 /* Pods-Rubric.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubric.debug.xcconfig"; path = "Target Support Files/Pods-Rubric/Pods-Rubric.debug.xcconfig"; sourceTree = "<group>"; };
 		40F6D0201E7346F18D498C55 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
-		4341B1D6FB0CB482ADC6E7B0 /* libPods-RubricMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RubricMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4341B1D6FB0CB482ADC6E7B0 /* libPods-RubricTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RubricTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C9EBF3E03840BBA11FBFB9 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		4F973E423DB204734F56CEBE /* libPods-RubricMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RubricMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F973E423DB204734F56CEBE /* libPods-Rubric-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rubric-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AEB4CFED84A466190DE4BC8 /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Bold.ttf"; path = "../assets/fonts/DroidSerif-Bold.ttf"; sourceTree = "<group>"; };
-		5DDD9E8F4EA319A24152657B /* libPods-RubricMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RubricMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DDD9E8F4EA319A24152657B /* libPods-Rubric.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rubric.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABB38206DC4F6AAA195275 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		6B088E5927FB485BB1199EA1 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		6D19D3EA0C01AE44D29DC2C1 /* Pods-RubricMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RubricMobile-tvOSTests/Pods-RubricMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D19D3EA0C01AE44D29DC2C1 /* Pods-Rubric-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubric-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Rubric-tvOSTests/Pods-Rubric-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		878479DC73644850857E1161 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		8A53063EAE3544BAB965854A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		8CB713C0B64A416BB4F27ADA /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
@@ -99,19 +99,19 @@
 		9BCC08C860934485A81C87E5 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		A1ECB894A653477A916DA2E6 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		A2F443B50D9E4B28A6A86BC9 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		A7AF54CCCB76DDFD647B4884 /* Pods-RubricMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobileTests.release.xcconfig"; path = "Target Support Files/Pods-RubricMobileTests/Pods-RubricMobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		A7AF54CCCB76DDFD647B4884 /* Pods-RubricTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricTests.release.xcconfig"; path = "Target Support Files/Pods-RubricTests/Pods-RubricTests.release.xcconfig"; sourceTree = "<group>"; };
 		AF8496ADD29B4186B3359AB1 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/native-base/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		B04B4D3632594EB6836DB502 /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Regular.ttf"; path = "../assets/fonts/DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
 		BABD5BD0C21E40DCB31CB7E6 /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-BoldItalic.ttf"; path = "../assets/fonts/DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
-		C08C037213C58EB39E2B0349 /* Pods-RubricMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RubricMobile-tvOSTests/Pods-RubricMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C08C037213C58EB39E2B0349 /* Pods-Rubric-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubric-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Rubric-tvOSTests/Pods-Rubric-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C67EE4488F744CA4B50F797D /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D6BBEB37C0F343A68B76F8EC /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		DA5A7C0540194DF0B37BB336 /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DroidSerif-Italic.ttf"; path = "../assets/fonts/DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
-		DCAFE5011C837EECB967E5A4 /* Pods-RubricMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-RubricMobileTests/Pods-RubricMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DCAFE5011C837EECB967E5A4 /* Pods-RubricTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubricTests.debug.xcconfig"; path = "Target Support Files/Pods-RubricTests/Pods-RubricTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDB7F3C7B51F4A9C82A03B31 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		FCF5663EDD392A8E38778977 /* libPods-RubricMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RubricMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCF5663EDD392A8E38778977 /* libPods-Rubric-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rubric-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63EBB8ECB6E7BFD87D9815DA /* libPods-RubricMobileTests.a in Frameworks */,
+				63EBB8ECB6E7BFD87D9815DA /* libPods-RubricTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61505DCE3970A669F586FA5C /* libPods-RubricMobile.a in Frameworks */,
+				61505DCE3970A669F586FA5C /* libPods-Rubric.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C58057950B71235FE083EA /* libPods-RubricMobile-tvOS.a in Frameworks */,
+				31C58057950B71235FE083EA /* libPods-Rubric-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,20 +143,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4877C26DB457340849C2B7E /* libPods-RubricMobile-tvOSTests.a in Frameworks */,
+				F4877C26DB457340849C2B7E /* libPods-Rubric-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* RubricMobileTests */ = {
+		00E356EF1AD99517003FC87E /* RubricTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* RubricMobileTests.m */,
+				00E356F21AD99517003FC87E /* RubricTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = RubricMobileTests;
+			path = RubricTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -167,7 +167,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* RubricMobile */ = {
+		13B07FAE1A68108700A75B9A /* Rubric */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -178,7 +178,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = RubricMobile;
+			name = Rubric;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -186,10 +186,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				5DDD9E8F4EA319A24152657B /* libPods-RubricMobile.a */,
-				4F973E423DB204734F56CEBE /* libPods-RubricMobile-tvOS.a */,
-				FCF5663EDD392A8E38778977 /* libPods-RubricMobile-tvOSTests.a */,
-				4341B1D6FB0CB482ADC6E7B0 /* libPods-RubricMobileTests.a */,
+				5DDD9E8F4EA319A24152657B /* libPods-Rubric.a */,
+				4F973E423DB204734F56CEBE /* libPods-Rubric-tvOS.a */,
+				FCF5663EDD392A8E38778977 /* libPods-Rubric-tvOSTests.a */,
+				4341B1D6FB0CB482ADC6E7B0 /* libPods-RubricTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,9 +204,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* RubricMobile */,
+				13B07FAE1A68108700A75B9A /* Rubric */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* RubricMobileTests */,
+				00E356EF1AD99517003FC87E /* RubricTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CBC8E6E4CDF545D8879B91B1 /* Resources */,
@@ -220,10 +220,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* RubricMobile.app */,
-				00E356EE1AD99517003FC87E /* RubricMobileTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* RubricMobile-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* RubricMobile-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Rubric.app */,
+				00E356EE1AD99517003FC87E /* RubricTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* Rubric-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* Rubric-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,14 +231,14 @@
 		A8C9478578FE7E7A88613308 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3DC7C6B9B7731E7B575C4EA0 /* Pods-RubricMobile.debug.xcconfig */,
-				35FCFA2DF2D01B0CDA94A4F9 /* Pods-RubricMobile.release.xcconfig */,
-				04A6C4932861A108012084C2 /* Pods-RubricMobile-tvOS.debug.xcconfig */,
-				21FEE358E2ADCFE7DEB48281 /* Pods-RubricMobile-tvOS.release.xcconfig */,
-				C08C037213C58EB39E2B0349 /* Pods-RubricMobile-tvOSTests.debug.xcconfig */,
-				6D19D3EA0C01AE44D29DC2C1 /* Pods-RubricMobile-tvOSTests.release.xcconfig */,
-				DCAFE5011C837EECB967E5A4 /* Pods-RubricMobileTests.debug.xcconfig */,
-				A7AF54CCCB76DDFD647B4884 /* Pods-RubricMobileTests.release.xcconfig */,
+				3DC7C6B9B7731E7B575C4EA0 /* Pods-Rubric.debug.xcconfig */,
+				35FCFA2DF2D01B0CDA94A4F9 /* Pods-Rubric.release.xcconfig */,
+				04A6C4932861A108012084C2 /* Pods-Rubric-tvOS.debug.xcconfig */,
+				21FEE358E2ADCFE7DEB48281 /* Pods-Rubric-tvOS.release.xcconfig */,
+				C08C037213C58EB39E2B0349 /* Pods-Rubric-tvOSTests.debug.xcconfig */,
+				6D19D3EA0C01AE44D29DC2C1 /* Pods-Rubric-tvOSTests.release.xcconfig */,
+				DCAFE5011C837EECB967E5A4 /* Pods-RubricTests.debug.xcconfig */,
+				A7AF54CCCB76DDFD647B4884 /* Pods-RubricTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -276,9 +276,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* RubricMobileTests */ = {
+		00E356ED1AD99517003FC87E /* RubricTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RubricMobileTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RubricTests" */;
 			buildPhases = (
 				6E77C0C0A13054F085649C7A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -290,14 +290,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = RubricMobileTests;
-			productName = RubricMobileTests;
-			productReference = 00E356EE1AD99517003FC87E /* RubricMobileTests.xctest */;
+			name = RubricTests;
+			productName = RubricTests;
+			productReference = 00E356EE1AD99517003FC87E /* RubricTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* RubricMobile */ = {
+		13B07F861A680F5B00A75B9A /* Rubric */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RubricMobile" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Rubric" */;
 			buildPhases = (
 				9F590017071A205E7325E482 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -310,14 +310,14 @@
 			);
 			dependencies = (
 			);
-			name = RubricMobile;
-			productName = RubricMobile;
-			productReference = 13B07F961A680F5B00A75B9A /* RubricMobile.app */;
+			name = Rubric;
+			productName = Rubric;
+			productReference = 13B07F961A680F5B00A75B9A /* Rubric.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* RubricMobile-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* Rubric-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RubricMobile-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Rubric-tvOS" */;
 			buildPhases = (
 				66C9E778E4E2A3A0E723BF27 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -330,14 +330,14 @@
 			);
 			dependencies = (
 			);
-			name = "RubricMobile-tvOS";
-			productName = "RubricMobile-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* RubricMobile-tvOS.app */;
+			name = "Rubric-tvOS";
+			productName = "Rubric-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* Rubric-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* RubricMobile-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* Rubric-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RubricMobile-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Rubric-tvOSTests" */;
 			buildPhases = (
 				A1E4F01E454369D8D8605B02 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -349,9 +349,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "RubricMobile-tvOSTests";
-			productName = "RubricMobile-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* RubricMobile-tvOSTests.xctest */;
+			name = "Rubric-tvOSTests";
+			productName = "Rubric-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* Rubric-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -384,7 +384,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "RubricMobile" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Rubric" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -398,10 +398,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* RubricMobile */,
-				00E356ED1AD99517003FC87E /* RubricMobileTests */,
-				2D02E47A1E0B4A5D006451C7 /* RubricMobile-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* RubricMobile-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* Rubric */,
+				00E356ED1AD99517003FC87E /* RubricTests */,
+				2D02E47A1E0B4A5D006451C7 /* Rubric-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* Rubric-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -507,7 +507,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RubricMobile-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Rubric-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -529,7 +529,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RubricMobileTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-RubricTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -551,7 +551,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RubricMobile-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Rubric-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -573,7 +573,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RubricMobile-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Rubric-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -625,7 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* RubricMobileTests.m in Sources */,
+				00E356F31AD99517003FC87E /* RubricTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* RubricMobileTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* RubricTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,12 +660,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* RubricMobile */;
+			target = 13B07F861A680F5B00A75B9A /* Rubric */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* RubricMobile-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* Rubric-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -677,7 +677,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = RubricMobile;
+			path = Rubric;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -685,7 +685,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DCAFE5011C837EECB967E5A4 /* Pods-RubricMobileTests.debug.xcconfig */;
+			baseConfigurationReference = DCAFE5011C837EECB967E5A4 /* Pods-RubricTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
@@ -693,7 +693,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = RubricMobileTests/Info.plist;
+				INFOPLIST_FILE = RubricTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -703,18 +703,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RubricMobile.app/RubricMobile";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rubric.app/Rubric";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7AF54CCCB76DDFD647B4884 /* Pods-RubricMobileTests.release.xcconfig */;
+			baseConfigurationReference = A7AF54CCCB76DDFD647B4884 /* Pods-RubricTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
-				INFOPLIST_FILE = RubricMobileTests/Info.plist;
+				INFOPLIST_FILE = RubricTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -724,19 +724,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RubricMobile.app/RubricMobile";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rubric.app/Rubric";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DC7C6B9B7731E7B575C4EA0 /* Pods-RubricMobile.debug.xcconfig */;
+			baseConfigurationReference = 3DC7C6B9B7731E7B575C4EA0 /* Pods-Rubric.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
-				INFOPLIST_FILE = RubricMobile/Info.plist;
+				INFOPLIST_FILE = Rubric/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -744,19 +744,19 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = RubricMobile;
+				PRODUCT_NAME = Rubric;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35FCFA2DF2D01B0CDA94A4F9 /* Pods-RubricMobile.release.xcconfig */;
+			baseConfigurationReference = 35FCFA2DF2D01B0CDA94A4F9 /* Pods-Rubric.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
-				INFOPLIST_FILE = RubricMobile/Info.plist;
+				INFOPLIST_FILE = Rubric/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -764,14 +764,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = RubricMobile;
+				PRODUCT_NAME = Rubric;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04A6C4932861A108012084C2 /* Pods-RubricMobile-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 04A6C4932861A108012084C2 /* Pods-Rubric-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -783,14 +783,14 @@
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "RubricMobile-tvOS/Info.plist";
+				INFOPLIST_FILE = "Rubric-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.RubricMobile-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Rubric-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -800,7 +800,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21FEE358E2ADCFE7DEB48281 /* Pods-RubricMobile-tvOS.release.xcconfig */;
+			baseConfigurationReference = 21FEE358E2ADCFE7DEB48281 /* Pods-Rubric-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -812,14 +812,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "RubricMobile-tvOS/Info.plist";
+				INFOPLIST_FILE = "Rubric-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.RubricMobile-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Rubric-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -829,7 +829,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C08C037213C58EB39E2B0349 /* Pods-RubricMobile-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = C08C037213C58EB39E2B0349 /* Pods-Rubric-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -840,24 +840,24 @@
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "RubricMobile-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "Rubric-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.RubricMobile-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Rubric-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RubricMobile-tvOS.app/RubricMobile-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rubric-tvOS.app/Rubric-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D19D3EA0C01AE44D29DC2C1 /* Pods-RubricMobile-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 6D19D3EA0C01AE44D29DC2C1 /* Pods-Rubric-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -868,17 +868,17 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6DDAMY959Y;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "RubricMobile-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "Rubric-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.RubricMobile-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Rubric-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RubricMobile-tvOS.app/RubricMobile-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rubric-tvOS.app/Rubric-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -987,7 +987,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RubricMobileTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RubricTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -996,7 +996,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RubricMobile" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Rubric" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1005,7 +1005,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RubricMobile-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Rubric-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1014,7 +1014,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RubricMobile-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Rubric-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1023,7 +1023,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "RubricMobile" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Rubric" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
