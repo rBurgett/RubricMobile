@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Button as NBButton, Content, Text, Item, Form, Picker as NBPicker, Label as NBLabel } from 'native-base';
 import omit from 'lodash/omit';
@@ -10,6 +10,7 @@ import Icon from '../shared/icon';
 import Header from '../shared/header';
 import Platform from '../../modules/platform';
 const scheduleLocalNotification = Platform.isAndroid() ? require('../../modules/notifications').scheduleLocalNotification : null;
+import RNRestart from 'react-native-restart';
 
 let Picker = (props) => {
   const { style = {} } = props;
@@ -117,7 +118,7 @@ Label = connect(
   })
 )(Label);
 
-const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, darkMode,  setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime, setDarkMode }) => {
+const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, darkMode,  setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime, setDarkMode }) => {
 
   const isAndroid = Platform.isAndroid();
 
@@ -146,109 +147,133 @@ const Settings = ({ fontSize, lineHeight, fontType, hideVerseNumbers, hideMornin
 
   const color = darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT;
 
+  const onDarkModeChange = val => {
+    if(Platform.isAndroid()) {
+      Alert.alert(
+        'Restart Required',
+        'Changing color mode requires an app restart. Do you want to continue?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+            onPress: () => {}
+          },
+          {
+            text: 'OK',
+            onPress: async function() {
+              await setDarkMode(val, true);
+              RNRestart.Restart();
+            }
+          }
+        ]
+      );
+    } else {
+      setDarkMode(val);
+    }
+  };
+
   return (
-    <Container>
-      <Content style={styles.content}>
-        <Form>
-          <Item fixedLabel style={styles.pickerItem} picker>
-            <Label style={{color}}>Reading Text Size</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} style={{color}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
-              <Picker.Item label={'1.0'} value={BASE_FONT_SIZE} />
-              <Picker.Item label={'1.2'} value={1.2 * BASE_FONT_SIZE} />
-              <Picker.Item label={'1.4'} value={1.4 * BASE_FONT_SIZE} />
-              <Picker.Item label={'1.6'} value={1.6 * BASE_FONT_SIZE} />
-              <Picker.Item label={'1.8'} value={1.8 * BASE_FONT_SIZE} />
-              <Picker.Item label={'2.0'} value={2 * BASE_FONT_SIZE} />
-            </Picker>
-          </Item>
-          <Item fixedLabel style={styles.pickerItem} picker>
-            <Label>Reading Line Height</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={lineHeight} onValueChange={setLineHeight}>
-              <Picker.Item label={'1'} value={1} />
-              <Picker.Item label={'1.25'} value={1.25} />
-              <Picker.Item label={'1.5'} value={1.5} />
-              <Picker.Item label={'1.75'} value={1.75} />
-              <Picker.Item label={'2'} value={2} />
-            </Picker>
-          </Item>
-          <Item fixedLabel style={styles.pickerItem} picker>
-            <Label>Reading Font Type</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={fontType} onValueChange={setFontType}>
-              <Picker.Item label={'Serif'} value={fontTypes.SERIF} />
-              <Picker.Item label={'Sans-serif'} value={fontTypes.SANS_SERIF} />
-            </Picker>
-          </Item>
-          <Item fixedLabel style={styles.pickerItem} picker>
-            <Label>Verse Numbers</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
-              <Picker.Item label={'Show'} value={false} />
-              <Picker.Item label={'Hide'} value={true} />
-            </Picker>
-          </Item>
-          <Item fixedLabel style={styles.pickerItem} picker>
-            <Label>Dark Mode</Label>
-            <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={darkMode} onValueChange={setDarkMode}>
-              <Picker.Item label={'On'} value={true} />
-              <Picker.Item label={'Off'} value={false} />
-            </Picker>
-          </Item>
+    <>
+      <Header navigation={navigation}>Settings</Header>
+      <Container>
+        <Content style={styles.content}>
+          <Form>
+            <Item fixedLabel style={styles.pickerItem} picker>
+              <Label style={{color}}>Reading Text Size</Label>
+              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} style={{color}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
+                <Picker.Item label={'1.0'} value={BASE_FONT_SIZE} />
+                <Picker.Item label={'1.2'} value={1.2 * BASE_FONT_SIZE} />
+                <Picker.Item label={'1.4'} value={1.4 * BASE_FONT_SIZE} />
+                <Picker.Item label={'1.6'} value={1.6 * BASE_FONT_SIZE} />
+                <Picker.Item label={'1.8'} value={1.8 * BASE_FONT_SIZE} />
+                <Picker.Item label={'2.0'} value={2 * BASE_FONT_SIZE} />
+              </Picker>
+            </Item>
+            <Item fixedLabel style={styles.pickerItem} picker>
+              <Label>Reading Line Height</Label>
+              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={lineHeight} onValueChange={setLineHeight}>
+                <Picker.Item label={'1'} value={1} />
+                <Picker.Item label={'1.25'} value={1.25} />
+                <Picker.Item label={'1.5'} value={1.5} />
+                <Picker.Item label={'1.75'} value={1.75} />
+                <Picker.Item label={'2'} value={2} />
+              </Picker>
+            </Item>
+            <Item fixedLabel style={styles.pickerItem} picker>
+              <Label>Reading Font Type</Label>
+              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={fontType} onValueChange={setFontType}>
+                <Picker.Item label={'Serif'} value={fontTypes.SERIF} />
+                <Picker.Item label={'Sans-serif'} value={fontTypes.SANS_SERIF} />
+              </Picker>
+            </Item>
+            <Item fixedLabel style={styles.pickerItem} picker>
+              <Label>Verse Numbers</Label>
+              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
+                <Picker.Item label={'Show'} value={false} />
+                <Picker.Item label={'Hide'} value={true} />
+              </Picker>
+            </Item>
+            <Item fixedLabel style={styles.pickerItem} picker>
+              <Label>Dark Mode</Label>
+              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={darkMode} onValueChange={val => onDarkModeChange(val)}>
+                <Picker.Item label={'On'} value={true} />
+                <Picker.Item label={'Off'} value={false} />
+              </Picker>
+            </Item>
 
-          <ButtonInput
-            label={'Show Morning Prayer'}
-            value={!hideMorningPrayer}
-            onChange={show => {
-              if(!show) scheduleLocalNotification(notificationIds.MORNING_PRAYER, -1);
-              setHideMorningPrayer(!show);
-            }} />
-          {!hideMorningPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
+            <ButtonInput
+              label={'Show Morning Prayer'}
+              value={!hideMorningPrayer}
+              onChange={show => {
+                if(!show) scheduleLocalNotification(notificationIds.MORNING_PRAYER, -1);
+                setHideMorningPrayer(!show);
+              }} />
+            {!hideMorningPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
 
-          <ButtonInput
-            label={'Show Daily Reading'}
-            value={!hideDailyReading}
-            onChange={show => {
-              if(!show) scheduleLocalNotification(notificationIds.DAILY_READING, -1);
-              setHideDailyReading(!show);
-            }} />
-          {!hideDailyReading && isAndroid ? <HourPicker label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
+            <ButtonInput
+              label={'Show Daily Reading'}
+              value={!hideDailyReading}
+              onChange={show => {
+                if(!show) scheduleLocalNotification(notificationIds.DAILY_READING, -1);
+                setHideDailyReading(!show);
+              }} />
+            {!hideDailyReading && isAndroid ? <HourPicker label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
 
-          <ButtonInput
-            label={'Show Noon Prayer'}
-            value={!hideNoonPrayer}
-            onChange={show => {
-              if(!show) scheduleLocalNotification(notificationIds.NOON_PRAYER, -1);
-              setHideNoonPrayer(!show);
-            }} />
-          {!hideNoonPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
+            <ButtonInput
+              label={'Show Noon Prayer'}
+              value={!hideNoonPrayer}
+              onChange={show => {
+                if(!show) scheduleLocalNotification(notificationIds.NOON_PRAYER, -1);
+                setHideNoonPrayer(!show);
+              }} />
+            {!hideNoonPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
 
-          <ButtonInput
-            label={'Show Early Evening Prayer'}
-            value={!hideEarlyEveningPrayer}
-            onChange={show => {
-              if(!show) scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, -1);
-              setHideEarlyEveningPrayer(!show);
-            }} />
-          {!hideEarlyEveningPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
+            <ButtonInput
+              label={'Show Early Evening Prayer'}
+              value={!hideEarlyEveningPrayer}
+              onChange={show => {
+                if(!show) scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, -1);
+                setHideEarlyEveningPrayer(!show);
+              }} />
+            {!hideEarlyEveningPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
 
-          <ButtonInput
-            label={'Show Close of Day Prayer'}
-            value={!hideCloseOfDayPrayer}
-            onChange={show => {
-              if(!show) scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, -1);
-              setHideCloseOfDayPrayer(!show);
-            }} />
-          {!hideCloseOfDayPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
+            <ButtonInput
+              label={'Show Close of Day Prayer'}
+              value={!hideCloseOfDayPrayer}
+              onChange={show => {
+                if(!show) scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, -1);
+                setHideCloseOfDayPrayer(!show);
+              }} />
+            {!hideCloseOfDayPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
 
-        </Form>
-      </Content>
-    </Container>
+          </Form>
+        </Content>
+      </Container>
+    </>
   );
 };
-Settings.navigationOptions = ({ navigation } ) => {
-  return ({
-    header: () => <Header navigation={navigation}>Settings</Header>
-  });
-};
 Settings.propTypes = {
+  navigation: PropTypes.object,
   hideMorningPrayer: PropTypes.bool,
   hideDailyReading: PropTypes.bool,
   hideNoonPrayer: PropTypes.bool,

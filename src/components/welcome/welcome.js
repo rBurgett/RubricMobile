@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import Header from '../shared/header';
 import WelcomeView from '../shared/welcome-view';
 
-const Welcome = () => {
+const Welcome = ({ navigation }) => {
   return (
-    <WelcomeView hideClose={true} />
+    <>
+      <Header navigation={navigation}>Welcome</Header>
+      <WelcomeView hideClose={true} />
+    </>
   );
-};
-Welcome.navigationOptions = ({ navigation } ) => {
-  return ({
-    header: () => <Header navigation={navigation}>Welcome</Header>
-  });
 };
 Welcome.propTypes = {
   navigation: PropTypes.object

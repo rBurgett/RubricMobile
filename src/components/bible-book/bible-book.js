@@ -33,29 +33,26 @@ const BibleBook = ({ fontType, navigation }) => {
   }, [book]);
 
   return (
-    <Container style={styles.container}>
-      <Grid>
-        <Col>
-          <Row>
-            <Content>
-              {chapters.map((chapter, i) => {
-                const name = `Chapter ${i + 1}`;
-                return (
-                  <Button fontFamily={fontFamily} key={name} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters: chapters.length, chapter: i + 1})}>{name}</Button>
-                );
-              })}
-            </Content>
-          </Row>
-        </Col>
-      </Grid>
-    </Container>
+    <>
+      <Header navigation={navigation} showMenuButton={true}>{book}</Header>
+      <Container style={styles.container}>
+        <Grid>
+          <Col>
+            <Row>
+              <Content>
+                {chapters.map((chapter, i) => {
+                  const name = `Chapter ${i + 1}`;
+                  return (
+                    <Button fontFamily={fontFamily} key={name} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters: chapters.length, chapter: i + 1})}>{name}</Button>
+                  );
+                })}
+              </Content>
+            </Row>
+          </Col>
+        </Grid>
+      </Container>
+    </>
   );
-};
-BibleBook.navigationOptions = ({ navigation } ) => {
-  const { book } = navigation.state.params;
-  return ({
-    header: () => <Header navigation={navigation} showMenuButton={true}>{book}</Header>
-  });
 };
 BibleBook.propTypes = {
   fontType: PropTypes.string,

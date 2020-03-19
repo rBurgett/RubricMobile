@@ -25,44 +25,42 @@ const Bible = ({ navigation, fontType }) => {
   const fontFamily = fontFamilyConstants[fontType];
 
   return (
-    <Container style={styles.container}>
-      <Grid>
-        <Col>
-          <Row size={-1} style={styles.headingRow}>
-            <H3 style={[styles.heading, {fontFamily}]}>Old Testament</H3>
-          </Row>
-          <Row>
-            <Content style={styles.content}>
-              {otBooks.map(book => {
-                return (
-                  <Button fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
-                );
-              })}
-            </Content>
-          </Row>
-        </Col>
-        <Col>
-          <Row size={-1} style={styles.headingRow}>
-            <H3 style={[styles.heading, {fontFamily}]}>New Testament</H3>
-          </Row>
-          <Row>
-            <Content style={styles.content}>
-              {ntBooks.map(book => {
-                return (
-                  <Button fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
-                );
-              })}
-            </Content>
-          </Row>
-        </Col>
-      </Grid>
-    </Container>
+    <>
+      <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
+      <Container style={styles.container}>
+        <Grid>
+          <Col>
+            <Row size={-1} style={styles.headingRow}>
+              <H3 style={[styles.heading, {fontFamily}]}>Old Testament</H3>
+            </Row>
+            <Row>
+              <Content style={styles.content}>
+                {otBooks.map(book => {
+                  return (
+                    <Button fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
+                  );
+                })}
+              </Content>
+            </Row>
+          </Col>
+          <Col>
+            <Row size={-1} style={styles.headingRow}>
+              <H3 style={[styles.heading, {fontFamily}]}>New Testament</H3>
+            </Row>
+            <Row>
+              <Content style={styles.content}>
+                {ntBooks.map(book => {
+                  return (
+                    <Button fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
+                  );
+                })}
+              </Content>
+            </Row>
+          </Col>
+        </Grid>
+      </Container>
+    </>
   );
-};
-Bible.navigationOptions = ({ navigation } ) => {
-  return ({
-    header: () => <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
-  });
 };
 Bible.propTypes = {
   fontType: PropTypes.string,

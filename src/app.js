@@ -31,6 +31,7 @@ import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
 import SplashScreen from 'react-native-splash-screen';
+import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 
 const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
 
@@ -55,13 +56,24 @@ const routes = {
     })
   },
   [routeConstants.MENU]: {
-    screen: Menu
+    screen: Menu,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.WELCOME]: {
-    screen: Welcome
+    screen: Welcome,
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.PRAYER]: {
-    screen: Prayer
+    screen: Prayer,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.DAILY_READING]: {
     screen: DailyReading,
@@ -71,13 +83,23 @@ const routes = {
     })
   },
   [routeConstants.SETTINGS]: {
-    screen: Settings
+    screen: Settings,
+    headerMode: 'none',
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.BIBLE]: {
-    screen: Bible
+    screen: Bible,
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.BIBLE_BOOK]: {
-    screen: BibleBook
+    screen: BibleBook,
+    navigationOptions: () => ({
+      header: null
+    })
   },
   [routeConstants.BIBLE_BOOK_CHAPTER]: {
     screen: BibleBookChapter,
@@ -87,14 +109,17 @@ const routes = {
     })
   },
   [routeConstants.BOOKMARKS]: {
-    screen: Bookmarks
+    screen: Bookmarks,
+    navigationOptions: () => ({
+      header: null
+    })
   }
 };
 const stackConfig = {
   initialRouteName: routeConstants.HOME
 };
-const StackNavigation = createStackNavigator(routes, stackConfig);
-const AppContainer = createAppContainer(StackNavigation);
+
+let StackNavigation, AppContainer;
 
 const App: () => React$Node = () => {
 
@@ -106,6 +131,14 @@ const App: () => React$Node = () => {
 
         const darkMode = await Storage.getItem(storageKeys.DARK_MODE);
         store.dispatch(appActions.setDarkMode(darkMode || false));
+
+        if(!darkMode || Platform.isIOS()) {
+          StackNavigation = createStackNavigator(routes, stackConfig);
+          AppContainer = createAppContainer(StackNavigation);
+        } else { // if dark mode on Android
+          StackNavigation = createFluidNavigator(routes, stackConfig);
+          AppContainer = createAppContainer(StackNavigation);
+        }
 
         changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
 
