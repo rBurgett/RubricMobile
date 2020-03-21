@@ -129,8 +129,9 @@ const App: () => React$Node = () => {
     (async function() {
       try {
 
-        const darkMode = await Storage.getItem(storageKeys.DARK_MODE);
-        store.dispatch(appActions.setDarkMode(darkMode || false));
+        let darkMode = await Storage.getItem(storageKeys.DARK_MODE);
+        darkMode = (darkMode || darkMode === null) ? true : false;
+        store.dispatch(appActions.setDarkMode(darkMode));
 
         if(!darkMode || Platform.isIOS()) {
           StackNavigation = createStackNavigator(routes, stackConfig);

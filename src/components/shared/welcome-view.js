@@ -15,7 +15,7 @@ What is best accomplished via technology and what can only be accomplished in pe
 
 The Rubric mobile application is our first step forward in this experiment. You might attend "church services" or you might not, but Rubric is here to connect you to something bigger than yourself, something even bigger than a local congregation.
 
-The Book of Common Prayer is a small, centuries-old book containing the traditional services of the Anglican and Episcopal church. But, even beyond that, it contains daily devotional prayers for individuals and groups along with Bible readings. The Rubric mobile application takes these prayers and readings and provides them to anybody in a convenient and engaging form.
+The Book of Common Prayer is a small, centuries-old book containing the traditional services of the Anglican and Episcopal church. But, even beyond that, it contains daily devotional prayers for individuals and groups along with Bible readings. The Rubric mobile application adapts these prayers and readings for today and provides them to anybody in a convenient and engaging form.
 
 Every day, thousands or even millions of people from across countless Christian denominations and group take time out of their day to remember God and to center themselves by praying these prayers and reading these scripture passages. When you pray these prayers and read these passages, you join people all around the world who are praying with you and pondering the same scripture passages as you. Plus, you are building positive spiritual habits into your life which will benefit you, your family, and ultimately the world around you.
 
