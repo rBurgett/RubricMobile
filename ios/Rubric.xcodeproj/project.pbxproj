@@ -112,6 +112,7 @@
 		DDB7F3C7B51F4A9C82A03B31 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F24452B82429D3DF004482D5 /* Rubric copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Rubric copy-Info.plist"; path = "/Users/ryanburgett/projects/RubricMobile/ios/Rubric copy-Info.plist"; sourceTree = "<absolute>"; };
 		FCF5663EDD392A8E38778977 /* libPods-Rubric-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rubric-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -212,6 +213,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CBC8E6E4CDF545D8879B91B1 /* Resources */,
 				A8C9478578FE7E7A88613308 /* Pods */,
+				F24452B82429D3DF004482D5 /* Rubric copy-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -366,11 +368,13 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 6DDAMY959Y;
+						DevelopmentTeam = 3Y9ESB9ZLL;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 3Y9ESB9ZLL;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -689,7 +693,10 @@
 			baseConfigurationReference = DCAFE5011C837EECB967E5A4 /* Pods-RubricTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 6DDAMY959Y;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3Y9ESB9ZLL;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -704,6 +711,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rubric.app/Rubric";
 			};
 			name = Debug;
@@ -713,8 +722,11 @@
 			baseConfigurationReference = A7AF54CCCB76DDFD647B4884 /* Pods-RubricTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 6DDAMY959Y;
+				DEVELOPMENT_TEAM = 3Y9ESB9ZLL;
 				INFOPLIST_FILE = RubricTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -725,6 +737,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rubric.app/Rubric";
 			};
 			name = Release;
@@ -734,6 +748,8 @@
 			baseConfigurationReference = 3DC7C6B9B7731E7B575C4EA0 /* Pods-Rubric.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 3Y9ESB9ZLL;
@@ -744,8 +760,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = church.rubric.ios;
 				PRODUCT_NAME = Rubric;
+				PROVISIONING_PROFILE_SPECIFIER = church.rubric.ios.testing;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -755,8 +772,10 @@
 			baseConfigurationReference = 35FCFA2DF2D01B0CDA94A4F9 /* Pods-Rubric.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6DDAMY959Y;
+				DEVELOPMENT_TEAM = 3Y9ESB9ZLL;
 				INFOPLIST_FILE = Rubric/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -764,8 +783,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = church.rubric.ios;
 				PRODUCT_NAME = Rubric;
+				PROVISIONING_PROFILE_SPECIFIER = church.rubric.ios.testing;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
