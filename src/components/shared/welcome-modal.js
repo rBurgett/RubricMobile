@@ -1,20 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Modal } from 'react-native';
+import { Modal, SafeAreaView } from 'react-native';
 import WelcomeView from './welcome-view';
+import { colors } from '../../constants';
 
-const WelcomeModal = ({ visible, onClose }) => {
+const WelcomeModal = ({ darkMode, visible, onClose }) => {
   return (
-    <Modal
-      animationType={'none'}
-      transparent={false}
-      visible={visible}>
-      <WelcomeView onClose={onClose} />
-    </Modal>
+      <Modal
+        animationType={'none'}
+        transparent={false}
+        visible={visible}>
+        <SafeAreaView flex={1} backgroundColor={darkMode ? colors.PRIMARY_DM : colors.BROWN}>
+          <WelcomeView useSafeView={true} onClose={onClose} />
+        </SafeAreaView>
+      </ Modal>
   );
 };
 WelcomeModal.propTypes = {
+  darkMode: PropTypes.bool,
   visible: PropTypes.bool,
   onClose: PropTypes.func
 };

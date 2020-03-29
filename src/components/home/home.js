@@ -41,7 +41,7 @@ const Home = ({ darkMode, hideMorningPrayer, hideDailyReading, hideNoonPrayer, h
         </Col>
       </Grid>
 
-      <WelcomeModal visible={!welcomeDone} onClose={setWelcomeDone} />
+      <WelcomeModal darkMode={darkMode} visible={!welcomeDone} onClose={setWelcomeDone} />
 
     </Container>
     </SafeAreaView>
