@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Button as NBButton, Content, Text, Item, Form, Picker as NBPicker, Label as NBLabel } from 'native-base';
+import RNRestart from 'react-native-restart';
 import omit from 'lodash/omit';
 import Container from '../shared/container';
 import { colors, BASE_FONT_SIZE, fontTypes, notificationIds } from '../../constants';
 import Icon from '../shared/icon';
 import Header from '../shared/header';
 import Platform from '../../modules/platform';
-const scheduleLocalNotification = Platform.isAndroid() ? require('../../modules/notifications').scheduleLocalNotification : null;
-import RNRestart from 'react-native-restart';
+import { scheduleLocalNotification } from '../../modules/notifications';
 
 let Picker = (props) => {
   const { style = {} } = props;
@@ -120,11 +120,9 @@ Label = connect(
 
 const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, darkMode,  setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime, setDarkMode }) => {
 
-  const isAndroid = Platform.isAndroid();
-
   const onTimeChange = (id, val) => {
 
-    if(isAndroid) scheduleLocalNotification(id, val);
+    scheduleLocalNotification(id, val);
 
     switch(id) {
       case notificationIds.MORNING_PRAYER:
@@ -228,7 +226,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.MORNING_PRAYER, -1);
                 setHideMorningPrayer(!show);
               }} />
-            {!hideMorningPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
+            {!hideMorningPrayer ? <HourPicker label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Daily Reading'}
@@ -237,7 +235,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.DAILY_READING, -1);
                 setHideDailyReading(!show);
               }} />
-            {!hideDailyReading && isAndroid ? <HourPicker label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
+            {!hideDailyReading ? <HourPicker label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
 
             <ButtonInput
               label={'Show Noon Prayer'}
@@ -246,7 +244,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.NOON_PRAYER, -1);
                 setHideNoonPrayer(!show);
               }} />
-            {!hideNoonPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
+            {!hideNoonPrayer ? <HourPicker label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Early Evening Prayer'}
@@ -255,7 +253,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, -1);
                 setHideEarlyEveningPrayer(!show);
               }} />
-            {!hideEarlyEveningPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
+            {!hideEarlyEveningPrayer ? <HourPicker label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Close of Day Prayer'}
@@ -264,7 +262,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, -1);
                 setHideCloseOfDayPrayer(!show);
               }} />
-            {!hideCloseOfDayPrayer && isAndroid ? <HourPicker label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
+            {!hideCloseOfDayPrayer ? <HourPicker label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
 
           </Form>
         </Content>

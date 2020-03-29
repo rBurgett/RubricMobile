@@ -32,10 +32,9 @@ import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
 import SplashScreen from 'react-native-splash-screen';
 import { createFluidNavigator } from 'react-navigation-fluid-transitions';
-
-const PushNotification = Platform.isAndroid() ? require('react-native-push-notification') : null;
-
-const scheduleLocalNotification = Platform.isAndroid() ? require('./modules/notifications').scheduleLocalNotification : null;
+import PushNotification from 'react-native-push-notification';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { scheduleLocalNotification } from './modules/notifications';
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -227,6 +226,33 @@ const App: () => React$Node = () => {
             popInitialNotification: true,
             requestPermissions: true
           });
+        } else if(Platform.isIOS()) {
+          PushNotification.configure({
+            onRegister: function(token) {
+              console.log('token', token);
+            },
+            // (required) Called when a remote or local notification is opened or received
+            onNotification: function(notification) {
+              console.log('notification', notification);
+              // process the notification
+              // required on iOS only (see fetchCompletionHandler docs: https://github.com/react-native-community/react-native-push-notification-ios)
+              notification.finish(PushNotificationIOS.FetchResult.NoData);
+            },
+            // IOS ONLY (optional): default: all - Permissions to register.
+            permissions: {
+              alert: true,
+              badge: true,
+              sound: true
+            },
+            // Should the initial notification be popped automatically
+            popInitialNotification: true,
+            /**
+             * (optional) default: true
+             * - Specified if permissions (ios) and token (android and ios) will requested or not,
+             * - if not, you must call PushNotificationsHandler.requestPermissions() later
+             */
+            requestPermissions: true
+          });
         }
 
         setReady(true);
@@ -235,41 +261,36 @@ const App: () => React$Node = () => {
           SplashScreen.hide();
         }, 0);
 
-        if(Platform.isAndroid()) {
-          const initialSchedulingDone = await Storage.getItem(storageKeys.INITIAL_SCHEDULING_DONE);
+        const initialSchedulingDone = await Storage.getItem(storageKeys.INITIAL_SCHEDULING_DONE);
 
-          let morningPrayerTime = await Storage.getItem(storageKeys.MORNING_PRAYER_TIME);
-          morningPrayerTime = typeof morningPrayerTime === 'number' ? morningPrayerTime : defaultTimes.MORNING_PRAYER;
-          store.dispatch(appActions.setMorningPrayerTime(morningPrayerTime));
+        let morningPrayerTime = await Storage.getItem(storageKeys.MORNING_PRAYER_TIME);
+        morningPrayerTime = typeof morningPrayerTime === 'number' ? morningPrayerTime : defaultTimes.MORNING_PRAYER;
+        store.dispatch(appActions.setMorningPrayerTime(morningPrayerTime));
 
-          let dailyReadingTime = await Storage.getItem(storageKeys.DAILY_READING_TIME);
-          dailyReadingTime = typeof dailyReadingTime === 'number' ? dailyReadingTime : defaultTimes.DAILY_READING;
-          store.dispatch(appActions.setDailyReadingTime(dailyReadingTime));
+        let dailyReadingTime = await Storage.getItem(storageKeys.DAILY_READING_TIME);
+        dailyReadingTime = typeof dailyReadingTime === 'number' ? dailyReadingTime : defaultTimes.DAILY_READING;
+        store.dispatch(appActions.setDailyReadingTime(dailyReadingTime));
 
-          let noonPrayerTime = await Storage.getItem(storageKeys.NOON_PRAYER_TIME);
-          noonPrayerTime = typeof noonPrayerTime === 'number' ? noonPrayerTime : defaultTimes.NOON_PRAYER;
-          store.dispatch(appActions.setNoonPrayerTime(noonPrayerTime));
+        let noonPrayerTime = await Storage.getItem(storageKeys.NOON_PRAYER_TIME);
+        noonPrayerTime = typeof noonPrayerTime === 'number' ? noonPrayerTime : defaultTimes.NOON_PRAYER;
+        store.dispatch(appActions.setNoonPrayerTime(noonPrayerTime));
 
-          let earlyEveningPrayerTime = await Storage.getItem(storageKeys.EARLY_EVENING_PRAYER_TIME);
-          earlyEveningPrayerTime = typeof earlyEveningPrayerTime === 'number' ? earlyEveningPrayerTime : defaultTimes.EARLY_EVENING_PRAYER;
-          store.dispatch(appActions.setEarlyEveningPrayerTime(earlyEveningPrayerTime));
+        let earlyEveningPrayerTime = await Storage.getItem(storageKeys.EARLY_EVENING_PRAYER_TIME);
+        earlyEveningPrayerTime = typeof earlyEveningPrayerTime === 'number' ? earlyEveningPrayerTime : defaultTimes.EARLY_EVENING_PRAYER;
+        store.dispatch(appActions.setEarlyEveningPrayerTime(earlyEveningPrayerTime));
 
-          let closeOfDayPrayerTime = await Storage.getItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME);
-          closeOfDayPrayerTime = typeof closeOfDayPrayerTime === 'number' ? closeOfDayPrayerTime : defaultTimes.CLOSE_OF_DAY_PRAYER;
-          store.dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
+        let closeOfDayPrayerTime = await Storage.getItem(storageKeys.CLOSE_OF_DAY_PRAYER_TIME);
+        closeOfDayPrayerTime = typeof closeOfDayPrayerTime === 'number' ? closeOfDayPrayerTime : defaultTimes.CLOSE_OF_DAY_PRAYER;
+        store.dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
 
-          if(!initialSchedulingDone) {
-            if(Platform.isAndroid()) {
-              scheduleLocalNotification(notificationIds.MORNING_PRAYER, morningPrayerTime);
-              scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime);
-              scheduleLocalNotification(notificationIds.NOON_PRAYER, noonPrayerTime);
-              scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, earlyEveningPrayerTime);
-              scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, closeOfDayPrayerTime);
-              await Storage.setItem(storageKeys.INITIAL_SCHEDULING_DONE, true);
-            }
-          }
+        if(!initialSchedulingDone) {
+          scheduleLocalNotification(notificationIds.MORNING_PRAYER, morningPrayerTime);
+          scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime);
+          scheduleLocalNotification(notificationIds.NOON_PRAYER, noonPrayerTime);
+          scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, earlyEveningPrayerTime);
+          scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, closeOfDayPrayerTime);
+          await Storage.setItem(storageKeys.INITIAL_SCHEDULING_DONE, true);
         }
-
 
       } catch(err) {
         console.error(err);

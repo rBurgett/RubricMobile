@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
+    "@react-native-community/push-notification-ios": "^1.1.0",
     "color": "^3.1.2",
     "html-entities": "^1.2.1",
     "ionicons": "^4.6.3",
