@@ -1,5 +1,6 @@
 import PushNotification from 'react-native-push-notification';
 import { colors, notificationIds } from '../constants';
+import Platform from './platform';
 
 export const scheduleLocalNotification = (id, hour) => {
   PushNotification.cancelLocalNotifications({id});
@@ -30,15 +31,25 @@ export const scheduleLocalNotification = (id, hour) => {
   let date = new Date();
   date.setHours(hour, 0, 0, 0);
   if(date.getTime() < Date.now()) date = new Date(date.getTime() + (1000 * 60 * 60 * 24));
-  PushNotification.localNotificationSchedule({
-    date,
-    repeatType: 'day',
-    id,
-    largeIcon: 'ic_launcher_round',
-    smallIcon: 'ic_launcher_round',
-    subText: id === notificationIds.DAILY_READING ? 'Reading Reminder' : 'Prayer Reminder',
-    color: colors.BROWN,
-    title,
-    message
-  });
+  if(Platform.isAndroid()) {
+    PushNotification.localNotificationSchedule({
+      date,
+      repeatType: 'day',
+      id,
+      largeIcon: 'ic_launcher_round',
+      smallIcon: 'ic_launcher_round',
+      subText: id === notificationIds.DAILY_READING ? 'Reading Reminder' : 'Prayer Reminder',
+      color: colors.BROWN,
+      title,
+      message
+    });
+  } else if(Platform.isIOS()) {
+    PushNotification.localNotificationSchedule({
+      date,
+      repeatType: 'day',
+      id,
+      title,
+      message
+    });
+  }
 };
