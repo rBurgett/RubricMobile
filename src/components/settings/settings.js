@@ -174,7 +174,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
   return (
     <>
       <Header navigation={navigation}>Settings</Header>
-      <Container>
+      <Container style={styles.container}>
         <Content style={styles.content}>
           <Form>
             <Item fixedLabel style={styles.pickerItem} picker>
@@ -306,6 +306,10 @@ Settings.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 0,
+    paddingBottom: 0
+  },
   content: {
     padding: 10
   },
