@@ -60,11 +60,11 @@ ButtonInput = connect(
   })
 )(ButtonInput);
 
-const HourPicker = ({ value, label, onChange }) => {
+const HourPicker = ({ value, label, onChange, darkMode }) => {
   return (
     <Item fixedLabel style={[styles.pickerItem, styles.hourPickerContainer]} picker>
       <Label>{label}</Label>
-      <Picker selectedValue={value} onValueChange={onChange}>
+      <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={value} onValueChange={onChange}>
         <Picker.Item label={'none'} value={-1} />
         <Picker.Item label={'12 am'} value={0} />
         <Picker.Item label={'1 am'} value={1} />
@@ -95,6 +95,7 @@ const HourPicker = ({ value, label, onChange }) => {
   );
 };
 HourPicker.propTypes = {
+  darkMode: PropTypes.bool,
   value: PropTypes.number,
   label: PropTypes.string,
   onChange: PropTypes.func
@@ -226,7 +227,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.MORNING_PRAYER, -1);
                 setHideMorningPrayer(!show);
               }} />
-            {!hideMorningPrayer ? <HourPicker label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
+            {!hideMorningPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Daily Reading'}
@@ -235,7 +236,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.DAILY_READING, -1);
                 setHideDailyReading(!show);
               }} />
-            {!hideDailyReading ? <HourPicker label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
+            {!hideDailyReading ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
 
             <ButtonInput
               label={'Show Noon Prayer'}
@@ -244,7 +245,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.NOON_PRAYER, -1);
                 setHideNoonPrayer(!show);
               }} />
-            {!hideNoonPrayer ? <HourPicker label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
+            {!hideNoonPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Early Evening Prayer'}
@@ -253,7 +254,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, -1);
                 setHideEarlyEveningPrayer(!show);
               }} />
-            {!hideEarlyEveningPrayer ? <HourPicker label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
+            {!hideEarlyEveningPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Close of Day Prayer'}
@@ -262,7 +263,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 if(!show) scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, -1);
                 setHideCloseOfDayPrayer(!show);
               }} />
-            {!hideCloseOfDayPrayer ? <HourPicker label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
+            {!hideCloseOfDayPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
 
           </Form>
         </Content>
