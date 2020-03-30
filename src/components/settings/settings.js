@@ -14,11 +14,8 @@ import { scheduleLocalNotification } from '../../modules/notifications';
 
 let Picker = (props) => {
   const { style = {} } = props;
-  const allStyles = [{
-    color: props.darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT
-  }, style];
   const newProps = {
-    style: allStyles,
+    style,
     ...omit(props, ['children', 'style'])
   };
   return <NBPicker {...newProps}>{props.children}</NBPicker>;
@@ -179,7 +176,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
           <Form>
             <Item fixedLabel style={styles.pickerItem} picker>
               <Label style={{color}}>Reading Text Size</Label>
-              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} style={{color}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
+              <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
                 <Picker.Item label={'1.0'} value={BASE_FONT_SIZE} />
                 <Picker.Item label={'1.2'} value={1.2 * BASE_FONT_SIZE} />
                 <Picker.Item label={'1.4'} value={1.4 * BASE_FONT_SIZE} />
