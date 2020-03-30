@@ -1,5 +1,6 @@
 import {colors, routes} from '../../constants';
 import { Body, Header as NBHeader, Button, Left, Right, Title } from 'native-base';
+import { StyleSheet } from 'react-native';
 import Icon from './icon';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -9,46 +10,47 @@ import Platform from '../../modules/platform';
 
 const Header = ({ children, navigation, darkMode, hideBack = false, rightButtonIcon = '', showMenuButton = false, rightButtonIconStyle = {}, onRightButtonPress }) => {
 
+  const isIOS = Platform.isIOS();
+
   const headerBackgroundColor = darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT;
 
-  const styles = {
-    header: {
-      backgroundColor: headerBackgroundColor
-    },
-    headerText: {
-      color: darkMode ? colors.PRIMARY_TEXT_DM : colors.CONTAINER
-    }
+  const headerStyle = {
+    backgroundColor: headerBackgroundColor
+  };
+  const headerText = {
+    color: darkMode ? colors.PRIMARY_TEXT_DM : colors.CONTAINER
   };
 
-  if(Platform.isIOS()) styles.header.borderBottomWidth = 0;
+  if(isIOS) headerStyle.borderBottomWidth = 0;
 
   return (
-    <NBHeader style={styles.header}>
+    <NBHeader style={[styles.header, headerStyle]}>
       <StatusBar />
-      <Left>
+      <Left style={isIOS ? styles.leftIOS : styles.leftAndroid}>
         {!hideBack ?
           <Button transparent onPress={() => navigation.goBack()}>
-            <Icon style={styles.headerText}>arrow-back</Icon>
+            <Icon style={headerText}>arrow-back</Icon>
           </Button>
           :
           null
         }
       </Left>
-      <Body>
-        <Title style={styles.headerText}>{children}</Title>
+
+      <Body style={isIOS ? styles.bodyIOS : styles.bodyAndroid}>
+        <Title style={headerText}>{children}</Title>
       </Body>
-      {rightButtonIcon || showMenuButton ?
-        <Right>
+      {isIOS || rightButtonIcon || showMenuButton ?
+        <Right style={isIOS ? styles.rightIOS : styles.rightAndroid}>
           {rightButtonIcon ?
             <Button transparent onPress={onRightButtonPress}>
-              <Icon style={[styles.headerText, rightButtonIconStyle]}>{rightButtonIcon}</Icon>
+              <Icon style={[headerText, rightButtonIconStyle]}>{rightButtonIcon}</Icon>
             </Button>
             :
             null
           }
           {showMenuButton ?
             <Button transparent onPress={() => navigation.push(routes.MENU)}>
-              <Icon style={styles.headerText}>menu</Icon>
+              <Icon style={headerText}>menu</Icon>
             </Button>
             :
             null
@@ -70,6 +72,26 @@ Header.propTypes = {
   onRightButtonPress: PropTypes.func,
   showMenuButton: PropTypes.bool
 };
+
+const styles = StyleSheet.create({
+  leftIOS: {
+    flex: 1
+  },
+  bodyIOS: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  rightIOS: {
+    flex: 1
+  },
+  leftAndroid: {
+  },
+  bodyAndroid: {
+  },
+  rightAndroid: {
+  }
+});
 
 export default connect(
   ({ appState }) => ({
