@@ -19,11 +19,16 @@ const Bookmarks = ({ fontType, navigation }) => {
   const [ bookmarks, setBookmarks ] = useState({});
 
   useEffect(() => {
+    let dismounted = false;
     Storage.getItem(storageKeys.BOOKMARKS)
       .then(bm => {
+        if(dismounted) return;
         setBookmarks(bm || {});
       })
       .catch(handleError);
+    return () => {
+      dismounted = true;
+    };
   });
 
   return (
