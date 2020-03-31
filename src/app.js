@@ -31,10 +31,11 @@ import BibleBookChapter from './components/bible-book-chapter';
 import Bookmarks from './components/bookmarks';
 import Platform from './modules/platform';
 import SplashScreen from 'react-native-splash-screen';
-import { createFluidNavigator } from 'react-navigation-fluid-transitions';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { scheduleLocalNotification } from './modules/notifications';
+
+const createFluidNavigator = Platform.isAndroid() ? require('react-navigation-fluid-transitions').createFluidNavigator : null;
 
 const combinedReducers = combineReducers({
   appState: appReducer
@@ -51,66 +52,66 @@ const routes = {
     screen: Home,
     headerMode: 'none',
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.MENU]: {
     screen: Menu,
     headerMode: 'none',
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.WELCOME]: {
     screen: Welcome,
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.PRAYER]: {
     screen: Prayer,
     headerMode: 'none',
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.DAILY_READING]: {
     screen: DailyReading,
     headerMode: 'none',
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.SETTINGS]: {
     screen: Settings,
     headerMode: 'none',
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.BIBLE]: {
     screen: Bible,
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.BIBLE_BOOK]: {
     screen: BibleBook,
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.BIBLE_BOOK_CHAPTER]: {
     screen: BibleBookChapter,
     headerMode: 'none',
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   },
   [routeConstants.BOOKMARKS]: {
     screen: Bookmarks,
     navigationOptions: () => ({
-      header: null
+      headerShown: false
     })
   }
 };
@@ -183,37 +184,37 @@ const App: () => React$Node = () => {
             closeOfDayPrayer: currentCloseOfDayPrayer
           }));
         }
-        fetch('https://rubric.church/prayers')
-          .then(async function(res) {
-            try {
-              const { data: prayers } = await res.json();
-              let toSet = {};
-              const morningPrayer = prayers.find(p => p.time === 'morning').text;
-              if(morningPrayer !== currentMorningPrayer) {
-                await Storage.setItem(storageKeys.MORNING_PRAYER, morningPrayer);
-                toSet = {...toSet, morningPrayer};
-              }
-              const noonPrayer = prayers.find(p => p.time === 'afternoon').text;
-              if(noonPrayer !== currentNoonPrayer) {
-                await Storage.setItem(storageKeys.NOON_PRAYER, noonPrayer);
-                toSet = {...toSet, noonPrayer};
-              }
-              const earlyEveningPrayer = prayers.find(p => p.time === 'earlyEvening').text;
-              if(earlyEveningPrayer !== currentEarlyEveningPrayer) {
-                await Storage.setItem(storageKeys.EARLY_EVENING_PRAYER, earlyEveningPrayer);
-                toSet = {...toSet, earlyEveningPrayer};
-              }
-              const closeOfDayPrayer = prayers.find(p => p.time === 'closeOfDay').text;
-              if(closeOfDayPrayer !== currentCloseOfDayPrayer) {
-                await Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER, closeOfDayPrayer);
-                toSet = {...toSet, closeOfDayPrayer};
-              }
-              store.dispatch(appActions.bulkSet(toSet));
-            } catch(err) {
-              console.error(err);
-            }
-          })
-          .catch(console.error);
+        // fetch('https://rubric.church/prayers')
+        //   .then(async function(res) {
+        //     try {
+        //       const { data: prayers } = await res.json();
+        //       let toSet = {};
+        //       const morningPrayer = prayers.find(p => p.time === 'morning').text;
+        //       if(morningPrayer !== currentMorningPrayer) {
+        //         await Storage.setItem(storageKeys.MORNING_PRAYER, morningPrayer);
+        //         toSet = {...toSet, morningPrayer};
+        //       }
+        //       const noonPrayer = prayers.find(p => p.time === 'afternoon').text;
+        //       if(noonPrayer !== currentNoonPrayer) {
+        //         await Storage.setItem(storageKeys.NOON_PRAYER, noonPrayer);
+        //         toSet = {...toSet, noonPrayer};
+        //       }
+        //       const earlyEveningPrayer = prayers.find(p => p.time === 'earlyEvening').text;
+        //       if(earlyEveningPrayer !== currentEarlyEveningPrayer) {
+        //         await Storage.setItem(storageKeys.EARLY_EVENING_PRAYER, earlyEveningPrayer);
+        //         toSet = {...toSet, earlyEveningPrayer};
+        //       }
+        //       const closeOfDayPrayer = prayers.find(p => p.time === 'closeOfDay').text;
+        //       if(closeOfDayPrayer !== currentCloseOfDayPrayer) {
+        //         await Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER, closeOfDayPrayer);
+        //         toSet = {...toSet, closeOfDayPrayer};
+        //       }
+        //       store.dispatch(appActions.bulkSet(toSet));
+        //     } catch(err) {
+        //       console.error(err);
+        //     }
+        //   })
+        //   .catch(console.error);
 
         if(Platform.isAndroid()) {
           PushNotification.configure({
