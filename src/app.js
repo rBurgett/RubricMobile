@@ -184,37 +184,37 @@ const App: () => React$Node = () => {
             closeOfDayPrayer: currentCloseOfDayPrayer
           }));
         }
-        // fetch('https://rubric.church/prayers')
-        //   .then(async function(res) {
-        //     try {
-        //       const { data: prayers } = await res.json();
-        //       let toSet = {};
-        //       const morningPrayer = prayers.find(p => p.time === 'morning').text;
-        //       if(morningPrayer !== currentMorningPrayer) {
-        //         await Storage.setItem(storageKeys.MORNING_PRAYER, morningPrayer);
-        //         toSet = {...toSet, morningPrayer};
-        //       }
-        //       const noonPrayer = prayers.find(p => p.time === 'afternoon').text;
-        //       if(noonPrayer !== currentNoonPrayer) {
-        //         await Storage.setItem(storageKeys.NOON_PRAYER, noonPrayer);
-        //         toSet = {...toSet, noonPrayer};
-        //       }
-        //       const earlyEveningPrayer = prayers.find(p => p.time === 'earlyEvening').text;
-        //       if(earlyEveningPrayer !== currentEarlyEveningPrayer) {
-        //         await Storage.setItem(storageKeys.EARLY_EVENING_PRAYER, earlyEveningPrayer);
-        //         toSet = {...toSet, earlyEveningPrayer};
-        //       }
-        //       const closeOfDayPrayer = prayers.find(p => p.time === 'closeOfDay').text;
-        //       if(closeOfDayPrayer !== currentCloseOfDayPrayer) {
-        //         await Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER, closeOfDayPrayer);
-        //         toSet = {...toSet, closeOfDayPrayer};
-        //       }
-        //       store.dispatch(appActions.bulkSet(toSet));
-        //     } catch(err) {
-        //       console.error(err);
-        //     }
-        //   })
-        //   .catch(console.error);
+        fetch('https://rubric.church/prayers')
+          .then(async function(res) {
+            try {
+              const { data: prayers } = await res.json();
+              let toSet = {};
+              const morningPrayer = prayers.find(p => p.time === 'morning').text;
+              if(morningPrayer !== currentMorningPrayer) {
+                await Storage.setItem(storageKeys.MORNING_PRAYER, morningPrayer);
+                toSet = {...toSet, morningPrayer};
+              }
+              const noonPrayer = prayers.find(p => p.time === 'afternoon').text;
+              if(noonPrayer !== currentNoonPrayer) {
+                await Storage.setItem(storageKeys.NOON_PRAYER, noonPrayer);
+                toSet = {...toSet, noonPrayer};
+              }
+              const earlyEveningPrayer = prayers.find(p => p.time === 'earlyEvening').text;
+              if(earlyEveningPrayer !== currentEarlyEveningPrayer) {
+                await Storage.setItem(storageKeys.EARLY_EVENING_PRAYER, earlyEveningPrayer);
+                toSet = {...toSet, earlyEveningPrayer};
+              }
+              const closeOfDayPrayer = prayers.find(p => p.time === 'closeOfDay').text;
+              if(closeOfDayPrayer !== currentCloseOfDayPrayer) {
+                await Storage.setItem(storageKeys.CLOSE_OF_DAY_PRAYER, closeOfDayPrayer);
+                toSet = {...toSet, closeOfDayPrayer};
+              }
+              store.dispatch(appActions.bulkSet(toSet));
+            } catch(err) {
+              console.error(err);
+            }
+          })
+          .catch(console.error);
 
         if(Platform.isAndroid()) {
           PushNotification.configure({
