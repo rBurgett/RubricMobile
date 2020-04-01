@@ -17,6 +17,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		177208371992463B9EB226C0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B088E5927FB485BB1199EA1 /* SimpleLineIcons.ttf */; };
 		19EBE18CBAC34FBC83A191CF /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A53063EAE3544BAB965854A /* Zocial.ttf */; };
+		21AF5756243537A100C2B9F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		28AD37D4034348368C3DF610 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64ABB38206DC4F6AAA195275 /* rubicon-icon-font.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -418,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AF5756243537A100C2B9F1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +768,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = church.rubric.ios;
 				PRODUCT_NAME = Rubric;
 				PROVISIONING_PROFILE_SPECIFIER = church.rubric.ios.testing;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -790,6 +793,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = church.rubric.ios;
 				PRODUCT_NAME = Rubric;
 				PROVISIONING_PROFILE_SPECIFIER = church.rubric.ios.testing;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
