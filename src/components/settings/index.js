@@ -21,7 +21,8 @@ export default connect(
     noonPrayerTime: appState.noonPrayerTime,
     earlyEveningPrayerTime: appState.earlyEveningPrayerTime,
     closeOfDayPrayerTime: appState.closeOfDayPrayerTime,
-    darkMode: appState.darkMode
+    darkMode: appState.darkMode,
+    screenReaderEnabled: appState.screenReaderEnabled
   }),
   dispatch => ({
     setHideMorningPrayer: hide => {

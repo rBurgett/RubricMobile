@@ -85,6 +85,11 @@ export const setDarkMode = darkMode => ({
   payload: darkMode
 });
 
+export const setScreenReaderEnabled = screenReaderEnabled => ({
+  type: actions.SET_SCREEN_READER_ENABLED,
+  payload: screenReaderEnabled
+});
+
 export const bulkSet = (data = {}) => ({
   type: actions.BULK_SET,
   payload: data

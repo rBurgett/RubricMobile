@@ -57,7 +57,7 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
 
   return (
     <>
-      <Header navigation={navigation} rightButtonIconStyle={bookmarked ? styles.bookmarked : {}} rightButtonIcon={'bookmark'} onRightButtonPress={onBookmarkPress} showMenuButton={true}>{`${book} ${chapter}`}</Header>
+      <Header navigation={navigation} rightButtonLabel={'Bookmark'} rightButtonRole={'switch'} rightButtonState={{checked: bookmarked}} rightButtonIconStyle={bookmarked ? styles.bookmarked : {}} rightButtonIcon={'bookmark'} onRightButtonPress={onBookmarkPress} showMenuButton={true}>{`${book} ${chapter}`}</Header>
       <Container style={styles.container}>
         <Content style={styles.content}>
           <View>
@@ -75,9 +75,9 @@ const BibleBookChapter = ({ navigation, fontSize, lineHeight, fontType, hideVers
           </View>
           {paragraphs.length > 0 ?
             <View style={styles.btnContainer}>
-              {chapter > 1 ? <Button style={styles.navButton} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter: chapter - 1})}>{'< Prev'}</Button> : <View style={styles.navButton} />}
-              <Button style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)} icon={'book'} />
-              {chapter < totalChapters ? <Button style={styles.navButton} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter: chapter + 1})}>{'Next >'}</Button> : <View style={styles.navButton} />}
+              {chapter > 1 ? <Button accessibilityLabel={'Previous Chapter'} accessibilityHint={'Navigate to previous chapter'} style={styles.navButton} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter: chapter - 1})}>{'< Prev'}</Button> : <View style={styles.navButton} />}
+              <Button accessibilityLabel={'Bible'} accessibilityHint={'Navigate to Bible'} style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)} icon={'book'} />
+              {chapter < totalChapters ? <Button accessibilityLabel={'Next Chapter'} accessibilityHint={'Navigate to next chapter'} style={styles.navButton} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter: chapter + 1})}>{'Next >'}</Button> : <View style={styles.navButton} />}
             </View>
             :
             null

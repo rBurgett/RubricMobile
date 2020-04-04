@@ -12,7 +12,7 @@ import Header from '../shared/header';
 import Platform from '../../modules/platform';
 import { scheduleLocalNotification } from '../../modules/notifications';
 
-let Picker = (props) => {
+let Picker = props => {
   const { style = {} } = props;
   const newProps = {
     style,
@@ -32,14 +32,14 @@ Picker = connect(
   })
 )(Picker);
 
-let ButtonInput = ({ darkMode, value = false, label, onChange }) => {
+let ButtonInput = ({ darkMode, value = false, label, accessibilityState = {}, onChange }) => {
 
   const textStyle = {
     color: darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT
   };
 
   return (
-    <NBButton style={styles.button} transparent iconLeft onPress={() => onChange(!value)} allowLower>
+    <NBButton accessibilityState={accessibilityState} style={styles.button} transparent iconLeft onPress={() => onChange(!value)} allowLower>
       <Icon style={textStyle}>{value ? 'md-checkbox-outline' : 'square-outline'}</Icon>
       <Text style={textStyle} uppercase={false}>{label}</Text>
     </NBButton>
@@ -57,9 +57,9 @@ ButtonInput = connect(
   })
 )(ButtonInput);
 
-const HourPicker = ({ value, label, onChange, darkMode }) => {
+const HourPicker = ({ onAccessibilityTap, value, label, onChange, darkMode }) => {
   return (
-    <Item fixedLabel style={[styles.pickerItem, styles.hourPickerContainer]} picker>
+    <Item onPress={onAccessibilityTap} fixedLabel style={[styles.pickerItem, styles.hourPickerContainer]} picker>
       <Label>{label}</Label>
       <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={value} onValueChange={onChange}>
         <Picker.Item label={'none'} value={-1} />
@@ -95,17 +95,20 @@ HourPicker.propTypes = {
   darkMode: PropTypes.bool,
   value: PropTypes.number,
   label: PropTypes.string,
+  onAccessibilityTap: PropTypes.func,
   onChange: PropTypes.func
 };
 
-let Label = ({ darkMode, children, style = {} }) => {
+let Label = props => {
+  const { darkMode, children, style = {} } = props;
   const allStyles = {
     color: darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT,
     ...style
   };
-  return <NBLabel style={allStyles}>{children}</NBLabel>;
+  return <NBLabel {...omit(props, ['children'])} style={allStyles}>{children}</NBLabel>;
 };
 Label.propTypes = {
+  accessible: PropTypes.bool,
   darkMode: PropTypes.bool,
   children: PropTypes.string,
   style: PropTypes.any
@@ -116,7 +119,9 @@ Label = connect(
   })
 )(Label);
 
-const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, darkMode,  setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime, setDarkMode }) => {
+const incrementHour = num => num < 23 ? num + 1 : -1;
+
+const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers, hideMorningPrayer, hideDailyReading, hideNoonPrayer, hideEarlyEveningPrayer, hideCloseOfDayPrayer, morningPrayerTime, dailyReadingTime, noonPrayerTime, earlyEveningPrayerTime, closeOfDayPrayerTime, darkMode, screenReaderEnabled, setHideMorningPrayer, setHideDailyReading, setHideNoonPrayer, setHideEarlyEveningPrayer, setHideCloseOfDayPrayer, setFontSize, setLineHeight, setFontType, setHideVerseNumbers, setMorningPrayerTime, setDailyReadingTime, setNoonPrayerTime, setEarlyEveningPrayerTime, setCloseOfDayPrayerTime, setDarkMode }) => {
 
   const onTimeChange = (id, val) => {
 
@@ -168,13 +173,84 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
     }
   };
 
+  const onTextSizeAccessibilityTap = () => {
+    switch(fontSize) {
+      case 1 * BASE_FONT_SIZE:
+        setFontSize(1.2 * BASE_FONT_SIZE);
+        break;
+      case 1.2 * BASE_FONT_SIZE:
+        setFontSize(1.4 * BASE_FONT_SIZE);
+        break;
+      case 1.4 * BASE_FONT_SIZE:
+        setFontSize(1.6 * BASE_FONT_SIZE);
+        break;
+      case 1.6 * BASE_FONT_SIZE:
+        setFontSize(1.8 * BASE_FONT_SIZE);
+        break;
+      case 1.8 * BASE_FONT_SIZE:
+        setFontSize(2 * BASE_FONT_SIZE);
+        break;
+      default:
+        setFontSize(BASE_FONT_SIZE);
+    }
+  };
+
+  const onLineHeightAccessibilityTap = () => {
+    switch(lineHeight) {
+      case 1:
+        setLineHeight(1.25);
+        break;
+      case 1.25:
+        setLineHeight(1.5);
+        break;
+      case 1.5:
+        setLineHeight(1.75);
+        break;
+      case 1.75:
+        setLineHeight(2);
+        break;
+      default:
+        setLineHeight(1);
+    }
+  };
+
+  const onFontTypeAccessibilityTap = () => {
+    switch(fontType) {
+      case fontTypes.SERIF:
+        setFontType(fontTypes.SANS_SERIF);
+        break;
+      default:
+        setFontType(fontTypes.SERIF);
+    }
+  };
+
+  const onHideVerseNumbersAccessibilityTap = () => {
+    switch(hideVerseNumbers) {
+      case false:
+        setHideVerseNumbers(true);
+        break;
+      default:
+        setHideVerseNumbers(false);
+    }
+  };
+
+  const onDarkModeAccessibilityTap = () => {
+    switch(darkMode) {
+      case true:
+        setDarkMode(false);
+        break;
+      default:
+        setDarkMode(true);
+    }
+  };
+
   return (
     <>
       <Header navigation={navigation}>Settings</Header>
       <Container style={styles.container}>
         <Content style={styles.content}>
           <Form>
-            <Item fixedLabel style={styles.pickerItem} picker>
+            <Item onPress={screenReaderEnabled ? () => onTextSizeAccessibilityTap() : null} accessibilityRole={'combobox'} fixedLabel style={styles.pickerItem} picker>
               <Label style={{color}}>Reading Text Size</Label>
               <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} mode={'dialog'} selectedValue={fontSize} onValueChange={setFontSize}>
                 <Picker.Item label={'1.0'} value={BASE_FONT_SIZE} />
@@ -185,7 +261,7 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 <Picker.Item label={'2.0'} value={2 * BASE_FONT_SIZE} />
               </Picker>
             </Item>
-            <Item fixedLabel style={styles.pickerItem} picker>
+            <Item onPress={screenReaderEnabled ? () => onLineHeightAccessibilityTap() : null} accessibilityRole={'combobox'} fixedLabel style={styles.pickerItem} picker>
               <Label>Reading Line Height</Label>
               <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={lineHeight} onValueChange={setLineHeight}>
                 <Picker.Item label={'1'} value={1} />
@@ -195,21 +271,21 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
                 <Picker.Item label={'2'} value={2} />
               </Picker>
             </Item>
-            <Item fixedLabel style={styles.pickerItem} picker>
+            <Item onPress={screenReaderEnabled ? () => onFontTypeAccessibilityTap() : null} accessibilityRole={'combobox'} fixedLabel style={styles.pickerItem} picker>
               <Label>Reading Font Type</Label>
               <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={fontType} onValueChange={setFontType}>
                 <Picker.Item label={'Serif'} value={fontTypes.SERIF} />
                 <Picker.Item label={'Sans-serif'} value={fontTypes.SANS_SERIF} />
               </Picker>
             </Item>
-            <Item fixedLabel style={styles.pickerItem} picker>
+            <Item onPress={screenReaderEnabled ? () => onHideVerseNumbersAccessibilityTap() : null} accessibilityRole={'combobox'} fixedLabel style={styles.pickerItem} picker>
               <Label>Verse Numbers</Label>
               <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={hideVerseNumbers} onValueChange={setHideVerseNumbers}>
                 <Picker.Item label={'Show'} value={false} />
                 <Picker.Item label={'Hide'} value={true} />
               </Picker>
             </Item>
-            <Item fixedLabel style={styles.pickerItem} picker>
+            <Item onPress={screenReaderEnabled ? () => onDarkModeAccessibilityTap() : null} accessibilityRole={'combobox'} fixedLabel style={styles.pickerItem} picker>
               <Label>Dark Mode</Label>
               <Picker textStyle={darkMode ? {color: colors.PRIMARY_TEXT_DM} : {color: colors.TEXT}} selectedValue={darkMode} onValueChange={val => onDarkModeChange(val)}>
                 <Picker.Item label={'On'} value={true} />
@@ -219,48 +295,53 @@ const Settings = ({ navigation, fontSize, lineHeight, fontType, hideVerseNumbers
 
             <ButtonInput
               label={'Show Morning Prayer'}
+              accessibilityState={{checked: !hideMorningPrayer}}
               value={!hideMorningPrayer}
               onChange={show => {
                 if(!show) scheduleLocalNotification(notificationIds.MORNING_PRAYER, -1);
                 setHideMorningPrayer(!show);
               }} />
-            {!hideMorningPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
+            {!hideMorningPrayer ? <HourPicker onAccessibilityTap={screenReaderEnabled ? () => onTimeChange(notificationIds.MORNING_PRAYER, incrementHour(morningPrayerTime)) : null} accessibilityRole={'combobox'} darkMode={darkMode} label={'Notification Time'} value={morningPrayerTime} onChange={val => onTimeChange(notificationIds.MORNING_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Daily Reading'}
+              accessibilityState={{checked: !hideDailyReading}}
               value={!hideDailyReading}
               onChange={show => {
                 if(!show) scheduleLocalNotification(notificationIds.DAILY_READING, -1);
                 setHideDailyReading(!show);
               }} />
-            {!hideDailyReading ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
+            {!hideDailyReading ? <HourPicker onAccessibilityTap={screenReaderEnabled ? () => onTimeChange(notificationIds.DAILY_READING, incrementHour(dailyReadingTime)) : null} accessibilityRole={'combobox'} darkMode={darkMode} label={'Notification Time'} value={dailyReadingTime} onChange={val => onTimeChange(notificationIds.DAILY_READING, val)} /> : null}
 
             <ButtonInput
               label={'Show Noon Prayer'}
+              accessibilityState={{checked: !hideNoonPrayer}}
               value={!hideNoonPrayer}
               onChange={show => {
                 if(!show) scheduleLocalNotification(notificationIds.NOON_PRAYER, -1);
                 setHideNoonPrayer(!show);
               }} />
-            {!hideNoonPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
+            {!hideNoonPrayer ? <HourPicker onAccessibilityTap={screenReaderEnabled ? () => onTimeChange(notificationIds.NOON_PRAYER, incrementHour(noonPrayerTime)) : null} accessibilityRole={'combobox'} darkMode={darkMode} label={'Notification Time'} value={noonPrayerTime} onChange={val => onTimeChange(notificationIds.NOON_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Early Evening Prayer'}
+              accessibilityState={{checked: !hideEarlyEveningPrayer}}
               value={!hideEarlyEveningPrayer}
               onChange={show => {
                 if(!show) scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, -1);
                 setHideEarlyEveningPrayer(!show);
               }} />
-            {!hideEarlyEveningPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
+            {!hideEarlyEveningPrayer ? <HourPicker onAccessibilityTap={screenReaderEnabled ? () => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, incrementHour(earlyEveningPrayerTime)) : null} accessibilityRole={'combobox'} darkMode={darkMode} label={'Notification Time'} value={earlyEveningPrayerTime} onChange={val => onTimeChange(notificationIds.EARLY_EVENING_PRAYER, val)} /> : null}
 
             <ButtonInput
               label={'Show Close of Day Prayer'}
+              accessibilityState={{checked: !hideCloseOfDayPrayer}}
               value={!hideCloseOfDayPrayer}
               onChange={show => {
                 if(!show) scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, -1);
                 setHideCloseOfDayPrayer(!show);
               }} />
-            {!hideCloseOfDayPrayer ? <HourPicker darkMode={darkMode} label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
+            {!hideCloseOfDayPrayer ? <HourPicker onAccessibilityTap={screenReaderEnabled ? () => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, incrementHour(closeOfDayPrayerTime)) : null} accessibilityRole={'combobox'} darkMode={darkMode} label={'Notification Time'} value={closeOfDayPrayerTime} onChange={val => onTimeChange(notificationIds.CLOSE_OF_DAY_PRAYER, val)} /> : null}
 
           </Form>
         </Content>
@@ -285,6 +366,7 @@ Settings.propTypes = {
   earlyEveningPrayerTime: PropTypes.number,
   closeOfDayPrayerTime: PropTypes.number,
   darkMode: PropTypes.bool,
+  screenReaderEnabled: PropTypes.bool,
   setHideMorningPrayer: PropTypes.func,
   setHideDailyReading: PropTypes.func,
   setHideNoonPrayer: PropTypes.func,

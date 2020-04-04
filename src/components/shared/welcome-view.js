@@ -35,7 +35,11 @@ const WelcomeView = ({ fontType, hideClose, onClose }) => {
 
         <View style={styles.buttonContainer}>
           {!hideClose ?
-            <Button onPress={() => onClose()}>Close</Button>
+            <Button
+              style={styles.button}
+              accessibilityLabel={'Close'}
+              accessibilityHint={'Closes welcome message'}
+              onPress={() => onClose()}>Close</Button>
           :
           null
         }

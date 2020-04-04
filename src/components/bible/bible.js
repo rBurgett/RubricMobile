@@ -9,14 +9,20 @@ import { fontFamily as fontFamilyConstants, routes } from '../../constants';
 import Text from '../shared/text';
 import H3 from '../shared/h3';
 
-const Button = ({ children, fontFamily, onPress }) => {
+const Button = ({ children, fontFamily, accessibilityLabel = '', accessibilityHint = '', onPress }) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}><Text style={[styles.buttonText, {fontFamily}]}>{children}</Text></TouchableOpacity>
+    <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityRole={'button'}
+      style={styles.button} onPress={onPress}><Text style={[styles.buttonText, {fontFamily}]}>{children}</Text></TouchableOpacity>
   );
 };
 Button.propTypes = {
   children: PropTypes.any,
   fontFamily: PropTypes.string,
+  accessibilityLabel: PropTypes.string,
+  accessibilityHint: PropTypes.string,
   onPress: PropTypes.func
 };
 
@@ -26,18 +32,24 @@ const Bible = ({ navigation, fontType }) => {
 
   return (
     <>
-      <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
+      <Header navigation={navigation} showMenuButton={true} rightButtonIcon={'bookmarks'} rightButtonLabel={'Bookmarks'} onRightButtonPress={() => navigation.push(routes.BOOKMARKS)}>Bible</Header>
       <Container style={styles.container}>
         <Grid>
           <Col>
             <Row size={-1} style={styles.headingRow}>
-              <H3 style={[styles.heading, {fontFamily}]}>Old Testament</H3>
+              <H3
+                accessibilityLabel={'Old Testament Column'}
+                accessibilityRole={'header'}
+                style={[styles.heading, {fontFamily}]}>Old Testament</H3>
             </Row>
             <Row>
               <Content style={styles.content}>
                 {otBooks.map(book => {
                   return (
-                    <Button fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
+                    <Button
+                      accessibilityLabel={book}
+                      accessibilityHint={`Navigates to ${book}`}
+                      fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
                   );
                 })}
               </Content>
@@ -45,13 +57,19 @@ const Bible = ({ navigation, fontType }) => {
           </Col>
           <Col>
             <Row size={-1} style={styles.headingRow}>
-              <H3 style={[styles.heading, {fontFamily}]}>New Testament</H3>
+              <H3
+                accessibilityLabel={'New Testament Column'}
+                accessibilityRole={'header'}
+                style={[styles.heading, {fontFamily}]}>New Testament</H3>
             </Row>
             <Row>
               <Content style={styles.content}>
                 {ntBooks.map(book => {
                   return (
-                    <Button fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
+                    <Button
+                      accessibilityLabel={book}
+                      accessibilityHint={`Navigates to ${book}`}
+                      fontFamily={fontFamily} key={book} onPress={() => navigation.push(routes.BIBLE_BOOK, { book })}>{book}</Button>
                   );
                 })}
               </Content>
