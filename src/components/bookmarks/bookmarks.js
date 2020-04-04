@@ -31,6 +31,8 @@ const Bookmarks = ({ fontType, navigation }) => {
     };
   });
 
+  const keys = Object.keys(bookmarks);
+
   return (
     <>
       <Header navigation={navigation} showMenuButton={true}>Bookmarks</Header>
@@ -39,7 +41,8 @@ const Bookmarks = ({ fontType, navigation }) => {
           <Col>
             <Row>
               <Content style={styles.content}>
-                {Object.keys(bookmarks)
+                {keys.length === 0 ? <Text>There are no bookmarks.</Text> : null}
+                {keys
                   .sort((keyA, keyB) => {
                     const { date: dateA } = bookmarks[keyA];
                     const { date: dateB } = bookmarks[keyB];
@@ -48,6 +51,7 @@ const Bookmarks = ({ fontType, navigation }) => {
                   .map(key => {
                     const { book, chapter, totalChapters, date } = bookmarks[key];
                     const dateStr = moment(date).format('YYYY-MM-DD');
+                    const dateAccessibilityStr = moment(date).format('MMMM Do YYYY');
 
                     const name = `${book} ${chapter}`;
 
@@ -61,8 +65,6 @@ const Bookmarks = ({ fontType, navigation }) => {
                             onPress: async function() {
                               try {
                                 const bookmarkKey = makeBookmarkKey(book, chapter);
-                                console.log(bookmarks);
-                                console.log(bookmarkKey);
                                 const newBookmarks = omit(bookmarks, [bookmarkKey]);
                                 await Storage.setItem(storageKeys.BOOKMARKS, newBookmarks);
                                 setBookmarks(newBookmarks);
@@ -79,7 +81,10 @@ const Bookmarks = ({ fontType, navigation }) => {
                     };
 
                     return (
-                      <Button key={key} style={styles.button} onLongPress={onLongPress} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter})}><Text style={[styles.buttonText, {fontFamily}]}>{name}</Text><Text style={[styles.buttonText, {fontFamily}]}>{dateStr}</Text></Button>
+                      <Button
+                        accessibilityLabel={`${name}, added on ${dateAccessibilityStr}`}
+                        accessibilityHint={`Navigates to ${name}`}
+                        key={key} style={styles.button} onLongPress={onLongPress} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters, chapter})}><Text style={[styles.buttonText, {fontFamily}]}>{name}</Text><Text style={[styles.buttonText, {fontFamily}]}>{dateStr}</Text></Button>
                     );
                   })
                 }

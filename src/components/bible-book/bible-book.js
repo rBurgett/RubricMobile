@@ -8,14 +8,20 @@ import { getBook } from '../../modules/bible';
 import { fontFamily as fontFamilyConstants, routes } from '../../constants';
 import Text from '../shared/text';
 
-const Button = ({ fontFamily, children, onPress }) => {
+const Button = ({ fontFamily, children, onPress, accessibilityLabel = '', accessibilityHint = '' }) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}><Text style={[styles.buttonText, {fontFamily}]}>{children}</Text></TouchableOpacity>
+    <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityRole={'button'}
+      style={styles.button} onPress={onPress}><Text style={[styles.buttonText, {fontFamily}]}>{children}</Text></TouchableOpacity>
   );
 };
 Button.propTypes = {
   fontFamily: PropTypes.string,
   children: PropTypes.any,
+  accessibilityLabel: PropTypes.string,
+  accessibilityHint: PropTypes.string,
   onPress: PropTypes.func
 };
 
@@ -43,7 +49,9 @@ const BibleBook = ({ fontType, navigation }) => {
                 {chapters.map((chapter, i) => {
                   const name = `Chapter ${i + 1}`;
                   return (
-                    <Button fontFamily={fontFamily} key={name} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters: chapters.length, chapter: i + 1})}>{name}</Button>
+                    <Button
+                      accessibilityLabel={name}
+                      fontFamily={fontFamily} key={name} onPress={() => navigation.push(routes.BIBLE_BOOK_CHAPTER, {book, totalChapters: chapters.length, chapter: i + 1})}>{name}</Button>
                   );
                 })}
               </Content>

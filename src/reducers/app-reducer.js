@@ -22,7 +22,8 @@ const getInitialState = () => ({
   noonPrayerTime: 0,
   earlyEveningPrayerTime: 0,
   closeOfDayPrayerTime: 0,
-  darkMode: false
+  darkMode: false,
+  screenReaderEnabled: false
 });
 
 export default (state = getInitialState(), { type, payload }) => {
@@ -111,6 +112,11 @@ export default (state = getInitialState(), { type, payload }) => {
       return {
         ...state,
         darkMode: payload
+      };
+      case actions.SET_SCREEN_READER_ENABLED:
+      return {
+        ...state,
+        screenReaderEnabled: payload
       };
     case actions.BULK_SET:
       return {

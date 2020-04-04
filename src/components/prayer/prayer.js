@@ -59,7 +59,7 @@ const Prayer = ({ progress, morningPrayer, noonPrayer, earlyEveningPrayer, close
       <Container>
         <Content style={styles.content}>
           <Text style={[styles.prayerText, {fontFamily: fontFamily[fontType]}]}>{prayerText}</Text>
-          <Button onPress={onDone} icon={'checkmark'}>Amen</Button>
+          <Button accessibilityLabel={'Amen'} onPress={onDone} icon={'checkmark'}>Amen</Button>
         </Content>
       </Container>
     </>

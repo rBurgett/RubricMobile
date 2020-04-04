@@ -1,6 +1,6 @@
 import {colors, routes} from '../../constants';
 import { Body, Header as NBHeader, Button, Left, Right, Title } from 'native-base';
-import { StyleSheet } from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from './icon';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import StatusBar from './statusBar';
 import Platform from '../../modules/platform';
 
-const Header = ({ children, navigation, darkMode, hideBack = false, rightButtonIcon = '', showMenuButton = false, rightButtonIconStyle = {}, onRightButtonPress }) => {
+const Header = ({ children, accessibilityLabel = '', navigation, darkMode, hideBack = false, rightButtonIcon = '', rightButtonLabel = '', rightButtonRole = 'button', rightButtonState = {}, showMenuButton = false, rightButtonIconStyle = {}, onRightButtonPress }) => {
 
   const isIOS = Platform.isIOS();
 
@@ -28,7 +28,11 @@ const Header = ({ children, navigation, darkMode, hideBack = false, rightButtonI
       <StatusBar />
       <Left style={isIOS ? styles.leftIOS : styles.leftAndroid}>
         {!hideBack ?
-          <Button transparent onPress={() => navigation.goBack()}>
+          <Button
+            accessibilityLabel={'Back'}
+            accessibilityHint={'Navigates back'}
+            accessibilityRole={'button'}
+            transparent onPress={() => navigation.goBack()}>
             <Icon style={headerText}>arrow-back</Icon>
           </Button>
           :
@@ -37,19 +41,30 @@ const Header = ({ children, navigation, darkMode, hideBack = false, rightButtonI
       </Left>
 
       <Body style={isIOS ? styles.bodyIOS : styles.bodyAndroid}>
-        <Title style={headerText}>{children}</Title>
+        <Title
+          accessibilityLabel={accessibilityLabel || children}
+          accessibilityRole={'header'}
+          style={headerText}>{children}</Title>
       </Body>
       {isIOS || rightButtonIcon || showMenuButton ?
         <Right style={isIOS ? styles.rightIOS : styles.rightAndroid}>
           {rightButtonIcon ?
-            <Button transparent onPress={onRightButtonPress}>
+            <Button
+              accessibilityLabel={rightButtonLabel}
+              accessibilityRole={rightButtonRole}
+              accessibilityState={rightButtonState}
+              transparent onPress={onRightButtonPress}>
               <Icon style={[headerText, rightButtonIconStyle]}>{rightButtonIcon}</Icon>
             </Button>
             :
             null
           }
           {showMenuButton ?
-            <Button transparent onPress={() => navigation.push(routes.MENU)}>
+            <Button
+              accessibilityLabel={'Main Menu'}
+              accessibilityHint={'Navigates to main menu'}
+              accessibilityRole={'button'}
+              transparent onPress={() => navigation.push(routes.MENU)}>
               <Icon style={headerText}>menu</Icon>
             </Button>
             :
@@ -67,6 +82,10 @@ Header.propTypes = {
   children: PropTypes.string,
   navigation: PropTypes.object,
   hideBack: PropTypes.func,
+  accessibilityLabel: PropTypes.string,
+  rightButtonLabel: PropTypes.string,
+  rightButtonRole: PropTypes.string,
+  rightButtonState: PropTypes.object,
   rightButtonIcon: PropTypes.string,
   rightButtonIconStyle: PropTypes.object,
   onRightButtonPress: PropTypes.func,

@@ -17,25 +17,84 @@ const Home = ({ darkMode, hideMorningPrayer, hideDailyReading, hideNoonPrayer, h
   return (
     <SafeAreaView flex={1} backgroundColor={darkMode ? colors.PRIMARY_DM : colors.BROWN}>
     <Container>
-      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.push(routes.MENU)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>menu</Icon></TouchableOpacity>
-      <TouchableOpacity style={styles.bibleButton} onPress={() => navigation.push(routes.BIBLE)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>book</Icon></TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel={'Menu'}
+        accessibilityHint={'Navigates to menu'}
+        accessibilityRole={'button'}
+        style={styles.menuButton}
+        onPress={() => navigation.push(routes.MENU)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>menu</Icon></TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel={'Bible'}
+        accessibilityHint={'Navigates to Bible'}
+        accessibilityRole={'button'}
+        style={styles.bibleButton}
+        onPress={() => navigation.push(routes.BIBLE)}><Icon style={[styles.menuButtonIcon, {color: headerColor}]}>book</Icon></TouchableOpacity>
       <StatusBar/>
       <Grid style={styles.grid}>
         <Col>
-          <Row style={styles.headerRow}>
+          <Row
+            accessible={true}
+            accessibilityLabel={'Rubric.Church'}
+            accessibilityRole={'header'}
+            style={styles.headerRow}>
             <Col>
               <Image style={styles.image} source={require('../../../images/rubric.church.png')} />
-              <H1 style={[styles.header, {fontFamily: fontFamily[fontType], color: headerColor}]}>Rubric.Church</H1>
+              <H1
+                style={[styles.header, {fontFamily: fontFamily[fontType], color: headerColor}]}>Rubric.Church</H1>
             </Col>
           </Row>
           <Row style={styles.buttonsRow}>
             <Content>
-              {/*<Button style={styles.button} onPress={onPress}>Notify!</Button>*/}
-              {!hideMorningPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})} icon={progress.mp ? 'checkmark' : ''}>Morning Prayer</Button> : null}
-              {!hideDailyReading ? <Button onPress={() => navigation.push(routes.DAILY_READING)} icon={progress.dr ? 'checkmark' : ''}>Daily Reading</Button> : null}
-              {!hideNoonPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.NOON_PRAYER})} icon={progress.np ? 'checkmark' : ''}>Noon Prayer</Button> : null}
-              {!hideEarlyEveningPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})} icon={progress.ee ? 'checkmark' : ''}>Early Evening Prayer</Button> : null}
-              {!hideCloseOfDayPrayer ? <Button onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})} icon={progress.eod ? 'checkmark' : ''}>Close of Day Prayer</Button> : null}
+              {!hideMorningPrayer ?
+                <Button
+                  accessibilityLabel={'Morning Prayer'}
+                  accessibilityHint={'Navigates to the morning prayer'}
+                  accessibilityState={progress.mp ? {checked: true} : {checked: false}}
+                  onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.MORNING_PRAYER})}
+                  icon={progress.mp ? 'checkmark' : ''}>Morning Prayer</Button>
+                :
+                null
+              }
+              {!hideDailyReading ?
+                <Button
+                  accessibilityLabel={'Daily Reading'}
+                  accessibilityHint={'Navigates to the daily reading'}
+                  accessibilityState={progress.dr ? {checked: true} : {checked: false}}
+                  onPress={() => navigation.push(routes.DAILY_READING)}
+                  icon={progress.dr ? 'checkmark' : ''}>Daily Reading</Button>
+                :
+                null
+              }
+              {!hideNoonPrayer ?
+                <Button
+                  accessibilityLabel={'Noon Prayer'}
+                  accessibilityHint={'Navigates to the noon prayer'}
+                  accessibilityState={progress.np ? {checked: true} : {checked: false}}
+                  onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.NOON_PRAYER})}
+                  icon={progress.np ? 'checkmark' : ''}>Noon Prayer</Button>
+                :
+                null
+              }
+              {!hideEarlyEveningPrayer ?
+                <Button
+                  accessibilityLabel={'Early Evening Prayer'}
+                  accessibilityHint={'Navigates to the early evening prayer'}
+                  accessibilityState={progress.ee ? {checked: true} : {checked: false}}
+                  onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.EARLY_EVENING_PRAYER})}
+                  icon={progress.ee ? 'checkmark' : ''}>Early Evening Prayer</Button>
+                :
+                null
+              }
+              {!hideCloseOfDayPrayer ?
+                <Button
+                  accessibilityLabel={'Close of Day Prayer'}
+                  accessibilityHint={'Navigates to the close of day prayer'}
+                  accessibilityState={progress.eod ? {checked: true} : {checked: false}}
+                  onPress={() => navigation.push(routes.PRAYER, {prayer: prayers.CLOSE_OF_DAY_PRAYER})}
+                  icon={progress.eod ? 'checkmark' : ''}>Close of Day Prayer</Button>
+                :
+                null
+              }
             </Content>
           </Row>
         </Col>

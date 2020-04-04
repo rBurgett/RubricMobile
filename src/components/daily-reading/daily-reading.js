@@ -56,7 +56,7 @@ const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, naviga
 
   return (
     <>
-      <Header navigation={navigation} rightButtonIcon={'cog'} onRightButtonPress={onRightButtonPress}>{`Reading ${readingProgress.toFixed()}%`}</Header>
+      <Header navigation={navigation} rightButtonIcon={'cog'} rightButtonLabel={'Settings'} onRightButtonPress={onRightButtonPress} accessibilityLabel={'Daily Reading'}>{`Reading ${readingProgress.toFixed()}%`}</Header>
       <Container style={styles.container}>
         <Content
           style={styles.content}
