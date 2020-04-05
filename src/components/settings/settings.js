@@ -13,9 +13,10 @@ import Platform from '../../modules/platform';
 import { scheduleLocalNotification } from '../../modules/notifications';
 
 let Picker = props => {
-  const { style = {} } = props;
+  const { darkMode, style = {} } = props;
+  const color = darkMode ? colors.PRIMARY_TEXT_DM : colors.TEXT;
   const newProps = {
-    style,
+    style: [{color}, style],
     ...omit(props, ['children', 'style'])
   };
   return <NBPicker {...newProps}>{props.children}</NBPicker>;
