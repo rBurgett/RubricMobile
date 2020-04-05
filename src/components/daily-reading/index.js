@@ -8,6 +8,7 @@ export default connect(
     lineHeight: appState.lineHeight,
     fontType: appState.fontType,
     hideVerseNumbers: appState.hideVerseNumbers,
+    dailyReadingTime: appState.dailyReadingTime,
     progress: appState.progress
   }),
   dispatch => ({

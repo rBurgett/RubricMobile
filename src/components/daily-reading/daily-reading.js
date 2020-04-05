@@ -5,7 +5,7 @@ import { Content, Text } from 'native-base';
 import moment from 'moment';
 import Container from '../shared/container';
 import Header from '../shared/header';
-import { routes, fontFamily } from '../../constants';
+import {routes, fontFamily, notificationIds} from '../../constants';
 import { handleError, prepText } from '../util';
 import dailyReadingData from '../../../daily-readings';
 import Entities from 'html-entities';
@@ -14,10 +14,11 @@ import Button from '../shared/button';
 import H2 from '../shared/h2';
 import Progress from '../../types/progress';
 import Storage from '../../modules/storage';
+import {scheduleLocalNotification} from '../../modules/notifications';
 
 const entities = new Entities.AllHtmlEntities();
 
-const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, navigation, progress, setProgress }) => {
+const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, navigation, progress, dailyReadingTime, setProgress }) => {
 
   lineHeight = lineHeight * fontSize;
 
@@ -44,6 +45,15 @@ const DailyReading = ({ fontSize, lineHeight, fontType, hideVerseNumbers, naviga
       });
       await Storage.setItem(progress.key, newProgress);
       setProgress(newProgress);
+      if(dailyReadingTime > -1) {
+        const now = moment();
+        const scheduled = moment()
+          .hour(dailyReadingTime)
+          .minute(0);
+        if(now.isBefore(scheduled)) {
+          scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime, true);
+        }
+      }
       navigation.goBack();
     } catch(err) {
       handleError(err);
@@ -105,6 +115,7 @@ DailyReading.propTypes = {
   darkMode: PropTypes.bool,
   progress: PropTypes.instanceOf(Progress),
   navigation: PropTypes.object,
+  dailyReadingTime: PropTypes.number,
   setProgress: PropTypes.func
 };
 
