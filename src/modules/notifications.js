@@ -2,7 +2,7 @@ import PushNotification from 'react-native-push-notification';
 import { colors, notificationIds } from '../constants';
 import Platform from './platform';
 
-export const scheduleLocalNotification = (id, hour) => {
+export const scheduleLocalNotification = (id, hour, beginNextDay = false) => {
   PushNotification.cancelLocalNotifications({id});
   if(hour < 0) return;
   let title, message;
@@ -30,7 +30,7 @@ export const scheduleLocalNotification = (id, hour) => {
   }
   let date = new Date();
   date.setHours(hour, 0, 0, 0);
-  if(date.getTime() < Date.now()) date = new Date(date.getTime() + (1000 * 60 * 60 * 24));
+  if(date.getTime() < Date.now() || beginNextDay) date = new Date(date.getTime() + (1000 * 60 * 60 * 24));
   if(Platform.isAndroid()) {
     PushNotification.localNotificationSchedule({
       date,

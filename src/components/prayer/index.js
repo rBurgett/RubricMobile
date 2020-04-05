@@ -9,7 +9,11 @@ export default connect(
     earlyEveningPrayer: appState.earlyEveningPrayer,
     closeOfDayPrayer: appState.closeOfDayPrayer,
     fontType: appState.fontType,
-    progress: appState.progress
+    progress: appState.progress,
+    morningPrayerTime: appState.morningPrayerTime,
+    noonPrayerTime: appState.noonPrayerTime,
+    earlyEveningPrayerTime: appState.earlyEveningPrayerTime,
+    closeOfDayPrayerTime: appState.closeOfDayPrayerTime
   }),
   dispatch => ({
     setProgress: progress => dispatch(setProgress(progress))
