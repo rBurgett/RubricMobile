@@ -129,20 +129,6 @@ const onScreenReaderChanged = enabled => {
 const startupProcess = async function(freshStart, setReady) {
   try {
 
-    let darkMode = await Storage.getItem(storageKeys.DARK_MODE);
-    darkMode = (darkMode || darkMode === null) ? true : false;
-    store.dispatch(appActions.setDarkMode(darkMode));
-
-    if(!darkMode || Platform.isIOS()) {
-      StackNavigation = createStackNavigator(routes, stackConfig);
-      AppContainer = createAppContainer(StackNavigation);
-    } else { // if dark mode on Android
-      StackNavigation = createFluidNavigator(routes, stackConfig);
-      AppContainer = createAppContainer(StackNavigation);
-    }
-
-    changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
-
     const date = moment();
     const day = date.format('DD');
     const month = date.format('MM');
@@ -313,26 +299,46 @@ const App: () => React$Node = () => {
   const [ ready, setReady ] = useState(false);
 
   useEffect(() => {
-
-    let freshStart = true;
-
-    startupProcess(freshStart, setReady);
-
-    freshStart = false;
-
-    let appState = AppState.currentState;
-
-    AppState.addEventListener('change', nextAppState => {
+    (async function() {
       try {
-        if(!['unknown', 'active'].some(s => appState === s) && nextAppState === 'active') {
-          startupProcess(freshStart, setReady);
+
+        let darkMode = await Storage.getItem(storageKeys.DARK_MODE);
+        darkMode = (darkMode || darkMode === null) ? true : false;
+        store.dispatch(appActions.setDarkMode(darkMode));
+
+        if(!darkMode || Platform.isIOS()) {
+          StackNavigation = createStackNavigator(routes, stackConfig);
+          AppContainer = createAppContainer(StackNavigation);
+        } else { // if dark mode on Android
+          StackNavigation = createFluidNavigator(routes, stackConfig);
+          AppContainer = createAppContainer(StackNavigation);
         }
-        appState = nextAppState;
+
+        changeNavigationBarColor(darkMode ? colors.PRIMARY_DM : colors.PRIMARY_TEXT);
+
+        let freshStart = true;
+
+        startupProcess(freshStart, setReady);
+
+        freshStart = false;
+
+        let appState = AppState.currentState;
+
+        AppState.addEventListener('change', nextAppState => {
+          try {
+            if(!['unknown', 'active'].some(s => appState === s) && nextAppState === 'active') {
+              startupProcess(freshStart, setReady);
+            }
+            appState = nextAppState;
+          } catch(err) {
+            console.error(err);
+          }
+        });
+
       } catch(err) {
         console.error(err);
       }
-    });
-
+    })();
   }, []);
 
   return (
