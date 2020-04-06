@@ -48,7 +48,7 @@ const getVerseText = (book, chapter, verse) => {
   const chapterData = bookData[chapter - 1];
   return [
     [
-      [chapter, verse, chapterData[Number(verse) - 1]]
+      [chapter, verse, chapterData[Number(verse) - 1].t]
     ]
   ];
 };
