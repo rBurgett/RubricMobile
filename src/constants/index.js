@@ -32,7 +32,8 @@ export const routes = {
   BIBLE: 'BIBLE',
   BIBLE_BOOK: 'BIBLE_BOOK',
   BIBLE_BOOK_CHAPTER: 'BIBLE_BOOK_CHAPTER',
-  BOOKMARKS: 'BOOKMARKS'
+  BOOKMARKS: 'BOOKMARKS',
+  ABOUT: 'ABOUT'
 };
 
 export const colors = {

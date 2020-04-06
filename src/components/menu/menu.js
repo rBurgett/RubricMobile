@@ -26,6 +26,10 @@ const Menu = ({ navigation }) => {
             accessibilityHint={'Navigates to settings'}
             icon={'cog'} style={styles.button} onPress={() => navigation.push(routes.SETTINGS)}>Settings</Button>
           <Button
+            accessibilityLabel={'About'}
+            accessibilityHint={'Navigates to about page'}
+            icon={'help-circle-outline'} style={styles.button} onPress={() => navigation.push(routes.ABOUT)}>About</Button>
+          <Button
             accessibilityLabel={'Welcome Message'}
             accessibilityHint={'Navigates to welcome message'}
             icon={'list'} style={styles.button} onPress={() => navigation.push(routes.WELCOME)}>Welcome Message</Button>

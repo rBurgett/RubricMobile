@@ -35,6 +35,7 @@ import SplashScreen from 'react-native-splash-screen';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { scheduleLocalNotification } from './modules/notifications';
+import About from './components/about';
 
 const createFluidNavigator = Platform.isAndroid() ? require('react-navigation-fluid-transitions').createFluidNavigator : null;
 
@@ -111,6 +112,12 @@ const routes = {
   },
   [routeConstants.BOOKMARKS]: {
     screen: Bookmarks,
+    navigationOptions: () => ({
+      headerShown: false
+    })
+  },
+  [routeConstants.ABOUT]: {
+    screen: About,
     navigationOptions: () => ({
       headerShown: false
     })
