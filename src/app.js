@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AccessibilityInfo, AppState } from 'react-native';
+import { AccessibilityInfo, Alert, AppState } from 'react-native';
 import { Root } from 'native-base';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -288,12 +288,23 @@ const startupProcess = async function(freshStart, setReady) {
     store.dispatch(appActions.setCloseOfDayPrayerTime(closeOfDayPrayerTime));
 
     if(!initialSchedulingDone) {
-      scheduleLocalNotification(notificationIds.MORNING_PRAYER, morningPrayerTime);
-      scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime);
-      scheduleLocalNotification(notificationIds.NOON_PRAYER, noonPrayerTime);
-      scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, earlyEveningPrayerTime);
-      scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, closeOfDayPrayerTime);
-      await Storage.setItem(storageKeys.INITIAL_SCHEDULING_DONE, true);
+      const interval = setInterval(() => {
+        PushNotification.checkPermissions(async function({ alert, badge, sound }) {
+          try {
+            if(alert || badge || sound) {
+              clearInterval(interval);
+              scheduleLocalNotification(notificationIds.MORNING_PRAYER, morningPrayerTime);
+              scheduleLocalNotification(notificationIds.DAILY_READING, dailyReadingTime);
+              scheduleLocalNotification(notificationIds.NOON_PRAYER, noonPrayerTime);
+              scheduleLocalNotification(notificationIds.EARLY_EVENING_PRAYER, earlyEveningPrayerTime);
+              scheduleLocalNotification(notificationIds.CLOSE_OF_DAY_PRAYER, closeOfDayPrayerTime);
+              await Storage.setItem(storageKeys.INITIAL_SCHEDULING_DONE, true);
+            }
+          } catch(err) {
+            console.error(err);
+          }
+        });
+      }, 1000);
     }
 
   } catch(err) {
