@@ -18,7 +18,7 @@
     "color": "^3.1.2",
     "html-entities": "^1.2.1",
     "ionicons": "^4.6.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "native-base": "^2.13.8",
     "prop-types": "latest",
